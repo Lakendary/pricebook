@@ -1,6 +1,6 @@
 ﻿namespace MainUI.Invoice
 {
-    partial class InvoiceNewAndEdit
+    partial class InvoiceNewOrEdit
     {
         /// <summary>
         /// Required designer variable.
@@ -155,7 +155,7 @@
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             // 
-            // InvoiceNewAndEdit
+            // InvoiceNewOrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -175,7 +175,7 @@
             this.Controls.Add(this.storeNameLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "InvoiceNewAndEdit";
+            this.Name = "InvoiceNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Invoice";
             this.Load += new System.EventHandler(this.InvoiceNewAndEdit_Load);

@@ -8,21 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MainUI.Invoice
+namespace MainUI.ProductLink
 {
-    public partial class InvoiceNewAndEdit : Form
+    public partial class ProductLinkNewOrEdit : Form
     {
-        public InvoiceNewAndEdit()
+        public ProductLinkNewOrEdit()
         {
             InitializeComponent();
         }
 
-        private void InvoiceNewAndEdit_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void resetButton_Click(object sender, EventArgs e)
+        private void storeLocationTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }
