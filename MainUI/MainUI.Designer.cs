@@ -41,12 +41,12 @@
             this.productPictureBox = new System.Windows.Forms.PictureBox();
             this.invoicePictureBox = new System.Windows.Forms.PictureBox();
             this.buttonsPanel = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.exportButton = new System.Windows.Forms.Button();
+            this.importButton = new System.Windows.Forms.Button();
+            this.searchButton = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.editButton = new System.Windows.Forms.Button();
+            this.newButton = new System.Windows.Forms.Button();
             this.viewButton = new System.Windows.Forms.Button();
             this.mainUIStatusStrip = new System.Windows.Forms.StatusStrip();
             this.modeStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -193,75 +193,75 @@
             // 
             // buttonsPanel
             // 
-            this.buttonsPanel.Controls.Add(this.button5);
-            this.buttonsPanel.Controls.Add(this.button4);
-            this.buttonsPanel.Controls.Add(this.button6);
-            this.buttonsPanel.Controls.Add(this.button3);
-            this.buttonsPanel.Controls.Add(this.button2);
-            this.buttonsPanel.Controls.Add(this.button1);
+            this.buttonsPanel.Controls.Add(this.exportButton);
+            this.buttonsPanel.Controls.Add(this.importButton);
+            this.buttonsPanel.Controls.Add(this.searchButton);
+            this.buttonsPanel.Controls.Add(this.deleteButton);
+            this.buttonsPanel.Controls.Add(this.editButton);
+            this.buttonsPanel.Controls.Add(this.newButton);
             this.buttonsPanel.Controls.Add(this.viewButton);
             this.buttonsPanel.Location = new System.Drawing.Point(12, 98);
             this.buttonsPanel.Name = "buttonsPanel";
             this.buttonsPanel.Size = new System.Drawing.Size(920, 40);
             this.buttonsPanel.TabIndex = 0;
             // 
-            // button5
+            // exportButton
             // 
-            this.button5.Location = new System.Drawing.Point(612, 2);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(96, 36);
-            this.button5.TabIndex = 0;
-            this.button5.Text = "Export";
-            this.button5.UseVisualStyleBackColor = true;
+            this.exportButton.Location = new System.Drawing.Point(612, 2);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(96, 36);
+            this.exportButton.TabIndex = 0;
+            this.exportButton.Text = "Export";
+            this.exportButton.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // importButton
             // 
-            this.button4.Location = new System.Drawing.Point(510, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 36);
-            this.button4.TabIndex = 0;
-            this.button4.Text = "Import";
-            this.button4.UseVisualStyleBackColor = true;
+            this.importButton.Location = new System.Drawing.Point(510, 2);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(96, 36);
+            this.importButton.TabIndex = 0;
+            this.importButton.Text = "Import";
+            this.importButton.UseVisualStyleBackColor = true;
             // 
-            // button6
+            // searchButton
             // 
-            this.button6.Location = new System.Drawing.Point(408, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(96, 36);
-            this.button6.TabIndex = 0;
-            this.button6.Text = "Search";
-            this.button6.UseVisualStyleBackColor = true;
+            this.searchButton.Location = new System.Drawing.Point(408, 2);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(96, 36);
+            this.searchButton.TabIndex = 0;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // deleteButton
             // 
-            this.button3.Location = new System.Drawing.Point(306, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 36);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Delete";
-            this.button3.UseVisualStyleBackColor = true;
+            this.deleteButton.Location = new System.Drawing.Point(306, 2);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(96, 36);
+            this.deleteButton.TabIndex = 0;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // editButton
             // 
-            this.button2.Location = new System.Drawing.Point(204, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 36);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Edit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.editButton.Location = new System.Drawing.Point(204, 2);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(96, 36);
+            this.editButton.TabIndex = 0;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // newButton
             // 
-            this.button1.Location = new System.Drawing.Point(102, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 36);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "New";
-            this.button1.UseVisualStyleBackColor = true;
+            this.newButton.Location = new System.Drawing.Point(0, 2);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(96, 36);
+            this.newButton.TabIndex = 0;
+            this.newButton.Text = "New";
+            this.newButton.UseVisualStyleBackColor = true;
             // 
             // viewButton
             // 
-            this.viewButton.Location = new System.Drawing.Point(0, 2);
+            this.viewButton.Location = new System.Drawing.Point(102, 2);
             this.viewButton.Name = "viewButton";
             this.viewButton.Size = new System.Drawing.Size(96, 36);
             this.viewButton.TabIndex = 0;
@@ -353,12 +353,12 @@
         private System.Windows.Forms.PictureBox productLinkPictureBox;
         private System.Windows.Forms.PictureBox productPictureBox;
         private System.Windows.Forms.PictureBox invoicePictureBox;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.Button searchButton;
+        private System.Windows.Forms.Button deleteButton;
+        private System.Windows.Forms.Button editButton;
+        private System.Windows.Forms.Button newButton;
         private System.Windows.Forms.Button viewButton;
         private System.Windows.Forms.Panel barCodeSearchPanel;
         private System.Windows.Forms.DataGridView mainDataGridView;

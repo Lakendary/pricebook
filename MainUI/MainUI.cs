@@ -38,7 +38,7 @@ namespace MainUI
         private void MainUI_Load(object sender, EventArgs e)
         {
             modeStripStatusLabel.Text = "DEFAULT MODE";
-            buttonsPanel.Visible = false;
+            toggleAllButtons(false);
         }
         //EVENTS
         //SEED DATABASE - DOUBLE CLICK PICTURE BOX EVENT
@@ -65,7 +65,8 @@ namespace MainUI
             modeStripStatusLabel.Text = "CATEGORY MODE";
             mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
             mainDataGridView.AutoResizeColumns();
-            buttonsPanel.Visible = false;
+            toggleAllButtons(true);
+            toggleClickFirstButtons(false);
         }
         //2. Store
         private void storePictureBox_DoubleClick(object sender, EventArgs e)
@@ -74,7 +75,8 @@ namespace MainUI
             modeStripStatusLabel.Text = "STORE MODE";
             mainDataGridView.DataSource = SqliteDAStore.GetAllStores();
             mainDataGridView.AutoResizeColumns();
-            buttonsPanel.Visible = false;
+            toggleAllButtons(true);
+            toggleClickFirstButtons(false);
         }
         //3. Product
         private void productPictureBox_DoubleClick(object sender, EventArgs e)
@@ -83,7 +85,8 @@ namespace MainUI
             modeStripStatusLabel.Text = "PRODUCT MODE";
             mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();
             mainDataGridView.AutoResizeColumns();
-            buttonsPanel.Visible = false;
+            toggleAllButtons(true);
+            toggleClickFirstButtons(false);
         }
         //4. Product link 
         private void productLinkPictureBox_DoubleClick(object sender, EventArgs e)
@@ -92,7 +95,8 @@ namespace MainUI
             modeStripStatusLabel.Text = "PRODUCT LINK MODE";
             mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
             mainDataGridView.AutoResizeColumns();
-            buttonsPanel.Visible = false;
+            toggleAllButtons(true);
+            toggleClickFirstButtons(false);
         }
         //5. Invoice
         private void invoicePictureBox_DoubleClick(object sender, EventArgs e)
@@ -101,7 +105,8 @@ namespace MainUI
             modeStripStatusLabel.Text = "INVOICE MODE";
             mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
             mainDataGridView.AutoResizeColumns();
-            buttonsPanel.Visible = false;
+            toggleAllButtons(true);
+            toggleClickFirstButtons(false);
         }
 
         //LOAD MODELS - CLICK VIEW BUTTON EVENT
@@ -141,6 +146,7 @@ namespace MainUI
         //1. Invoice Product
         private void mainDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            toggleClickFirstButtons(true);
             if (modeStripStatusLabel.Text == "INVOICE MODE")
             {
                 try
@@ -148,7 +154,7 @@ namespace MainUI
                     if (e.RowIndex >= 0)
                     {
                         row = this.mainDataGridView.Rows[e.RowIndex];
-                        buttonsPanel.Visible = true;
+                        
                     }
                 }
                 catch (System.Exception ex)
@@ -158,6 +164,27 @@ namespace MainUI
             }
         }
 
-        
+        //OTHER METHODS
+        //Enable/disable all main buttons
+        private void toggleAllButtons(bool input)
+        {
+            newButton.Enabled = input;
+            searchButton.Enabled = input;
+            importButton.Enabled = input;
+            exportButton.Enabled = input;
+            editButton.Enabled = input;
+            viewButton.Enabled = input;
+            deleteButton.Enabled = input;
+        }
+        //Enable/disable all click first main buttons
+        private void toggleClickFirstButtons(bool input)
+        {
+            //The user first needs to click on the data grid view to select a cell. An instance must be selected first,
+            //before a function is action on said selected instance.
+            //This helps prevent the argument exception.
+            editButton.Enabled = input;
+            viewButton.Enabled = input;
+            deleteButton.Enabled = input;
+        }
     }
 }
