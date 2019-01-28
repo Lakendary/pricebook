@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,7 @@ namespace PriceBookClassLibrary
                 }
             } 
             catch(Exception ex){
+                General.LogError(ex);
                 return false;
             }
             return true;

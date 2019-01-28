@@ -23,12 +23,14 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<InvoiceModel>("SELECT "+
-                    "Invoice.InvoiceNumber, "+
+                    "Invoice.Id, " +
+                    "Invoice.InvoiceNumber, " +
                     "Invoice.Saved, "+
                     "Invoice.Date, "+
                     "Invoice.InvoiceAmount, "+
-                    "Store.Name StoreName "+
-                "FROM Invoice "+
+                    "Store.Name StoreName, "+
+                    "Invoice.StoreId " +
+                "FROM Invoice " +
                 "LEFT JOIN Store "+
                 "ON Invoice.StoreId = Store.Id", new DynamicParameters());
                 return output.ToList();
@@ -64,6 +66,7 @@ namespace PriceBookClassLibrary
                 }
             } 
             catch(Exception ex){
+                General.LogError(ex);
                 return false;
             }
             return true;
@@ -73,7 +76,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var count = this.cnn.Execute("UPDATE Invoice "+
+                var count = cnn.Execute("UPDATE Invoice "+
                     "SET Date=@Date, InvoiceAmount=@InvoiceAmount, "+
                     "InvoiceNumber=@InvoiceNumber, Saved=@Saved, StoreId=@StoreId"+
                     "WHERE Invoice.Id = @Id", invoice);
@@ -85,7 +88,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var affectedRows = this.cnn.Execute("DELETE FROM Invoice "+
+                var affectedRows = cnn.Execute("DELETE FROM Invoice "+
                     "WHERE Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }

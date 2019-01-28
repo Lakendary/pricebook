@@ -66,6 +66,7 @@ namespace PriceBookClassLibrary
                 }
             } 
             catch(Exception ex){
+                General.LogError(ex);
                 return false;
             }
             return true;
@@ -75,7 +76,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var count = this.cnn.Execute("UPDATE ProductLink "+
+                var count = cnn.Execute("UPDATE ProductLink "+
                     "SET Name=@Name, UoM=@UoM, Weighted=@Weighted, "+
                     "MeasurementRate=@MeasurementRate, CategoryId=@CategoryId "+
                     "WHERE Id= @Id", productLink);
@@ -87,7 +88,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var affectedRows = this.cnn.Execute("DELETE FROM ProductLink "+
+                var affectedRows = cnn.Execute("DELETE FROM ProductLink "+
                     "WHERE Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }

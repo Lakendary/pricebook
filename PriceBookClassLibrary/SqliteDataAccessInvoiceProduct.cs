@@ -113,6 +113,7 @@ namespace PriceBookClassLibrary
                 }
             } 
             catch(Exception ex){
+                General.LogError(ex);
                 return false;
             }
             return true;
@@ -122,7 +123,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var count = this.cnn.Execute("UPDATE InvoiceProduct "+
+                var count = cnn.Execute("UPDATE InvoiceProduct "+
                     "SET InvoiceId= @InvoiceId, ProductId= @ProductId, "+
                     "Quantity= @Quantity, Sale= @Sale, TotalPrice= @TotalPrice, "+
                     "Weight= @Weight "+
@@ -135,7 +136,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var affectedRows = this.cnn.Execute("DELETE FROM InvoiceProduct "+
+                var affectedRows = cnn.Execute("DELETE FROM InvoiceProduct "+
                     "WHERE InvoiceProduct.Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }

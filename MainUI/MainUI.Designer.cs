@@ -49,6 +49,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.viewButton = new System.Windows.Forms.Button();
             this.mainUIStatusStrip = new System.Windows.Forms.StatusStrip();
+            this.modeStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.barCodeSearchPanel = new System.Windows.Forms.Panel();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
             this.mainMenuPanel.SuspendLayout();
@@ -63,6 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicePictureBox)).BeginInit();
             this.buttonsPanel.SuspendLayout();
+            this.mainUIStatusStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,6 +94,7 @@
             this.infoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.infoPictureBox.TabIndex = 0;
             this.infoPictureBox.TabStop = false;
+            this.infoPictureBox.DoubleClick += new System.EventHandler(this.infoPictureBox_DoubleClick);
             // 
             // reportPictureBox
             // 
@@ -142,6 +145,7 @@
             this.storePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.storePictureBox.TabIndex = 0;
             this.storePictureBox.TabStop = false;
+            this.storePictureBox.DoubleClick += new System.EventHandler(this.storePictureBox_DoubleClick);
             // 
             // categoryPictureBox
             // 
@@ -152,6 +156,7 @@
             this.categoryPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.categoryPictureBox.TabIndex = 0;
             this.categoryPictureBox.TabStop = false;
+            this.categoryPictureBox.DoubleClick += new System.EventHandler(this.categoryPictureBox_DoubleClick);
             // 
             // productLinkPictureBox
             // 
@@ -162,6 +167,7 @@
             this.productLinkPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.productLinkPictureBox.TabIndex = 0;
             this.productLinkPictureBox.TabStop = false;
+            this.productLinkPictureBox.DoubleClick += new System.EventHandler(this.productLinkPictureBox_DoubleClick);
             // 
             // productPictureBox
             // 
@@ -172,6 +178,7 @@
             this.productPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.productPictureBox.TabIndex = 0;
             this.productPictureBox.TabStop = false;
+            this.productPictureBox.DoubleClick += new System.EventHandler(this.productPictureBox_DoubleClick);
             // 
             // invoicePictureBox
             // 
@@ -182,6 +189,7 @@
             this.invoicePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.invoicePictureBox.TabIndex = 0;
             this.invoicePictureBox.TabStop = false;
+            this.invoicePictureBox.DoubleClick += new System.EventHandler(this.invoicePictureBox_DoubleClick);
             // 
             // buttonsPanel
             // 
@@ -259,14 +267,23 @@
             this.viewButton.TabIndex = 0;
             this.viewButton.Text = "View";
             this.viewButton.UseVisualStyleBackColor = true;
+            this.viewButton.Click += new System.EventHandler(this.viewButton_Click);
             // 
             // mainUIStatusStrip
             // 
+            this.mainUIStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modeStripStatusLabel});
             this.mainUIStatusStrip.Location = new System.Drawing.Point(0, 579);
             this.mainUIStatusStrip.Name = "mainUIStatusStrip";
             this.mainUIStatusStrip.Size = new System.Drawing.Size(944, 22);
             this.mainUIStatusStrip.TabIndex = 1;
             this.mainUIStatusStrip.Text = "statusStrip1";
+            // 
+            // modeStripStatusLabel
+            // 
+            this.modeStripStatusLabel.Name = "modeStripStatusLabel";
+            this.modeStripStatusLabel.Size = new System.Drawing.Size(91, 17);
+            this.modeStripStatusLabel.Text = "DEFAULT MODE";
             // 
             // barCodeSearchPanel
             // 
@@ -282,6 +299,7 @@
             this.mainDataGridView.Name = "mainDataGridView";
             this.mainDataGridView.Size = new System.Drawing.Size(920, 386);
             this.mainDataGridView.TabIndex = 2;
+            this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
             // 
             // MainUI
             // 
@@ -299,6 +317,7 @@
             this.Name = "MainUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PriceBook Application";
+            this.Load += new System.EventHandler(this.MainUI_Load);
             this.mainMenuPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).EndInit();
@@ -311,6 +330,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicePictureBox)).EndInit();
             this.buttonsPanel.ResumeLayout(false);
+            this.mainUIStatusStrip.ResumeLayout(false);
+            this.mainUIStatusStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -341,6 +362,7 @@
         private System.Windows.Forms.Button viewButton;
         private System.Windows.Forms.Panel barCodeSearchPanel;
         private System.Windows.Forms.DataGridView mainDataGridView;
+        private System.Windows.Forms.ToolStripStatusLabel modeStripStatusLabel;
     }
 }
 

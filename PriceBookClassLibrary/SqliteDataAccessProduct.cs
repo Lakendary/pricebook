@@ -28,8 +28,10 @@ namespace PriceBookClassLibrary
                     "Product.Description, "+
                     "Product.PackSize, "+
                     "ProductLink.Name ProductLinkName, "+
-                    "Category.Name CategoryName "+ 
-                "FROM Product "+
+                    "Category.Name CategoryName, "+
+                    "Product.ProductLinkId ProductLinkId, " +
+                    "ProductLink.UoM UoM "+
+                "FROM Product " +
                 "LEFT JOIN ProductLink "+
                 "ON Product.ProductLinkId = ProductLink.Id "+
                 "LEFT JOIN Category "+
@@ -94,6 +96,7 @@ namespace PriceBookClassLibrary
                 }
             } 
             catch(Exception ex){
+                General.LogError(ex);
                 return false;
             }
             return true;
@@ -103,7 +106,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var count = this.cnn.Execute("UPDATE Product "+
+                var count = cnn.Execute("UPDATE Product "+
                     "SET Description=@Description, BrandName=@BrandName, PackSize=@PackSize, "+
                     "ProductLinkId=@ProductLinkId"+
                     "WHERE Product.Id= @Id", product);
@@ -115,7 +118,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var affectedRows = this.cnn.Execute("DELETE FROM Product "+
+                var affectedRows = cnn.Execute("DELETE FROM Product "+
                     "WHERE Product.Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }
