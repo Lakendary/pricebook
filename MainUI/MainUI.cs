@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MainUI.Category;
+using MainUI.ProductLink;
+using MainUI.Store;
 using PriceBookClassLibrary;
 
 namespace MainUI
@@ -27,19 +30,22 @@ namespace MainUI
         //
         //
         //********************************************************************************************//
+        
         //Form Global variables
         DataGridViewRow row;
 
+        //Initial Component Method
         public MainUI()
         {
             InitializeComponent();
         }
-
+        //Form Load Method
         private void MainUI_Load(object sender, EventArgs e)
         {
             modeStripStatusLabel.Text = "DEFAULT MODE";
             toggleAllButtons(false);
         }
+        
         //EVENTS
         //SEED DATABASE - DOUBLE CLICK PICTURE BOX EVENT
         private void infoPictureBox_DoubleClick(object sender, EventArgs e)
@@ -55,7 +61,6 @@ namespace MainUI
             }
         }
 
-        
         //LOAD MODELS - DOUBLE CLICK PICTURE BOX EVENT
         //TODO: Remove Id columns and other unwanted columns from each objects get all function.
         //1. Category
@@ -141,7 +146,46 @@ namespace MainUI
             mainDataGridView.AutoResizeColumns();
         }
 
+        //SAVE MODELS - CLICK NEW BUTTON EVENT
+        //There is just one click new button event method. Check in which mode the app is in to determine
+        //which object to act on.
+        private void newButton_Click(object sender, EventArgs e)
+        {
+            //1. Category
+            if (modeStripStatusLabel.Text == "CATEGORY MODE")
+            {
+                CategoryNewOrEdit categoryForm = new CategoryNewOrEdit();
+                categoryForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
+                mainDataGridView.AutoResizeColumns();
+            }
+            //2. Store
+            else if (modeStripStatusLabel.Text == "STORE MODE")
+            {
+                StoreNewOrEdit storeForm = new StoreNewOrEdit();
+                storeForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAStore.GetAllStores();
+                mainDataGridView.AutoResizeColumns();
+            }
+            //3. Product Link
+            else if (modeStripStatusLabel.Text == "PRODUCT LINK MODE")
+            {
+                ProductLinkNewOrEdit productLinkForm = new ProductLinkNewOrEdit();
+                productLinkForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
+                mainDataGridView.AutoResizeColumns();
+            }
+            //4. Product
+            else if (modeStripStatusLabel.Text == "PRODUCT MODE")
+            {
 
+            }
+            //5. Invoice
+            else if (modeStripStatusLabel.Text == "INVOICE MODE")
+            {
+
+            }
+        }
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
         //1. Invoice Product
         private void mainDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -186,5 +230,7 @@ namespace MainUI
             viewButton.Enabled = input;
             deleteButton.Enabled = input;
         }
+
+        
     }
 }

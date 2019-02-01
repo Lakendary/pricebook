@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.formTitleLabel = new System.Windows.Forms.Label();
-            this.storeNameTextBox = new System.Windows.Forms.TextBox();
+            this.categoryNameTextBox = new System.Windows.Forms.TextBox();
             this.invoiceNumberLabel = new System.Windows.Forms.Label();
             this.invoiceAmountLabel = new System.Windows.Forms.Label();
-            this.storeComboBox = new System.Windows.Forms.ComboBox();
+            this.mainCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -47,13 +47,13 @@
             this.formTitleLabel.TabIndex = 18;
             this.formTitleLabel.Text = "New Category";
             // 
-            // storeNameTextBox
+            // categoryNameTextBox
             // 
-            this.storeNameTextBox.Location = new System.Drawing.Point(140, 51);
-            this.storeNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.storeNameTextBox.Name = "storeNameTextBox";
-            this.storeNameTextBox.Size = new System.Drawing.Size(192, 25);
-            this.storeNameTextBox.TabIndex = 17;
+            this.categoryNameTextBox.Location = new System.Drawing.Point(140, 51);
+            this.categoryNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.categoryNameTextBox.Name = "categoryNameTextBox";
+            this.categoryNameTextBox.Size = new System.Drawing.Size(192, 25);
+            this.categoryNameTextBox.TabIndex = 1;
             // 
             // invoiceNumberLabel
             // 
@@ -75,13 +75,13 @@
             this.invoiceAmountLabel.TabIndex = 15;
             this.invoiceAmountLabel.Text = "Category Name";
             // 
-            // storeComboBox
+            // mainCategoryComboBox
             // 
-            this.storeComboBox.FormattingEnabled = true;
-            this.storeComboBox.Location = new System.Drawing.Point(140, 83);
-            this.storeComboBox.Name = "storeComboBox";
-            this.storeComboBox.Size = new System.Drawing.Size(192, 25);
-            this.storeComboBox.TabIndex = 19;
+            this.mainCategoryComboBox.FormattingEnabled = true;
+            this.mainCategoryComboBox.Location = new System.Drawing.Point(140, 83);
+            this.mainCategoryComboBox.Name = "mainCategoryComboBox";
+            this.mainCategoryComboBox.Size = new System.Drawing.Size(192, 25);
+            this.mainCategoryComboBox.TabIndex = 2;
             // 
             // saveButton
             // 
@@ -90,9 +90,10 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 20;
+            this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // resetButton
             // 
@@ -101,9 +102,10 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 21;
+            this.resetButton.TabIndex = 4;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // CategoryNewOrEdit
             // 
@@ -113,9 +115,9 @@
             this.ClientSize = new System.Drawing.Size(344, 181);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.resetButton);
-            this.Controls.Add(this.storeComboBox);
+            this.Controls.Add(this.mainCategoryComboBox);
             this.Controls.Add(this.formTitleLabel);
-            this.Controls.Add(this.storeNameTextBox);
+            this.Controls.Add(this.categoryNameTextBox);
             this.Controls.Add(this.invoiceNumberLabel);
             this.Controls.Add(this.invoiceAmountLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -123,6 +125,7 @@
             this.Name = "CategoryNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Category";
+            this.Load += new System.EventHandler(this.CategoryNewOrEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -131,10 +134,10 @@
         #endregion
 
         private System.Windows.Forms.Label formTitleLabel;
-        private System.Windows.Forms.TextBox storeNameTextBox;
+        private System.Windows.Forms.TextBox categoryNameTextBox;
         private System.Windows.Forms.Label invoiceNumberLabel;
         private System.Windows.Forms.Label invoiceAmountLabel;
-        private System.Windows.Forms.ComboBox storeComboBox;
+        private System.Windows.Forms.ComboBox mainCategoryComboBox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button resetButton;
     }

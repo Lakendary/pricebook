@@ -9,7 +9,7 @@ namespace PriceBookClassLibrary
         public string UoM { get; set; }
         public string Weighted { get; set; }
         public int MeasurementRate { get; set; }
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
     }
 }

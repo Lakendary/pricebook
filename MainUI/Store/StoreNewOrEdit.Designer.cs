@@ -43,7 +43,7 @@
             this.storeLocationTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.storeLocationTextBox.Name = "storeLocationTextBox";
             this.storeLocationTextBox.Size = new System.Drawing.Size(192, 25);
-            this.storeLocationTextBox.TabIndex = 9;
+            this.storeLocationTextBox.TabIndex = 2;
             // 
             // storeNameTextBox
             // 
@@ -51,7 +51,7 @@
             this.storeNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.storeNameTextBox.Name = "storeNameTextBox";
             this.storeNameTextBox.Size = new System.Drawing.Size(192, 25);
-            this.storeNameTextBox.TabIndex = 10;
+            this.storeNameTextBox.TabIndex = 1;
             // 
             // invoiceNumberLabel
             // 
@@ -90,9 +90,10 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 14;
+            this.saveButton.TabIndex = 3;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // resetButton
             // 
@@ -101,9 +102,10 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 15;
+            this.resetButton.TabIndex = 4;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // StoreNewOrEdit
             // 

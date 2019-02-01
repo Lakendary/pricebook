@@ -78,5 +78,29 @@ namespace PriceBookClassLibrary
                 return affectedRows > 0;
             }
         }
+        //6. Get Main Category Only
+        public static List<CategoryModel> GetMainCategoryOnly()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<CategoryModel>("SELECT " +
+                    "Id, Name " +
+                    "FROM Category " +
+                    "WHERE Category.MainCategory = '';", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+        //7. Get Subcategory Only
+        public static List<CategoryModel> GetSubcategoryOnly()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<CategoryModel>("SELECT " +
+                    "Id, Name " +
+                    "FROM Category " +
+                    "WHERE Category.MainCategory != '';", new DynamicParameters());
+                return output.ToList();
+            }
+        }
     }
 }

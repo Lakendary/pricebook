@@ -49,9 +49,10 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 21;
+            this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // resetButton
             // 
@@ -60,9 +61,10 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 22;
+            this.resetButton.TabIndex = 7;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // formTitleLabel
             // 
@@ -80,8 +82,7 @@
             this.measurementRateTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.measurementRateTextBox.Name = "measurementRateTextBox";
             this.measurementRateTextBox.Size = new System.Drawing.Size(192, 25);
-            this.measurementRateTextBox.TabIndex = 18;
-            this.measurementRateTextBox.TextChanged += new System.EventHandler(this.storeLocationTextBox_TextChanged);
+            this.measurementRateTextBox.TabIndex = 4;
             // 
             // productLinkNameTextBox
             // 
@@ -89,7 +90,7 @@
             this.productLinkNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productLinkNameTextBox.Name = "productLinkNameTextBox";
             this.productLinkNameTextBox.Size = new System.Drawing.Size(192, 25);
-            this.productLinkNameTextBox.TabIndex = 19;
+            this.productLinkNameTextBox.TabIndex = 1;
             // 
             // measurementRateLabel
             // 
@@ -114,10 +115,15 @@
             // uomComboBox
             // 
             this.uomComboBox.FormattingEnabled = true;
+            this.uomComboBox.Items.AddRange(new object[] {
+            "g",
+            "ml",
+            "ea",
+            "cm"});
             this.uomComboBox.Location = new System.Drawing.Point(140, 83);
             this.uomComboBox.Name = "uomComboBox";
             this.uomComboBox.Size = new System.Drawing.Size(89, 25);
-            this.uomComboBox.TabIndex = 24;
+            this.uomComboBox.TabIndex = 2;
             // 
             // uomLabel
             // 
@@ -136,7 +142,7 @@
             this.weightedCheckBox.Location = new System.Drawing.Point(235, 87);
             this.weightedCheckBox.Name = "weightedCheckBox";
             this.weightedCheckBox.Size = new System.Drawing.Size(97, 21);
-            this.weightedCheckBox.TabIndex = 25;
+            this.weightedCheckBox.TabIndex = 3;
             this.weightedCheckBox.Text = "Weighted ?";
             this.weightedCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -156,7 +162,7 @@
             this.categoryComboBox.Location = new System.Drawing.Point(140, 147);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(192, 25);
-            this.categoryComboBox.TabIndex = 24;
+            this.categoryComboBox.TabIndex = 5;
             // 
             // ProductLinkNewOrEdit
             // 
@@ -181,6 +187,7 @@
             this.Name = "ProductLinkNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Product Link";
+            this.Load += new System.EventHandler(this.ProductLinkNewOrEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
