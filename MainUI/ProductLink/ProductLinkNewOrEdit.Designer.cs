@@ -40,12 +40,13 @@
             this.weightedCheckBox = new System.Windows.Forms.CheckBox();
             this.categoryLabel = new System.Windows.Forms.Label();
             this.categoryComboBox = new System.Windows.Forms.ComboBox();
+            this.addCategoryButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(245, 205);
+            this.saveButton.Location = new System.Drawing.Point(285, 205);
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
@@ -81,15 +82,16 @@
             this.measurementRateTextBox.Location = new System.Drawing.Point(140, 115);
             this.measurementRateTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.measurementRateTextBox.Name = "measurementRateTextBox";
-            this.measurementRateTextBox.Size = new System.Drawing.Size(192, 25);
+            this.measurementRateTextBox.Size = new System.Drawing.Size(232, 25);
             this.measurementRateTextBox.TabIndex = 4;
+            this.measurementRateTextBox.Leave += new System.EventHandler(this.measurementRateTextBox_Leave);
             // 
             // productLinkNameTextBox
             // 
             this.productLinkNameTextBox.Location = new System.Drawing.Point(140, 51);
             this.productLinkNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productLinkNameTextBox.Name = "productLinkNameTextBox";
-            this.productLinkNameTextBox.Size = new System.Drawing.Size(192, 25);
+            this.productLinkNameTextBox.Size = new System.Drawing.Size(232, 25);
             this.productLinkNameTextBox.TabIndex = 1;
             // 
             // measurementRateLabel
@@ -122,7 +124,7 @@
             "cm"});
             this.uomComboBox.Location = new System.Drawing.Point(140, 83);
             this.uomComboBox.Name = "uomComboBox";
-            this.uomComboBox.Size = new System.Drawing.Size(89, 25);
+            this.uomComboBox.Size = new System.Drawing.Size(129, 25);
             this.uomComboBox.TabIndex = 2;
             // 
             // uomLabel
@@ -139,7 +141,7 @@
             // 
             this.weightedCheckBox.AutoSize = true;
             this.weightedCheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.weightedCheckBox.Location = new System.Drawing.Point(235, 87);
+            this.weightedCheckBox.Location = new System.Drawing.Point(275, 87);
             this.weightedCheckBox.Name = "weightedCheckBox";
             this.weightedCheckBox.Size = new System.Drawing.Size(97, 21);
             this.weightedCheckBox.TabIndex = 3;
@@ -161,20 +163,32 @@
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(140, 147);
             this.categoryComboBox.Name = "categoryComboBox";
-            this.categoryComboBox.Size = new System.Drawing.Size(192, 25);
+            this.categoryComboBox.Size = new System.Drawing.Size(201, 25);
             this.categoryComboBox.TabIndex = 5;
+            // 
+            // addCategoryButton
+            // 
+            this.addCategoryButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addCategoryButton.Location = new System.Drawing.Point(347, 147);
+            this.addCategoryButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.addCategoryButton.Name = "addCategoryButton";
+            this.addCategoryButton.Size = new System.Drawing.Size(25, 25);
+            this.addCategoryButton.TabIndex = 6;
+            this.addCategoryButton.Text = "+";
+            this.addCategoryButton.UseVisualStyleBackColor = true;
             // 
             // ProductLinkNewOrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(344, 241);
+            this.ClientSize = new System.Drawing.Size(384, 241);
             this.Controls.Add(this.weightedCheckBox);
             this.Controls.Add(this.categoryComboBox);
             this.Controls.Add(this.uomComboBox);
             this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.uomLabel);
+            this.Controls.Add(this.addCategoryButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.formTitleLabel);
@@ -207,5 +221,6 @@
         private System.Windows.Forms.CheckBox weightedCheckBox;
         private System.Windows.Forms.Label categoryLabel;
         private System.Windows.Forms.ComboBox categoryComboBox;
+        private System.Windows.Forms.Button addCategoryButton;
     }
 }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,38 +28,39 @@ namespace MainUI.ProductLink
         {
             ProductLinkModel productLink = new ProductLinkModel();
             productLink.CategoryId = Convert.ToInt32(categoryComboBox.SelectedValue);
-            //TODO: Product Link should not save after error is thrown.
-            try
+            if (!int.TryParse(measurementRateTextBox.Text, out int number))
             {
-                productLink.MeasurementRate = Convert.ToInt32(measurementRateTextBox.Text);
-            } catch (FormatException fe)
-            {
-                MessageBox.Show(string.Format("Please enter a number.\nException: {0}",fe),"Measurement Rate Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter a number.", "Measurement Rate Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            productLink.Name = productLinkNameTextBox.Text;
-            productLink.UoM = uomComboBox.Text;
-            if(weightedCheckBox.CheckState == CheckState.Checked)
+            else
             {
-                productLink.Weighted = "Weighted";
-            } else
-            {
-                productLink.Weighted = "Pre-Packaged";
-            }
-            bool result = SqliteDAProductLink.SaveProductLink(productLink);
-            if (result == true)
-            {
-                DialogResult dialogResult = MessageBox.Show("New product link created successfully", "New Product Link",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (dialogResult == DialogResult.OK)
+                productLink.MeasurementRate = number;
+                productLink.Name = productLinkNameTextBox.Text;
+                productLink.UoM = uomComboBox.Text;
+                if (weightedCheckBox.CheckState == CheckState.Checked)
                 {
-                    this.Close();
+                    productLink.Weighted = "Weighted";
                 }
+                else
+                {
+                    productLink.Weighted = "Pre-Packaged";
+                }
+                bool result = SqliteDAProductLink.SaveProductLink(productLink);
+                if (result == true)
+                {
+                    DialogResult dialogResult = MessageBox.Show("New product link created successfully", "New Product Link",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
 
-            }
-            else if (result == false)
-            {
-                MessageBox.Show("Something went wrong. New product link could not be saved.", "New Product Link Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (result == false)
+                {
+                    MessageBox.Show("Something went wrong. New product link could not be saved.", "New Product Link Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -71,6 +71,16 @@ namespace MainUI.ProductLink
             measurementRateTextBox.ResetText();
             categoryComboBox.SelectedIndex = 0;
             uomComboBox.SelectedIndex = 0;
+        }
+
+        private void addCategoryButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Open New Category Form
+        }
+
+        private void measurementRateTextBox_Leave(object sender, EventArgs e)
+        {
+
         }
     }
 }

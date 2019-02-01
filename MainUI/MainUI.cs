@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MainUI.Category;
+using MainUI.Product;
 using MainUI.ProductLink;
 using MainUI.Store;
 using PriceBookClassLibrary;
@@ -178,7 +179,10 @@ namespace MainUI
             //4. Product
             else if (modeStripStatusLabel.Text == "PRODUCT MODE")
             {
-
+                ProductNewOrEdit productForm = new ProductNewOrEdit();
+                productForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();
+                mainDataGridView.AutoResizeColumns();
             }
             //5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")

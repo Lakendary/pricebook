@@ -41,6 +41,7 @@
             this.brandNameTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
+            this.addProductLinkButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // productLinkComboBox
@@ -48,7 +49,7 @@
             this.productLinkComboBox.FormattingEnabled = true;
             this.productLinkComboBox.Location = new System.Drawing.Point(180, 147);
             this.productLinkComboBox.Name = "productLinkComboBox";
-            this.productLinkComboBox.Size = new System.Drawing.Size(192, 25);
+            this.productLinkComboBox.Size = new System.Drawing.Size(161, 25);
             this.productLinkComboBox.TabIndex = 35;
             // 
             // productLinkLabel
@@ -93,6 +94,7 @@
             this.resetButton.TabIndex = 32;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // formTitleLabel
             // 
@@ -166,6 +168,18 @@
             this.barcodeTextBox.Size = new System.Drawing.Size(192, 25);
             this.barcodeTextBox.TabIndex = 28;
             // 
+            // addProductLinkButton
+            // 
+            this.addProductLinkButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addProductLinkButton.Location = new System.Drawing.Point(347, 147);
+            this.addProductLinkButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.addProductLinkButton.Name = "addProductLinkButton";
+            this.addProductLinkButton.Size = new System.Drawing.Size(25, 25);
+            this.addProductLinkButton.TabIndex = 31;
+            this.addProductLinkButton.Text = "+";
+            this.addProductLinkButton.UseVisualStyleBackColor = true;
+            this.addProductLinkButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
             // ProductNewOrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -175,6 +189,7 @@
             this.Controls.Add(this.productLinkComboBox);
             this.Controls.Add(this.productLinkLabel);
             this.Controls.Add(this.brandNameLabel);
+            this.Controls.Add(this.addProductLinkButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.formTitleLabel);
@@ -190,6 +205,7 @@
             this.Name = "ProductNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Product";
+            this.Load += new System.EventHandler(this.ProductNewOrEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,5 +226,6 @@
         private System.Windows.Forms.TextBox brandNameTextBox;
         private System.Windows.Forms.Label barcodeLabel;
         private System.Windows.Forms.TextBox barcodeTextBox;
+        private System.Windows.Forms.Button addProductLinkButton;
     }
 }
