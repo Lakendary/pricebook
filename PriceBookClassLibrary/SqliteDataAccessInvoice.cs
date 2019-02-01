@@ -62,7 +62,7 @@ namespace PriceBookClassLibrary
                 {
                     cnn.Execute("INSERT INTO Invoice "+
                     "(Date, InvoiceAmount, InvoiceNumber, Saved, StoreId) "+
-                    "VALUES (@Date, @InvoiceAmount, @InvoiceNumber, '@Saved, @StoreId);", invoice);
+                    "VALUES (@Date, @InvoiceAmount, @InvoiceNumber, @Saved, @StoreId);", invoice);
                 }
             } 
             catch(Exception ex){

@@ -84,7 +84,6 @@
             this.measurementRateTextBox.Name = "measurementRateTextBox";
             this.measurementRateTextBox.Size = new System.Drawing.Size(232, 25);
             this.measurementRateTextBox.TabIndex = 4;
-            this.measurementRateTextBox.Leave += new System.EventHandler(this.measurementRateTextBox_Leave);
             // 
             // productLinkNameTextBox
             // 
@@ -176,6 +175,7 @@
             this.addCategoryButton.TabIndex = 6;
             this.addCategoryButton.Text = "+";
             this.addCategoryButton.UseVisualStyleBackColor = true;
+            this.addCategoryButton.Click += new System.EventHandler(this.addCategoryButton_Click);
             // 
             // ProductLinkNewOrEdit
             // 

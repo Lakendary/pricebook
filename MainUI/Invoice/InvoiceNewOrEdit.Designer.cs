@@ -37,10 +37,9 @@
             this.invoiceAmountLabel = new System.Windows.Forms.Label();
             this.invoiceNumberLabel = new System.Windows.Forms.Label();
             this.formTitleLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.generateInvoiceNumberButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // storeNameLabel
@@ -58,7 +57,7 @@
             this.invoiceAmountTextBox.Location = new System.Drawing.Point(135, 113);
             this.invoiceAmountTextBox.Name = "invoiceAmountTextBox";
             this.invoiceAmountTextBox.Size = new System.Drawing.Size(192, 25);
-            this.invoiceAmountTextBox.TabIndex = 1;
+            this.invoiceAmountTextBox.TabIndex = 3;
             // 
             // dateLabel
             // 
@@ -75,7 +74,7 @@
             this.invoiceNumberTextBox.Location = new System.Drawing.Point(135, 144);
             this.invoiceNumberTextBox.Name = "invoiceNumberTextBox";
             this.invoiceNumberTextBox.Size = new System.Drawing.Size(161, 25);
-            this.invoiceNumberTextBox.TabIndex = 1;
+            this.invoiceNumberTextBox.TabIndex = 4;
             // 
             // invoiceDateTimePicker
             // 
@@ -93,7 +92,7 @@
             this.storeComboBox.Location = new System.Drawing.Point(135, 51);
             this.storeComboBox.Name = "storeComboBox";
             this.storeComboBox.Size = new System.Drawing.Size(192, 25);
-            this.storeComboBox.TabIndex = 4;
+            this.storeComboBox.TabIndex = 1;
             // 
             // invoiceAmountLabel
             // 
@@ -125,14 +124,6 @@
             this.formTitleLabel.TabIndex = 0;
             this.formTitleLabel.Text = "New Invoice";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Location = new System.Drawing.Point(302, 144);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -140,9 +131,10 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 16;
+            this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // resetButton
             // 
@@ -151,9 +143,21 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 17;
+            this.resetButton.TabIndex = 7;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            // 
+            // generateInvoiceNumberButton
+            // 
+            this.generateInvoiceNumberButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generateInvoiceNumberButton.Location = new System.Drawing.Point(302, 144);
+            this.generateInvoiceNumberButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.generateInvoiceNumberButton.Name = "generateInvoiceNumberButton";
+            this.generateInvoiceNumberButton.Size = new System.Drawing.Size(25, 25);
+            this.generateInvoiceNumberButton.TabIndex = 5;
+            this.generateInvoiceNumberButton.Text = "+";
+            this.generateInvoiceNumberButton.UseVisualStyleBackColor = true;
+            this.generateInvoiceNumberButton.Click += new System.EventHandler(this.generateInvoiceNumberButton_Click);
             // 
             // InvoiceNewOrEdit
             // 
@@ -161,9 +165,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(344, 241);
+            this.Controls.Add(this.generateInvoiceNumberButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.resetButton);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.storeComboBox);
             this.Controls.Add(this.invoiceDateTimePicker);
             this.Controls.Add(this.invoiceNumberTextBox);
@@ -179,7 +183,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Invoice";
             this.Load += new System.EventHandler(this.InvoiceNewAndEdit_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,8 +199,8 @@
         private System.Windows.Forms.Label invoiceAmountLabel;
         private System.Windows.Forms.Label invoiceNumberLabel;
         private System.Windows.Forms.Label formTitleLabel;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button resetButton;
+        private System.Windows.Forms.Button generateInvoiceNumberButton;
     }
 }

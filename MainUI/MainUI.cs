@@ -11,6 +11,7 @@ using MainUI.Category;
 using MainUI.Product;
 using MainUI.ProductLink;
 using MainUI.Store;
+using MainUI.Invoice;
 using PriceBookClassLibrary;
 
 namespace MainUI
@@ -187,7 +188,10 @@ namespace MainUI
             //5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")
             {
-
+                InvoiceNewOrEdit invoiceForm = new Invoice.InvoiceNewOrEdit();
+                invoiceForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
+                mainDataGridView.AutoResizeColumns();
             }
         }
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
@@ -202,7 +206,6 @@ namespace MainUI
                     if (e.RowIndex >= 0)
                     {
                         row = this.mainDataGridView.Rows[e.RowIndex];
-                        
                     }
                 }
                 catch (System.Exception ex)

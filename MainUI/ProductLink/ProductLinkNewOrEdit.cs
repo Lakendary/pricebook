@@ -1,4 +1,5 @@
-﻿using PriceBookClassLibrary;
+﻿using MainUI.Category;
+using PriceBookClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,11 @@ namespace MainUI.ProductLink
         }
 
         private void ProductLinkNewOrEdit_Load(object sender, EventArgs e)
+        {
+            LoadCategoryComboBox();
+        }
+
+        private void LoadCategoryComboBox()
         {
             categoryComboBox.DataSource = SqliteDACategory.GetSubcategoryOnly();
             categoryComboBox.DisplayMember = "Name";
@@ -54,7 +60,6 @@ namespace MainUI.ProductLink
                     {
                         this.Close();
                     }
-
                 }
                 else if (result == false)
                 {
@@ -75,12 +80,9 @@ namespace MainUI.ProductLink
 
         private void addCategoryButton_Click(object sender, EventArgs e)
         {
-            //TODO: Open New Category Form
-        }
-
-        private void measurementRateTextBox_Leave(object sender, EventArgs e)
-        {
-
+            CategoryNewOrEdit categoryForm = new CategoryNewOrEdit();
+            categoryForm.ShowDialog();
+            LoadCategoryComboBox();
         }
     }
 }
