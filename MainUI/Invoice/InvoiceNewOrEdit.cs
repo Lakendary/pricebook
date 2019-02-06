@@ -1,4 +1,5 @@
-﻿using PriceBookClassLibrary;
+﻿using MainUI.Store;
+using PriceBookClassLibrary;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,9 @@ namespace MainUI.Invoice
 {
     public partial class InvoiceNewOrEdit : Form
     {
+        //Global variables
+        public int invoiceId { get; set; }
+
         public InvoiceNewOrEdit()
         {
             InitializeComponent();
@@ -21,9 +25,7 @@ namespace MainUI.Invoice
         private void InvoiceNewAndEdit_Load(object sender, EventArgs e)
         {
             //TODO: Show location as well in the store combo box.
-            storeComboBox.DataSource = SqliteDAStore.GetAllStores();
-            storeComboBox.DisplayMember = "Name";
-            storeComboBox.ValueMember = "Id";
+            LoadStoreComboBox();
         }
 
         private void resetButton_Click(object sender, EventArgs e)
@@ -47,8 +49,8 @@ namespace MainUI.Invoice
                 invoice.InvoiceNumber = invoiceNumberTextBox.Text;
                 invoice.Saved = "Open";
                 invoice.StoreId = Convert.ToInt32(storeComboBox.SelectedValue);
-                bool result = SqliteDAInvoice.SaveInvoice(invoice);
-                if (result == true)
+                invoiceId = SqliteDAInvoice.SaveInvoice(invoice);
+                if (invoiceId > 0)
                 {
                     DialogResult dialogResult = MessageBox.Show("New invoice created successfully", "New Invoice",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -57,7 +59,7 @@ namespace MainUI.Invoice
                         this.Close();
                     }
                 }
-                else if (result == false)
+                else if (invoiceId == 0)
                 {
                     MessageBox.Show("Something went wrong. New invoice could not be saved.", "New Invoice Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -75,6 +77,13 @@ namespace MainUI.Invoice
             return invoiceNumber;
         }
 
+        private void LoadStoreComboBox()
+        {
+            storeComboBox.DataSource = SqliteDAStore.GetAllStoresForComboBox();
+            storeComboBox.DisplayMember = "Name";
+            storeComboBox.ValueMember = "Id";
+        }
+
         private void generateInvoiceNumberButton_Click(object sender, EventArgs e)
         {
             if(invoiceDateTimePicker.Value == null)
@@ -90,5 +99,17 @@ namespace MainUI.Invoice
                 invoiceNumberTextBox.Text = GenerateInvoiceNumber();
             }
         }
+
+        private void addStoreButton_Click(object sender, EventArgs e)
+        {
+            StoreNewOrEdit storeForm = new StoreNewOrEdit();
+            storeForm.ShowDialog();
+            LoadStoreComboBox();
+        }
+
+        //public string GetInvoiceNumber()
+        //{
+        //    return invoiceId;
+        //}
     }
 }

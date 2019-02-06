@@ -77,5 +77,15 @@ namespace PriceBookClassLibrary
                 return affectedRows > 0;
             }
         }
+        //6. Get All
+        public static List<StoreModel> GetAllStoresForComboBox()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<StoreModel>("SELECT Store.Id, Store.Name||', '||Store.Location AS Name "+
+                    "FROM Store; ", new DynamicParameters());
+                return output.ToList();
+            }
+        }
     }
 }

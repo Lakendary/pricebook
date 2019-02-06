@@ -52,6 +52,9 @@
             this.modeStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.barCodeSearchPanel = new System.Windows.Forms.Panel();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
+            this.barcodeLabel = new System.Windows.Forms.Label();
+            this.barcodeTextBox = new System.Windows.Forms.TextBox();
+            this.invoiceNumberStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
@@ -65,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.invoicePictureBox)).BeginInit();
             this.buttonsPanel.SuspendLayout();
             this.mainUIStatusStrip.SuspendLayout();
+            this.barCodeSearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -273,7 +277,8 @@
             // mainUIStatusStrip
             // 
             this.mainUIStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modeStripStatusLabel});
+            this.modeStripStatusLabel,
+            this.invoiceNumberStripStatusLabel});
             this.mainUIStatusStrip.Location = new System.Drawing.Point(0, 579);
             this.mainUIStatusStrip.Name = "mainUIStatusStrip";
             this.mainUIStatusStrip.Size = new System.Drawing.Size(944, 22);
@@ -288,6 +293,8 @@
             // 
             // barCodeSearchPanel
             // 
+            this.barCodeSearchPanel.Controls.Add(this.barcodeTextBox);
+            this.barCodeSearchPanel.Controls.Add(this.barcodeLabel);
             this.barCodeSearchPanel.Location = new System.Drawing.Point(12, 536);
             this.barCodeSearchPanel.Name = "barCodeSearchPanel";
             this.barCodeSearchPanel.Size = new System.Drawing.Size(920, 40);
@@ -301,6 +308,28 @@
             this.mainDataGridView.Size = new System.Drawing.Size(920, 386);
             this.mainDataGridView.TabIndex = 2;
             this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
+            // 
+            // barcodeLabel
+            // 
+            this.barcodeLabel.AutoSize = true;
+            this.barcodeLabel.Location = new System.Drawing.Point(3, 12);
+            this.barcodeLabel.Name = "barcodeLabel";
+            this.barcodeLabel.Size = new System.Drawing.Size(62, 17);
+            this.barcodeLabel.TabIndex = 0;
+            this.barcodeLabel.Text = "Bar Code";
+            // 
+            // barcodeTextBox
+            // 
+            this.barcodeTextBox.Location = new System.Drawing.Point(66, 9);
+            this.barcodeTextBox.Name = "barcodeTextBox";
+            this.barcodeTextBox.Size = new System.Drawing.Size(241, 25);
+            this.barcodeTextBox.TabIndex = 1;
+            this.barcodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.barcodeTextBox_KeyDown);
+            // 
+            // invoiceNumberStripStatusLabel
+            // 
+            this.invoiceNumberStripStatusLabel.Name = "invoiceNumberStripStatusLabel";
+            this.invoiceNumberStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // MainUI
             // 
@@ -333,6 +362,8 @@
             this.buttonsPanel.ResumeLayout(false);
             this.mainUIStatusStrip.ResumeLayout(false);
             this.mainUIStatusStrip.PerformLayout();
+            this.barCodeSearchPanel.ResumeLayout(false);
+            this.barCodeSearchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -364,6 +395,9 @@
         private System.Windows.Forms.Panel barCodeSearchPanel;
         private System.Windows.Forms.DataGridView mainDataGridView;
         private System.Windows.Forms.ToolStripStatusLabel modeStripStatusLabel;
+        private System.Windows.Forms.TextBox barcodeTextBox;
+        private System.Windows.Forms.Label barcodeLabel;
+        private System.Windows.Forms.ToolStripStatusLabel invoiceNumberStripStatusLabel;
     }
 }
 

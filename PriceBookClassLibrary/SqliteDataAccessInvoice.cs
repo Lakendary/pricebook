@@ -55,21 +55,23 @@ namespace PriceBookClassLibrary
             }
         }
         //3. Save To DB
-        public static bool SaveInvoice(InvoiceModel invoice)
+        public static int SaveInvoice(InvoiceModel invoice)
         {
+            var id = 0;
             try{
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    cnn.Execute("INSERT INTO Invoice "+
+                    id = cnn.Query<int>("INSERT INTO Invoice "+
                     "(Date, InvoiceAmount, InvoiceNumber, Saved, StoreId) "+
-                    "VALUES (@Date, @InvoiceAmount, @InvoiceNumber, @Saved, @StoreId);", invoice);
+                    "VALUES (@Date, @InvoiceAmount, @InvoiceNumber, @Saved, @StoreId);" +
+                    "SELECT last_insert_rowid();", invoice).Single();
                 }
             } 
             catch(Exception ex){
                 General.LogError(ex);
-                return false;
+                return id;
             }
-            return true;
+            return id;
         }
         //4. Update By Id
         public static bool UpdateInvoiceById(InvoiceModel invoice)

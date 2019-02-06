@@ -35,6 +35,7 @@ namespace MainUI
         
         //Form Global variables
         DataGridViewRow row;
+        
 
         //Initial Component Method
         public MainUI()
@@ -46,6 +47,7 @@ namespace MainUI
         {
             modeStripStatusLabel.Text = "DEFAULT MODE";
             toggleAllButtons(false);
+            barCodeSearchPanel.Visible = false;
         }
         
         //EVENTS
@@ -188,10 +190,11 @@ namespace MainUI
             //5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")
             {
-                InvoiceNewOrEdit invoiceForm = new Invoice.InvoiceNewOrEdit();
+                InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit();
                 invoiceForm.ShowDialog();
-                mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
-                mainDataGridView.AutoResizeColumns();
+                barCodeSearchPanel.Visible = true;
+                invoiceNumberStripStatusLabel.Text = invoiceForm.invoiceId.ToString();
+                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoiceId);
             }
         }
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
@@ -238,6 +241,12 @@ namespace MainUI
             deleteButton.Enabled = input;
         }
 
-        
+        private void barcodeTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SqliteDAInvoiceProduct.SaveInvoiceProduct();
+            }
+        }
     }
 }
