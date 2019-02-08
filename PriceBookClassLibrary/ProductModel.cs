@@ -12,5 +12,6 @@ namespace PriceBookClassLibrary
         public int ProductLinkId { get; set; }
         public string ProductLinkName { get; set; }
         public string CategoryName { get; set; }
+        public string Weighted { get; set; }
     }
 }

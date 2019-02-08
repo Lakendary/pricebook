@@ -13,6 +13,7 @@ using MainUI.ProductLink;
 using MainUI.Store;
 using MainUI.Invoice;
 using PriceBookClassLibrary;
+using MainUI.InvoiceProduct;
 
 namespace MainUI
 {
@@ -245,8 +246,48 @@ namespace MainUI
         {
             if (e.KeyCode == Keys.Enter)
             {
-                SqliteDAInvoiceProduct.SaveInvoiceProduct();
+                bool barcodeFound = false;
+                //1. Search for Product - Empty Barcode Textbox
+                if (barcodeTextBox.Text == "")
+                {
+                    ProductSearch productSearchForm = new ProductSearch(barcodeFound);
+                    productSearchForm.ShowDialog();
+                }
+                //2. Search for Barcode - Barcode Textbox Not Null
+                else
+                {
+                    //TODO: Search for barcode in textbox in barcode table. Return product object. Pass object to new invoice product form.
+
+                    ProductModel product = new ProductModel();
+                    product = SqliteDAProduct.GetProductByBarcode(barcodeTextBox.Text);
+                    
+                    //2.1 Barcode not found - Add barcode to new or existing product
+                    if(product == null)
+                    {
+                        
+                        DialogResult result = MessageBox.Show("Barcode not found.", "Barcode Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        if(result == DialogResult.OK)
+                        {
+                            //ProductSearch productSearchForm = new ProductSearch(barcodeFound);
+                            //productSearchForm.ShowDialog();
+                            //TODO: Get product Id from product search form.
+                            //TODO: GetProductById and put returned object into product variable
+                        }
+                    }
+                }
+                //Add Invoice Product Details
+                InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit();
+                invoiceProductForm.ShowDialog();
+                
+                //SqliteDAInvoiceProduct.SaveInvoiceProduct();
             }
+        }
+
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            bool barcodeFound = false;
+            ProductSearch productSearchForm = new ProductSearch(barcodeFound);
+            productSearchForm.ShowDialog();
         }
     }
 }

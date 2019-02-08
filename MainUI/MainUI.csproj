@@ -90,6 +90,12 @@
     <Compile Include="Product\ProductNewOrEdit.Designer.cs">
       <DependentUpon>ProductNewOrEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product\ProductSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product\ProductSearch.Designer.cs">
+      <DependentUpon>ProductSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Store\StoreNewOrEdit.cs">
@@ -115,6 +121,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Product\ProductNewOrEdit.resx">
       <DependentUpon>ProductNewOrEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product\ProductSearch.resx">
+      <DependentUpon>ProductSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

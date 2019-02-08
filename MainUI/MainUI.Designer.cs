@@ -30,16 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.mainMenuPanel = new System.Windows.Forms.Panel();
-            this.infoPictureBox = new System.Windows.Forms.PictureBox();
-            this.reportPictureBox = new System.Windows.Forms.PictureBox();
-            this.recipePictureBox = new System.Windows.Forms.PictureBox();
-            this.shoppingListPictureBox = new System.Windows.Forms.PictureBox();
-            this.promtionPictureBox = new System.Windows.Forms.PictureBox();
-            this.storePictureBox = new System.Windows.Forms.PictureBox();
-            this.categoryPictureBox = new System.Windows.Forms.PictureBox();
-            this.productLinkPictureBox = new System.Windows.Forms.PictureBox();
-            this.productPictureBox = new System.Windows.Forms.PictureBox();
-            this.invoicePictureBox = new System.Windows.Forms.PictureBox();
             this.buttonsPanel = new System.Windows.Forms.Panel();
             this.exportButton = new System.Windows.Forms.Button();
             this.importButton = new System.Windows.Forms.Button();
@@ -55,7 +45,21 @@
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.invoiceNumberStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.infoPictureBox = new System.Windows.Forms.PictureBox();
+            this.reportPictureBox = new System.Windows.Forms.PictureBox();
+            this.recipePictureBox = new System.Windows.Forms.PictureBox();
+            this.shoppingListPictureBox = new System.Windows.Forms.PictureBox();
+            this.promtionPictureBox = new System.Windows.Forms.PictureBox();
+            this.storePictureBox = new System.Windows.Forms.PictureBox();
+            this.categoryPictureBox = new System.Windows.Forms.PictureBox();
+            this.productLinkPictureBox = new System.Windows.Forms.PictureBox();
+            this.productPictureBox = new System.Windows.Forms.PictureBox();
+            this.invoicePictureBox = new System.Windows.Forms.PictureBox();
             this.mainMenuPanel.SuspendLayout();
+            this.buttonsPanel.SuspendLayout();
+            this.mainUIStatusStrip.SuspendLayout();
+            this.barCodeSearchPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipePictureBox)).BeginInit();
@@ -66,10 +70,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.productLinkPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicePictureBox)).BeginInit();
-            this.buttonsPanel.SuspendLayout();
-            this.mainUIStatusStrip.SuspendLayout();
-            this.barCodeSearchPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuPanel
@@ -88,6 +88,143 @@
             this.mainMenuPanel.Name = "mainMenuPanel";
             this.mainMenuPanel.Size = new System.Drawing.Size(920, 80);
             this.mainMenuPanel.TabIndex = 0;
+            // 
+            // buttonsPanel
+            // 
+            this.buttonsPanel.Controls.Add(this.exportButton);
+            this.buttonsPanel.Controls.Add(this.importButton);
+            this.buttonsPanel.Controls.Add(this.searchButton);
+            this.buttonsPanel.Controls.Add(this.deleteButton);
+            this.buttonsPanel.Controls.Add(this.editButton);
+            this.buttonsPanel.Controls.Add(this.newButton);
+            this.buttonsPanel.Controls.Add(this.viewButton);
+            this.buttonsPanel.Location = new System.Drawing.Point(12, 98);
+            this.buttonsPanel.Name = "buttonsPanel";
+            this.buttonsPanel.Size = new System.Drawing.Size(920, 40);
+            this.buttonsPanel.TabIndex = 0;
+            // 
+            // exportButton
+            // 
+            this.exportButton.Location = new System.Drawing.Point(612, 2);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(96, 36);
+            this.exportButton.TabIndex = 0;
+            this.exportButton.Text = "Export";
+            this.exportButton.UseVisualStyleBackColor = true;
+            // 
+            // importButton
+            // 
+            this.importButton.Location = new System.Drawing.Point(510, 2);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(96, 36);
+            this.importButton.TabIndex = 0;
+            this.importButton.Text = "Import";
+            this.importButton.UseVisualStyleBackColor = true;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(408, 2);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(96, 36);
+            this.searchButton.TabIndex = 0;
+            this.searchButton.Text = "Search";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
+            // deleteButton
+            // 
+            this.deleteButton.Location = new System.Drawing.Point(306, 2);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(96, 36);
+            this.deleteButton.TabIndex = 0;
+            this.deleteButton.Text = "Delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            // 
+            // editButton
+            // 
+            this.editButton.Location = new System.Drawing.Point(204, 2);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(96, 36);
+            this.editButton.TabIndex = 0;
+            this.editButton.Text = "Edit";
+            this.editButton.UseVisualStyleBackColor = true;
+            // 
+            // newButton
+            // 
+            this.newButton.Location = new System.Drawing.Point(0, 2);
+            this.newButton.Name = "newButton";
+            this.newButton.Size = new System.Drawing.Size(96, 36);
+            this.newButton.TabIndex = 0;
+            this.newButton.Text = "New";
+            this.newButton.UseVisualStyleBackColor = true;
+            this.newButton.Click += new System.EventHandler(this.newButton_Click);
+            // 
+            // viewButton
+            // 
+            this.viewButton.Location = new System.Drawing.Point(102, 2);
+            this.viewButton.Name = "viewButton";
+            this.viewButton.Size = new System.Drawing.Size(96, 36);
+            this.viewButton.TabIndex = 0;
+            this.viewButton.Text = "View";
+            this.viewButton.UseVisualStyleBackColor = true;
+            this.viewButton.Click += new System.EventHandler(this.viewButton_Click);
+            // 
+            // mainUIStatusStrip
+            // 
+            this.mainUIStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.modeStripStatusLabel,
+            this.invoiceNumberStripStatusLabel});
+            this.mainUIStatusStrip.Location = new System.Drawing.Point(0, 579);
+            this.mainUIStatusStrip.Name = "mainUIStatusStrip";
+            this.mainUIStatusStrip.Size = new System.Drawing.Size(944, 22);
+            this.mainUIStatusStrip.TabIndex = 1;
+            this.mainUIStatusStrip.Text = "statusStrip1";
+            // 
+            // modeStripStatusLabel
+            // 
+            this.modeStripStatusLabel.Name = "modeStripStatusLabel";
+            this.modeStripStatusLabel.Size = new System.Drawing.Size(91, 17);
+            this.modeStripStatusLabel.Text = "DEFAULT MODE";
+            // 
+            // barCodeSearchPanel
+            // 
+            this.barCodeSearchPanel.Controls.Add(this.barcodeTextBox);
+            this.barCodeSearchPanel.Controls.Add(this.barcodeLabel);
+            this.barCodeSearchPanel.Location = new System.Drawing.Point(12, 536);
+            this.barCodeSearchPanel.Name = "barCodeSearchPanel";
+            this.barCodeSearchPanel.Size = new System.Drawing.Size(920, 40);
+            this.barCodeSearchPanel.TabIndex = 0;
+            // 
+            // mainDataGridView
+            // 
+            this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.mainDataGridView.Location = new System.Drawing.Point(12, 144);
+            this.mainDataGridView.Name = "mainDataGridView";
+            this.mainDataGridView.Size = new System.Drawing.Size(920, 386);
+            this.mainDataGridView.TabIndex = 2;
+            this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
+            // 
+            // barcodeLabel
+            // 
+            this.barcodeLabel.AutoSize = true;
+            this.barcodeLabel.Location = new System.Drawing.Point(3, 12);
+            this.barcodeLabel.Name = "barcodeLabel";
+            this.barcodeLabel.Size = new System.Drawing.Size(62, 17);
+            this.barcodeLabel.TabIndex = 0;
+            this.barcodeLabel.Text = "Bar Code";
+            // 
+            // barcodeTextBox
+            // 
+            this.barcodeTextBox.Location = new System.Drawing.Point(66, 9);
+            this.barcodeTextBox.Name = "barcodeTextBox";
+            this.barcodeTextBox.Size = new System.Drawing.Size(241, 25);
+            this.barcodeTextBox.TabIndex = 1;
+            this.barcodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.barcodeTextBox_KeyDown);
+            // 
+            // invoiceNumberStripStatusLabel
+            // 
+            this.invoiceNumberStripStatusLabel.Name = "invoiceNumberStripStatusLabel";
+            this.invoiceNumberStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // infoPictureBox
             // 
@@ -195,142 +332,6 @@
             this.invoicePictureBox.TabStop = false;
             this.invoicePictureBox.DoubleClick += new System.EventHandler(this.invoicePictureBox_DoubleClick);
             // 
-            // buttonsPanel
-            // 
-            this.buttonsPanel.Controls.Add(this.exportButton);
-            this.buttonsPanel.Controls.Add(this.importButton);
-            this.buttonsPanel.Controls.Add(this.searchButton);
-            this.buttonsPanel.Controls.Add(this.deleteButton);
-            this.buttonsPanel.Controls.Add(this.editButton);
-            this.buttonsPanel.Controls.Add(this.newButton);
-            this.buttonsPanel.Controls.Add(this.viewButton);
-            this.buttonsPanel.Location = new System.Drawing.Point(12, 98);
-            this.buttonsPanel.Name = "buttonsPanel";
-            this.buttonsPanel.Size = new System.Drawing.Size(920, 40);
-            this.buttonsPanel.TabIndex = 0;
-            // 
-            // exportButton
-            // 
-            this.exportButton.Location = new System.Drawing.Point(612, 2);
-            this.exportButton.Name = "exportButton";
-            this.exportButton.Size = new System.Drawing.Size(96, 36);
-            this.exportButton.TabIndex = 0;
-            this.exportButton.Text = "Export";
-            this.exportButton.UseVisualStyleBackColor = true;
-            // 
-            // importButton
-            // 
-            this.importButton.Location = new System.Drawing.Point(510, 2);
-            this.importButton.Name = "importButton";
-            this.importButton.Size = new System.Drawing.Size(96, 36);
-            this.importButton.TabIndex = 0;
-            this.importButton.Text = "Import";
-            this.importButton.UseVisualStyleBackColor = true;
-            // 
-            // searchButton
-            // 
-            this.searchButton.Location = new System.Drawing.Point(408, 2);
-            this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(96, 36);
-            this.searchButton.TabIndex = 0;
-            this.searchButton.Text = "Search";
-            this.searchButton.UseVisualStyleBackColor = true;
-            // 
-            // deleteButton
-            // 
-            this.deleteButton.Location = new System.Drawing.Point(306, 2);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(96, 36);
-            this.deleteButton.TabIndex = 0;
-            this.deleteButton.Text = "Delete";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            // 
-            // editButton
-            // 
-            this.editButton.Location = new System.Drawing.Point(204, 2);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(96, 36);
-            this.editButton.TabIndex = 0;
-            this.editButton.Text = "Edit";
-            this.editButton.UseVisualStyleBackColor = true;
-            // 
-            // newButton
-            // 
-            this.newButton.Location = new System.Drawing.Point(0, 2);
-            this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(96, 36);
-            this.newButton.TabIndex = 0;
-            this.newButton.Text = "New";
-            this.newButton.UseVisualStyleBackColor = true;
-            this.newButton.Click += new System.EventHandler(this.newButton_Click);
-            // 
-            // viewButton
-            // 
-            this.viewButton.Location = new System.Drawing.Point(102, 2);
-            this.viewButton.Name = "viewButton";
-            this.viewButton.Size = new System.Drawing.Size(96, 36);
-            this.viewButton.TabIndex = 0;
-            this.viewButton.Text = "View";
-            this.viewButton.UseVisualStyleBackColor = true;
-            this.viewButton.Click += new System.EventHandler(this.viewButton_Click);
-            // 
-            // mainUIStatusStrip
-            // 
-            this.mainUIStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.modeStripStatusLabel,
-            this.invoiceNumberStripStatusLabel});
-            this.mainUIStatusStrip.Location = new System.Drawing.Point(0, 579);
-            this.mainUIStatusStrip.Name = "mainUIStatusStrip";
-            this.mainUIStatusStrip.Size = new System.Drawing.Size(944, 22);
-            this.mainUIStatusStrip.TabIndex = 1;
-            this.mainUIStatusStrip.Text = "statusStrip1";
-            // 
-            // modeStripStatusLabel
-            // 
-            this.modeStripStatusLabel.Name = "modeStripStatusLabel";
-            this.modeStripStatusLabel.Size = new System.Drawing.Size(91, 17);
-            this.modeStripStatusLabel.Text = "DEFAULT MODE";
-            // 
-            // barCodeSearchPanel
-            // 
-            this.barCodeSearchPanel.Controls.Add(this.barcodeTextBox);
-            this.barCodeSearchPanel.Controls.Add(this.barcodeLabel);
-            this.barCodeSearchPanel.Location = new System.Drawing.Point(12, 536);
-            this.barCodeSearchPanel.Name = "barCodeSearchPanel";
-            this.barCodeSearchPanel.Size = new System.Drawing.Size(920, 40);
-            this.barCodeSearchPanel.TabIndex = 0;
-            // 
-            // mainDataGridView
-            // 
-            this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.mainDataGridView.Location = new System.Drawing.Point(12, 144);
-            this.mainDataGridView.Name = "mainDataGridView";
-            this.mainDataGridView.Size = new System.Drawing.Size(920, 386);
-            this.mainDataGridView.TabIndex = 2;
-            this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
-            // 
-            // barcodeLabel
-            // 
-            this.barcodeLabel.AutoSize = true;
-            this.barcodeLabel.Location = new System.Drawing.Point(3, 12);
-            this.barcodeLabel.Name = "barcodeLabel";
-            this.barcodeLabel.Size = new System.Drawing.Size(62, 17);
-            this.barcodeLabel.TabIndex = 0;
-            this.barcodeLabel.Text = "Bar Code";
-            // 
-            // barcodeTextBox
-            // 
-            this.barcodeTextBox.Location = new System.Drawing.Point(66, 9);
-            this.barcodeTextBox.Name = "barcodeTextBox";
-            this.barcodeTextBox.Size = new System.Drawing.Size(241, 25);
-            this.barcodeTextBox.TabIndex = 1;
-            this.barcodeTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.barcodeTextBox_KeyDown);
-            // 
-            // invoiceNumberStripStatusLabel
-            // 
-            this.invoiceNumberStripStatusLabel.Name = "invoiceNumberStripStatusLabel";
-            this.invoiceNumberStripStatusLabel.Size = new System.Drawing.Size(0, 17);
-            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -349,6 +350,12 @@
             this.Text = "PriceBook Application";
             this.Load += new System.EventHandler(this.MainUI_Load);
             this.mainMenuPanel.ResumeLayout(false);
+            this.buttonsPanel.ResumeLayout(false);
+            this.mainUIStatusStrip.ResumeLayout(false);
+            this.mainUIStatusStrip.PerformLayout();
+            this.barCodeSearchPanel.ResumeLayout(false);
+            this.barCodeSearchPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipePictureBox)).EndInit();
@@ -359,12 +366,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.productLinkPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicePictureBox)).EndInit();
-            this.buttonsPanel.ResumeLayout(false);
-            this.mainUIStatusStrip.ResumeLayout(false);
-            this.mainUIStatusStrip.PerformLayout();
-            this.barCodeSearchPanel.ResumeLayout(false);
-            this.barCodeSearchPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

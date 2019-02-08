@@ -30,7 +30,8 @@ namespace PriceBookClassLibrary
                     "ProductLink.Name ProductLinkName, "+
                     "Category.Name CategoryName, "+
                     "Product.ProductLinkId ProductLinkId, " +
-                    "ProductLink.UoM UoM "+
+                    "ProductLink.UoM UoM, " +
+                    "ProductLink.Weighted " +
                 "FROM Product " +
                 "LEFT JOIN ProductLink "+
                 "ON Product.ProductLinkId = ProductLink.Id "+
@@ -122,6 +123,50 @@ namespace PriceBookClassLibrary
                     "WHERE Product.Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }
+        }
+        //7. Get All By Search Criteria
+        public static List<ProductModel> GetAllProducts(ProductModel product)
+        {
+            string sql = BuildProductSearchSqlString(product);
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<ProductModel>(sql, new DynamicParameters());
+                return output.ToList();
+            }
+        }
+        //8. Build a search string for Get All by Search Criteria
+        private static string BuildProductSearchSqlString(ProductModel product)
+        {
+            //Default string
+            string output = "SELECT " +
+                    "Product.Id, " +
+                    "Product.BrandName, " +
+                    "Product.Description, " +
+                    "Product.PackSize, " +
+                    "ProductLink.Name ProductLinkName, " +
+                    "Category.Name CategoryName, " +
+                    "Product.ProductLinkId ProductLinkId, " +
+                    "ProductLink.UoM UoM, " +
+                    "ProductLink.Weighted " +
+                "FROM Product " +
+                "LEFT JOIN ProductLink " +
+                "ON Product.ProductLinkId = ProductLink.Id " +
+                "LEFT JOIN Category " +
+                "ON ProductLink.CategoryId = Category.Id " +
+                "WHERE 1=1 ";
+            //Add search criteria to search string depending if product's properties are not empty
+            if (product.BrandName != "")
+                output += string.Format("AND Product.BrandName LIKE '%{0}%' ", product.BrandName);
+            if (product.Description != "")
+                output += string.Format("AND Product.Description LIKE '%{0}%' ", product.Description);
+            if (product.ProductLinkName != "")
+                output += string.Format("AND ProductLink.Name LIKE '%{0}%' ", product.ProductLinkName);
+            if (product.CategoryName != "<ALL>")
+                output += string.Format("AND Category.Name LIKE '%{0}%' ", product.CategoryName);
+            if (product.Weighted != "<ALL>")
+                output += string.Format("AND ProductLink.Weighted LIKE '%{0}%' ", product.Weighted);
+
+            return output;
         }
     }
 }
