@@ -13,9 +13,18 @@ namespace MainUI.Product
 {
     public partial class ProductNewOrEdit : Form
     {
+        string mode = "";
+        public int productId { get; set; }
         public ProductNewOrEdit()
         {
             InitializeComponent();
+        }
+
+        public ProductNewOrEdit(string barcode)
+        {
+            InitializeComponent();
+            barcodeTextBox.Text = barcode;
+            mode = "INVOICE MODE";
         }
 
         private void ProductNewOrEdit_Load(object sender, EventArgs e)
@@ -32,27 +41,57 @@ namespace MainUI.Product
                 MessageBox.Show("Please enter a number.", "Pack Size Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else
             {
+                //TODO: Refactor code and add comments
+                //TODO: Remove SaveProduct and replace with SaveProductAndGetId
                 ProductModel product = new ProductModel();
                 product.BrandName = brandNameTextBox.Text;
                 product.Description = productDescriptionTextBox.Text;
                 product.PackSize = number;
                 product.ProductLinkId = Convert.ToInt32(productLinkComboBox.SelectedValue);
-                bool result = SqliteDAProduct.SaveProduct(product);
-                if (result == true)
+                if (mode == "INVOICE MODE")
                 {
-                    DialogResult dialogResult = MessageBox.Show("New product created successfully", "New Product",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
+                    int id = SqliteDAProduct.SaveProductAndGetId(product);
+                    if (id != 0)
                     {
-                        this.Close();
-                    }
+                        DialogResult dialogResult = MessageBox.Show("New product created successfully", "New Product",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            productId = id;
+                            BarcodeModel barcode = new BarcodeModel();
+                            barcode.Barcode = barcodeTextBox.Text;
+                            barcode.ProductId = id;
+                            SqliteDataAccessBarcode.SaveBarcode(barcode);
+                            this.Close();
+                        }
 
-                }
-                else if (result == false)
+                    }
+                    else if (id == 0)
+                    {
+                        MessageBox.Show("Something went wrong. New product could not be saved.", "New Product Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else
                 {
-                    MessageBox.Show("Something went wrong. New product could not be saved.", "New Product Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    bool result = SqliteDAProduct.SaveProduct(product);
+                    if (result == true)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("New product created successfully", "New Product",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+
+                            this.Close();
+                        }
+
+                    }
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. New product could not be saved.", "New Product Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+                
             }
         }
 

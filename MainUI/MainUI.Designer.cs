@@ -185,6 +185,7 @@
             this.modeStripStatusLabel.Name = "modeStripStatusLabel";
             this.modeStripStatusLabel.Size = new System.Drawing.Size(91, 17);
             this.modeStripStatusLabel.Text = "DEFAULT MODE";
+            this.modeStripStatusLabel.TextChanged += new System.EventHandler(this.modeStripStatusLabel_TextChanged);
             // 
             // barCodeSearchPanel
             // 

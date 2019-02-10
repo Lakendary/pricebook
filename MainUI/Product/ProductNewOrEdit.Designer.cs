@@ -50,7 +50,7 @@
             this.productLinkComboBox.Location = new System.Drawing.Point(180, 147);
             this.productLinkComboBox.Name = "productLinkComboBox";
             this.productLinkComboBox.Size = new System.Drawing.Size(161, 25);
-            this.productLinkComboBox.TabIndex = 35;
+            this.productLinkComboBox.TabIndex = 4;
             // 
             // productLinkLabel
             // 
@@ -79,7 +79,7 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 31;
+            this.saveButton.TabIndex = 6;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -91,7 +91,7 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 32;
+            this.resetButton.TabIndex = 7;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
@@ -112,7 +112,7 @@
             this.packSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.packSizeTextBox.Name = "packSizeTextBox";
             this.packSizeTextBox.Size = new System.Drawing.Size(192, 25);
-            this.packSizeTextBox.TabIndex = 28;
+            this.packSizeTextBox.TabIndex = 3;
             // 
             // productDescriptionTextBox
             // 
@@ -120,7 +120,7 @@
             this.productDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productDescriptionTextBox.Name = "productDescriptionTextBox";
             this.productDescriptionTextBox.Size = new System.Drawing.Size(192, 25);
-            this.productDescriptionTextBox.TabIndex = 29;
+            this.productDescriptionTextBox.TabIndex = 1;
             // 
             // packSizeLabel
             // 
@@ -148,7 +148,7 @@
             this.brandNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.brandNameTextBox.Name = "brandNameTextBox";
             this.brandNameTextBox.Size = new System.Drawing.Size(192, 25);
-            this.brandNameTextBox.TabIndex = 28;
+            this.brandNameTextBox.TabIndex = 2;
             // 
             // barcodeLabel
             // 
@@ -166,7 +166,7 @@
             this.barcodeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.barcodeTextBox.Name = "barcodeTextBox";
             this.barcodeTextBox.Size = new System.Drawing.Size(192, 25);
-            this.barcodeTextBox.TabIndex = 28;
+            this.barcodeTextBox.TabIndex = 5;
             // 
             // addProductLinkButton
             // 

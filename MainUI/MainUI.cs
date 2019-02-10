@@ -36,7 +36,7 @@ namespace MainUI
         
         //Form Global variables
         DataGridViewRow row;
-        
+        public string mode { get; set; }
 
         //Initial Component Method
         public MainUI()
@@ -147,7 +147,6 @@ namespace MainUI
             {
                 General.LogError(ex);
             }
-
             mainDataGridView.AutoResizeColumns();
         }
 
@@ -194,10 +193,12 @@ namespace MainUI
                 InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit();
                 invoiceForm.ShowDialog();
                 barCodeSearchPanel.Visible = true;
+                this.ActiveControl = barcodeTextBox;
                 invoiceNumberStripStatusLabel.Text = invoiceForm.invoiceId.ToString();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoiceId);
             }
         }
+        
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
         //1. Invoice Product
         private void mainDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -242,52 +243,78 @@ namespace MainUI
             deleteButton.Enabled = input;
         }
 
+        //Open Search form and get data back
+        private ProductModel searchForProduct()
+        {
+            ProductModel product = new ProductModel();
+            ProductSearch productSearchForm = new ProductSearch(barcodeTextBox.Text);
+            productSearchForm.ShowDialog();
+            //Does the user want to add a new product with/without the barcode in the textbox?
+            //YES?
+            if (productSearchForm.openNewProductForm)
+            {
+                ProductNewOrEdit productForm = new ProductNewOrEdit(barcodeTextBox.Text);
+                productForm.ShowDialog();
+                product.Id = productForm.productId;
+            }
+            //NO?
+            else
+            {
+                product.Id = productSearchForm.productId;
+            }
+            return product;
+        }
+
         private void barcodeTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                bool barcodeFound = false;
-                //1. Search for Product - Empty Barcode Textbox
+                ProductModel product = new ProductModel();
+                //1. Does the user have a barcode? 
+                //NO? - Press Enter on empty text box
                 if (barcodeTextBox.Text == "")
                 {
-                    ProductSearch productSearchForm = new ProductSearch(barcodeFound);
-                    productSearchForm.ShowDialog();
+                    product = searchForProduct();
                 }
-                //2. Search for Barcode - Barcode Textbox Not Null
+                //YES? - Enter barcode and press enter to search for product
                 else
                 {
-                    //TODO: Search for barcode in textbox in barcode table. Return product object. Pass object to new invoice product form.
-
-                    ProductModel product = new ProductModel();
+                    //Search for product with barcode provided by the user
                     product = SqliteDAProduct.GetProductByBarcode(barcodeTextBox.Text);
                     
-                    //2.1 Barcode not found - Add barcode to new or existing product
+                    //2. Did the search return a product that matches the barcode?
+                    //NO?
                     if(product == null)
                     {
-                        
-                        DialogResult result = MessageBox.Show("Barcode not found.", "Barcode Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        DialogResult result = MessageBox.Show("Barcode not found.\nAdd it to a new or existing product.", "Barcode Not Found", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         if(result == DialogResult.OK)
                         {
-                            //ProductSearch productSearchForm = new ProductSearch(barcodeFound);
-                            //productSearchForm.ShowDialog();
-                            //TODO: Get product Id from product search form.
-                            //TODO: GetProductById and put returned object into product variable
+                            product = searchForProduct();
                         }
                     }
                 }
+                //Find Full Product Details with product Id
+                product = SqliteDAProduct.GetProductById(product.Id);
                 //Add Invoice Product Details
-                InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit();
+                InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(product, Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
                 invoiceProductForm.ShowDialog();
-                
+                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                barcodeTextBox.ResetText();
+                this.ActiveControl = barcodeTextBox;
                 //SqliteDAInvoiceProduct.SaveInvoiceProduct();
             }
         }
+        
 
         private void searchButton_Click(object sender, EventArgs e)
         {
-            bool barcodeFound = false;
-            ProductSearch productSearchForm = new ProductSearch(barcodeFound);
+            ProductSearch productSearchForm = new ProductSearch();
             productSearchForm.ShowDialog();
+        }
+
+        private void modeStripStatusLabel_TextChanged(object sender, EventArgs e)
+        {
+            mode = modeStripStatusLabel.Text;
         }
     }
 }

@@ -43,6 +43,7 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.clearButton = new System.Windows.Forms.Button();
             this.addProductPictureBox = new System.Windows.Forms.PictureBox();
+            this.addProductToInvoiceButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.productSearchDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addProductPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -61,9 +62,13 @@
             // 
             this.productSearchDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.productSearchDataGridView.Location = new System.Drawing.Point(12, 161);
+            this.productSearchDataGridView.MultiSelect = false;
             this.productSearchDataGridView.Name = "productSearchDataGridView";
-            this.productSearchDataGridView.Size = new System.Drawing.Size(600, 428);
+            this.productSearchDataGridView.ReadOnly = true;
+            this.productSearchDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.productSearchDataGridView.Size = new System.Drawing.Size(600, 390);
             this.productSearchDataGridView.TabIndex = 7;
+            this.productSearchDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productSearchDataGridView_CellMouseClick);
             // 
             // productLinkNameTextBox
             // 
@@ -190,6 +195,20 @@
             this.addProductPictureBox.Size = new System.Drawing.Size(50, 50);
             this.addProductPictureBox.TabIndex = 48;
             this.addProductPictureBox.TabStop = false;
+            this.addProductPictureBox.Click += new System.EventHandler(this.addProductPictureBox_Click);
+            // 
+            // addProductToInvoiceButton
+            // 
+            this.addProductToInvoiceButton.Enabled = false;
+            this.addProductToInvoiceButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addProductToInvoiceButton.Location = new System.Drawing.Point(420, 558);
+            this.addProductToInvoiceButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.addProductToInvoiceButton.Name = "addProductToInvoiceButton";
+            this.addProductToInvoiceButton.Size = new System.Drawing.Size(192, 30);
+            this.addProductToInvoiceButton.TabIndex = 46;
+            this.addProductToInvoiceButton.Text = "Add Product To Invoice";
+            this.addProductToInvoiceButton.UseVisualStyleBackColor = true;
+            this.addProductToInvoiceButton.Click += new System.EventHandler(this.addProductToInvoiceButton_Click);
             // 
             // ProductSearch
             // 
@@ -197,6 +216,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(624, 601);
             this.Controls.Add(this.addProductPictureBox);
+            this.Controls.Add(this.addProductToInvoiceButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.clearButton);
             this.Controls.Add(this.weightedComboBox);
@@ -241,5 +261,6 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.PictureBox addProductPictureBox;
+        private System.Windows.Forms.Button addProductToInvoiceButton;
     }
 }

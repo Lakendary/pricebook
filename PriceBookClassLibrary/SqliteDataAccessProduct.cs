@@ -51,7 +51,9 @@ namespace PriceBookClassLibrary
                     "Product.Description, "+
                     "Product.PackSize, "+
                     "ProductLink.Name ProductLinkName, "+
-                    "Category.Name CategoryName "+ 
+                    "Category.Name CategoryName, " +
+                    "ProductLink.UoM, " +
+                    "ProductLink.Weighted "+ 
                 "FROM Product "+
                 "LEFT JOIN ProductLink "+
                 "ON Product.ProductLinkId = ProductLink.Id "+
@@ -167,6 +169,27 @@ namespace PriceBookClassLibrary
                 output += string.Format("AND ProductLink.Weighted LIKE '%{0}%' ", product.Weighted);
 
             return output;
+        }
+        //9. Save To DB
+        public static int SaveProductAndGetId(ProductModel product)
+        {
+            int id = 0;
+            try
+            {
+                using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+                {
+                    id = cnn.Query<int>("INSERT INTO Product " +
+                    "(Description, BrandName, PackSize, ProductLinkId) " +
+                    "VALUES (@Description, @BrandName, @PackSize, @ProductLinkId);" +
+                    "SELECT last_insert_rowid();", product).Single();
+                }
+            }
+            catch (Exception ex)
+            {
+                General.LogError(ex);
+                return id = 0;
+            }
+            return id;
         }
     }
 }
