@@ -62,7 +62,7 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var count = cnn.Execute("UPDATE Store "+
-                    "SET Name= @Name, Location= @Location"+
+                    "SET Name= @Name, Location= @Location "+
                     "WHERE Id= @Id", store);
                 return count > 0;
             }

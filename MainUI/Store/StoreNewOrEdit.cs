@@ -13,9 +13,19 @@ namespace MainUI.Store
 {
     public partial class StoreNewOrEdit : Form
     {
+        StoreModel store = new StoreModel();
+
         public StoreNewOrEdit()
         {
             InitializeComponent();
+        }
+
+        public StoreNewOrEdit(StoreModel store)
+        {
+            InitializeComponent();
+            this.store = store;
+            formTitleLabel.Text = "Edit Store";
+            saveButton.Text = "Edit";
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -29,29 +39,67 @@ namespace MainUI.Store
             {
                 store.Name = storeNameTextBox.Text;
                 store.Location = storeLocationTextBox.Text;
-                bool result = SqliteDAStore.SaveStore(store);
-                if (result == true)
+                if (formTitleLabel.Text == "New Store")
                 {
-                    DialogResult dialogResult = MessageBox.Show("New store created successfully", "New Store",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
+                    bool result = SqliteDAStore.SaveStore(store);
+                    if (result == true)
                     {
-                        this.Close();
+                        DialogResult dialogResult = MessageBox.Show("New store created successfully", "New Store",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
                     }
-
-                }
-                else if (result == false)
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. New store could not be saved.", "New Store Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else if (formTitleLabel.Text == "Edit Store")
                 {
-                    MessageBox.Show("Something went wrong. New store could not be saved.", "New Store Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    store.Id = this.store.Id;
+                    bool result = SqliteDAStore.UpdateStoreById(store);
+                    if (result == true)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Store updated successfully", "Store Edit",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. Store update could not be saved.", "Store Edit Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            storeNameTextBox.ResetText();
-            storeLocationTextBox.ResetText();
+            if(formTitleLabel.Text == "Edit Store")
+            {
+                SetStoreToDefaultValues();
+
+            } else if (formTitleLabel.Text == "New Store")
+            {
+                storeNameTextBox.ResetText();
+                storeLocationTextBox.ResetText();
+            }
+        }
+
+        private void SetStoreToDefaultValues()
+        {
+            storeNameTextBox.Text = store.Name;
+            storeLocationTextBox.Text = store.Location;
+        }
+
+        private void StoreNewOrEdit_Load(object sender, EventArgs e)
+        {
+            SetStoreToDefaultValues();
         }
     }
 }

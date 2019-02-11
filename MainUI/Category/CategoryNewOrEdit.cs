@@ -52,7 +52,6 @@ namespace MainUI.Category
             CategoryModel category = new CategoryModel();
             category.Name = categoryNameTextBox.Text;
             //Check if <NONE> was selected in the main category combobox 
-            //TODO: Fix this bug, its saving "<NONE>" instead of an empty string.
             if (mainCategoryComboBox.Text == "<NONE>")
             {
                 category.MainCategory = "";

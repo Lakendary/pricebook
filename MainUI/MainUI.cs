@@ -241,16 +241,35 @@ namespace MainUI
         //EDIT MODELS - CLICK EDIT BUTTON EVENT
         private void editButton_Click(object sender, EventArgs e)
         {
+            //The user first has to select an item from the data grid view, click the edit button and then the edit form for the respective object should open.
+            //All the object properties are collected from the selected datagridview row and sent to the edit form. There the user will edit the object properties and update the database.
+            //The datagridview reloads and gets all objects and turns off the view/edit/delete buttons.
             //1. Category
             if (modeStripStatusLabel.Text == "CATEGORY MODE")
             {
+                //Create object
                 CategoryModel category = new CategoryModel();
                 category.Id = Convert.ToInt32(row.Cells["Id"].Value);
-                category.Name = row.Cells["Name"].Value.ToString();
                 category.MainCategory = row.Cells["MainCategory"].Value.ToString();
+                category.Name = row.Cells["Name"].Value.ToString();
+                //Send to edit form
                 CategoryNewOrEdit categoryForm = new CategoryNewOrEdit(category);
                 categoryForm.ShowDialog();
+                //Reload data grid view
                 mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
+                mainDataGridView.AutoResizeColumns();
+                toggleClickFirstButtons(false);
+            }
+            //2. Store
+            else if (modeStripStatusLabel.Text == "STORE MODE")
+            {
+                StoreModel store = new StoreModel();
+                store.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                store.Location = row.Cells["Location"].Value.ToString();
+                store.Name = row.Cells["Name"].Value.ToString();
+                StoreNewOrEdit storeForm = new StoreNewOrEdit(store);
+                storeForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAStore.GetAllStores();
                 mainDataGridView.AutoResizeColumns();
                 toggleClickFirstButtons(false);
             }
@@ -362,7 +381,5 @@ namespace MainUI
             }
             return product;
         }
-
-        
     }
 }

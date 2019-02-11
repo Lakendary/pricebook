@@ -125,6 +125,7 @@
             this.Name = "StoreNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Store";
+            this.Load += new System.EventHandler(this.StoreNewOrEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
