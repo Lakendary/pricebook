@@ -255,6 +255,37 @@ namespace MainUI
                 toggleClickFirstButtons(false);
             }
         }
+        //DELETE MODELS - CLICK DELETE BUTTON EVENT
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            //1. Category
+            if (modeStripStatusLabel.Text == "CATEGORY MODE")
+            {
+                DialogResult dialogResult = MessageBox.Show(string.Format("Are you sure you want to delete this category?" +
+                    "\nCategory Name: {0}\nMain Category: {1}", row.Cells["Name"].Value.ToString(), row.Cells["MainCategory"].Value.ToString()),
+                    "Delete Category", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if(dialogResult == DialogResult.Yes)
+                {
+                    bool result = SqliteDACategory.DeleteCategoryById(Convert.ToInt32(row.Cells["Id"].Value));
+                    if(result == true)
+                    {
+                        DialogResult dialog = MessageBox.Show("Category was successfully deleted.", "Delete Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
+                        mainDataGridView.AutoResizeColumns();
+                        toggleClickFirstButtons(false);
+                    } else
+                    {
+                        DialogResult dialog = MessageBox.Show("Something went wrong. Category could not be deleted.", "Delete Category Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                } else if(dialogResult == DialogResult.No)
+                {
+                    toggleClickFirstButtons(false);
+                } else if(dialogResult == DialogResult.Cancel)
+                {
+                    //DO NOTHING
+                }
+            }
+        }
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
         //1. Invoice Product
         private void mainDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
