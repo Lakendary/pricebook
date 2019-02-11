@@ -15,9 +15,18 @@ namespace MainUI.Category
     {
         //Form variables
         List<CategoryModel> mainCategories;
+        CategoryModel category = new CategoryModel();
         public CategoryNewOrEdit()
         {
             InitializeComponent();
+        }
+
+        public CategoryNewOrEdit(CategoryModel category)
+        {
+            InitializeComponent();
+            formTitleLabel.Text = "Edit Category";
+            saveButton.Text = "Edit";
+            this.category = category;
         }
 
         private void CategoryNewOrEdit_Load(object sender, EventArgs e)
@@ -31,6 +40,10 @@ namespace MainUI.Category
             mainCategoryComboBox.DataSource = mainCategories;
             mainCategoryComboBox.DisplayMember = "Name";
             mainCategoryComboBox.ValueMember = "Id";
+            if (formTitleLabel.Text == "Edit Category")
+            {
+                SetCategoryToDefaultValues();
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -38,34 +51,74 @@ namespace MainUI.Category
             CategoryModel category = new CategoryModel();
             category.Name = categoryNameTextBox.Text;
             //Check if <NONE> was selected in the main category combobox 
-            if(mainCategoryComboBox.SelectedValue.ToString() == "<NONE>")
+            //TODO: Fix this bug, its saving "<NONE>" instead of an empty string.
+            if (mainCategoryComboBox.SelectedText.ToString() == "<NONE>")
             {
                 category.MainCategory = "";
-            } else
+            }
+            else
             {
                 category.MainCategory = mainCategoryComboBox.Text;
             }
-            bool result = SqliteDACategory.SaveCategory(category);
-            if(result == true)
+            //SAVE NEW CATEGORY
+            if (formTitleLabel.Text == "New Category")
             {
-                DialogResult dialogResult = MessageBox.Show("New category created successfully", "New Category",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if(dialogResult == DialogResult.OK)
+                bool result = SqliteDACategory.SaveCategory(category);
+                if (result == true)
                 {
-                    this.Close();
+                    DialogResult dialogResult = MessageBox.Show("New category created successfully", "New Category",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+
                 }
-                
-            } else if(result == false)
+                else if (result == false)
+                {
+                    MessageBox.Show("Something went wrong. New category could not be saved.", "New Category Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            //EDIT EXISTING CATEGORY
+            else if (formTitleLabel.Text == "Edit Category")
             {
-                MessageBox.Show("Something went wrong. New category could not be saved.", "New Category Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                category.Id = this.category.Id;
+                bool result = SqliteDACategory.UpdateCategoryById(category);
+                if (result == true)
+                {
+                    DialogResult dialogResult = MessageBox.Show("Category updated successfully", "Category Edit",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (dialogResult == DialogResult.OK)
+                    {
+                        this.Close();
+                    }
+
+                }
+                else if (result == false)
+                {
+                    MessageBox.Show("Something went wrong. Category update could not be saved.", "Category Edit Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            categoryNameTextBox.ResetText();
-            mainCategoryComboBox.SelectedIndex = 0;
+            if(formTitleLabel.Text == "New Category")
+            {
+                categoryNameTextBox.ResetText();
+                mainCategoryComboBox.SelectedIndex = 0;
+            } else if (formTitleLabel.Text == "New Category")
+            {
+                SetCategoryToDefaultValues();
+            }
+        }
+
+        private void SetCategoryToDefaultValues()
+        {
+            categoryNameTextBox.Text = category.Name;
+            mainCategoryComboBox.SelectedIndex = mainCategoryComboBox.FindStringExact(category.MainCategory);
         }
     }
 }
