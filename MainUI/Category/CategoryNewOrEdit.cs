@@ -16,6 +16,7 @@ namespace MainUI.Category
         //Form variables
         List<CategoryModel> mainCategories;
         CategoryModel category = new CategoryModel();
+
         public CategoryNewOrEdit()
         {
             InitializeComponent();
@@ -52,7 +53,7 @@ namespace MainUI.Category
             category.Name = categoryNameTextBox.Text;
             //Check if <NONE> was selected in the main category combobox 
             //TODO: Fix this bug, its saving "<NONE>" instead of an empty string.
-            if (mainCategoryComboBox.SelectedText.ToString() == "<NONE>")
+            if (mainCategoryComboBox.Text == "<NONE>")
             {
                 category.MainCategory = "";
             }
@@ -109,7 +110,7 @@ namespace MainUI.Category
             {
                 categoryNameTextBox.ResetText();
                 mainCategoryComboBox.SelectedIndex = 0;
-            } else if (formTitleLabel.Text == "New Category")
+            } else if (formTitleLabel.Text == "Edit Category")
             {
                 SetCategoryToDefaultValues();
             }
@@ -118,7 +119,13 @@ namespace MainUI.Category
         private void SetCategoryToDefaultValues()
         {
             categoryNameTextBox.Text = category.Name;
-            mainCategoryComboBox.SelectedIndex = mainCategoryComboBox.FindStringExact(category.MainCategory);
+            if(category.MainCategory == "")
+            {
+                mainCategoryComboBox.SelectedIndex = 0;
+            } else
+            {
+                mainCategoryComboBox.SelectedIndex = mainCategoryComboBox.FindStringExact(category.MainCategory);
+            }
         }
     }
 }

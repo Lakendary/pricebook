@@ -252,6 +252,7 @@ namespace MainUI
                 categoryForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
                 mainDataGridView.AutoResizeColumns();
+                toggleClickFirstButtons(false);
             }
         }
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
