@@ -28,7 +28,8 @@ namespace PriceBookClassLibrary
                     "ProductLink.UoM, "+
                     "ProductLink.MeasurementRate, "+
                     "ProductLink.Weighted, "+
-                    "Category.Name CategoryName "+
+                    "Category.Name CategoryName, " +
+                    "Category.Id CategoryId "+
                 "FROM ProductLink "+
                 "LEFT JOIN Category "+
                 "ON ProductLink.CategoryId = Category.Id", new DynamicParameters());

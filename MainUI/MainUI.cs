@@ -273,7 +273,25 @@ namespace MainUI
                 mainDataGridView.AutoResizeColumns();
                 toggleClickFirstButtons(false);
             }
+            //3. Product Link
+            else if (modeStripStatusLabel.Text == "PRODUCT LINK MODE")
+            {
+                ProductLinkModel productLink = new ProductLinkModel();
+                productLink.CategoryId = Convert.ToInt32(row.Cells["CategoryId"].Value);
+                productLink.CategoryName = row.Cells["CategoryName"].Value.ToString();
+                productLink.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                productLink.MeasurementRate = Convert.ToInt32(row.Cells["MeasurementRate"].Value);
+                productLink.Name = row.Cells["Name"].Value.ToString();
+                productLink.UoM = row.Cells["UoM"].Value.ToString();
+                productLink.Weighted = row.Cells["Weighted"].Value.ToString();
+                ProductLinkNewOrEdit productLinkForm = new ProductLinkNewOrEdit(productLink);
+                productLinkForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
+                mainDataGridView.AutoResizeColumns();
+                toggleClickFirstButtons(false);
+            }
         }
+        //TODO: Add a deleted column to each object table and set a deleted object to inactive/deleted
         //DELETE MODELS - CLICK DELETE BUTTON EVENT
         private void deleteButton_Click(object sender, EventArgs e)
         {
@@ -299,9 +317,32 @@ namespace MainUI
                 } else if(dialogResult == DialogResult.No)
                 {
                     toggleClickFirstButtons(false);
-                } else if(dialogResult == DialogResult.Cancel)
+                } 
+            }
+            //2. Store
+            else if(modeStripStatusLabel.Text == "STORE MODE")
+            {
+                DialogResult dialogResult = MessageBox.Show(string.Format("Are you sure you want to delete this store?" +
+                    "\nStore Name: {0}\nLocation: {1}", row.Cells["Name"].Value.ToString(), row.Cells["Location"].Value.ToString()),
+                    "Delete Store", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    //DO NOTHING
+                    bool result = SqliteDAStore.DeleteStoreById(Convert.ToInt32(row.Cells["Id"].Value));
+                    if (result == true)
+                    {
+                        DialogResult dialog = MessageBox.Show("Store was successfully deleted.", "Delete Store", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mainDataGridView.DataSource = SqliteDAStore.GetAllStores();
+                        mainDataGridView.AutoResizeColumns();
+                        toggleClickFirstButtons(false);
+                    }
+                    else
+                    {
+                        DialogResult dialog = MessageBox.Show("Something went wrong. Store could not be deleted.", "Delete Store Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    toggleClickFirstButtons(false);
                 }
             }
         }

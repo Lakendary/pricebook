@@ -13,14 +13,27 @@ namespace MainUI.ProductLink
 {
     public partial class ProductLinkNewOrEdit : Form
     {
+        ProductLinkModel productLink = new ProductLinkModel();
         public ProductLinkNewOrEdit()
         {
             InitializeComponent();
         }
 
+        public ProductLinkNewOrEdit(ProductLinkModel productLink)
+        {
+            InitializeComponent();
+            this.productLink = productLink;
+            formTitleLabel.Text = "Edit Product Link";
+            saveButton.Text = "Edit";
+        }
+
         private void ProductLinkNewOrEdit_Load(object sender, EventArgs e)
         {
             LoadCategoryComboBox();
+            if (formTitleLabel.Text == "Edit Product Link")
+            {
+                SetProductLinkToDefaultValues();
+            }
         }
 
         private void LoadCategoryComboBox()
@@ -51,31 +64,59 @@ namespace MainUI.ProductLink
                 {
                     productLink.Weighted = "Pre-Packaged";
                 }
-                bool result = SqliteDAProductLink.SaveProductLink(productLink);
-                if (result == true)
+                if(formTitleLabel.Text == "New Product Link")
                 {
-                    DialogResult dialogResult = MessageBox.Show("New product link created successfully", "New Product Link",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
+                    bool result = SqliteDAProductLink.SaveProductLink(productLink);
+                    if (result == true)
                     {
-                        this.Close();
+                        DialogResult dialogResult = MessageBox.Show("New product link created successfully", "New Product Link",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
                     }
-                }
-                else if (result == false)
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. New product link could not be saved.", "New Product Link Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                } else if(formTitleLabel.Text == "Edit Product Link")
                 {
-                    MessageBox.Show("Something went wrong. New product link could not be saved.", "New Product Link Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    productLink.Id = this.productLink.Id;
+                    bool result = SqliteDAProductLink.UpdateProductLinkById(productLink);
+                    if (result == true)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("New product link updated successfully", "Edit Product Link",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. Product link could not be updated.", "Edit Product Link Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            productLinkNameTextBox.ResetText();
-            weightedCheckBox.Checked = false;
-            measurementRateTextBox.ResetText();
-            categoryComboBox.SelectedIndex = 0;
-            uomComboBox.SelectedIndex = 0;
+            if(formTitleLabel.Text == "New Product Link")
+            {
+                productLinkNameTextBox.ResetText();
+                weightedCheckBox.Checked = false;
+                measurementRateTextBox.ResetText();
+                categoryComboBox.SelectedIndex = 0;
+                uomComboBox.SelectedIndex = 0;
+            } else if (formTitleLabel.Text == "Edit Product Link")
+            {
+                SetProductLinkToDefaultValues();
+            }
+            
         }
 
         private void addCategoryButton_Click(object sender, EventArgs e)
@@ -83,6 +124,21 @@ namespace MainUI.ProductLink
             CategoryNewOrEdit categoryForm = new CategoryNewOrEdit();
             categoryForm.ShowDialog();
             LoadCategoryComboBox();
+        }
+
+        private void SetProductLinkToDefaultValues()
+        {
+            productLinkNameTextBox.Text = productLink.Name;
+            uomComboBox.SelectedIndex = uomComboBox.FindStringExact(productLink.UoM);
+            if(productLink.Weighted == "Weighted")
+            {
+                weightedCheckBox.Checked = true;
+            } else if(productLink.Weighted == "Pre-Packaged")
+            {
+                weightedCheckBox.Checked = false;
+            }
+            measurementRateTextBox.Text = productLink.MeasurementRate.ToString();
+            categoryComboBox.SelectedIndex = categoryComboBox.FindStringExact(productLink.CategoryName);
         }
     }
 }
