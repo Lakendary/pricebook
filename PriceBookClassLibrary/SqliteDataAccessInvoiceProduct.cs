@@ -136,7 +136,7 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var affectedRows = cnn.Execute("DELETE FROM InvoiceProduct "+
+                var affectedRows = cnn.Execute("DELETE InvoiceProduct "+
                     "WHERE InvoiceProduct.Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }

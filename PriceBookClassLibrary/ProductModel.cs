@@ -13,5 +13,6 @@ namespace PriceBookClassLibrary
         public string ProductLinkName { get; set; }
         public string CategoryName { get; set; }
         public string Weighted { get; set; }
+        public string Deleted { get; set; }
     }
 }

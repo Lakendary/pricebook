@@ -29,7 +29,8 @@ namespace PriceBookClassLibrary
                     "Invoice.Date, "+
                     "Invoice.InvoiceAmount, "+
                     "Store.Name StoreName, "+
-                    "Invoice.StoreId " +
+                    "Invoice.StoreId, " +
+                    "Invoice.Deleted " +
                 "FROM Invoice " +
                 "LEFT JOIN Store "+
                 "ON Invoice.StoreId = Store.Id", new DynamicParameters());
@@ -46,7 +47,8 @@ namespace PriceBookClassLibrary
                     "Invoice.Saved, "+
                     "Invoice.Date, "+
                     "Invoice.InvoiceAmount, "+
-                    "Store.Name StoreName "+
+                    "Store.Name StoreName, " +
+                    "Invoice.Deleted "+
                 "FROM Invoice "+
                 "LEFT JOIN Store "+
                 "ON Invoice.StoreId = Store.Id "+
@@ -85,13 +87,25 @@ namespace PriceBookClassLibrary
                 return count > 0;
             }
         }
-        //5. Delete By Id
-        public static bool DeleteInvoiceById(int id)
+        //5. Delete By Id - OPEN INVOICE
+        public static bool DeleteOpenInvoiceById(int id)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var affectedRows = cnn.Execute("DELETE FROM Invoice "+
                     "WHERE Id= @Id", new {Id = id});
+                return affectedRows > 0;
+            }
+        }
+
+        //6. Delete By Id - SAVED INVOICE
+        public static bool DeleteSavedInvoiceById(int id)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var affectedRows = cnn.Execute("UDPATE Invoice " +
+                    "SET Deleted='Deleted' " +
+                    "WHERE Id= @Id", new { Id = id });
                 return affectedRows > 0;
             }
         }

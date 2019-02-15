@@ -11,5 +11,6 @@ namespace PriceBookClassLibrary
         public string StoreName {get; set;}
         public string Date {get; set;}
         public decimal InvoiceAmount {get; set;}
+        public string Deleted { get; set; }
     }
 }

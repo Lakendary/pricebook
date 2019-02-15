@@ -345,6 +345,32 @@ namespace MainUI
                     toggleClickFirstButtons(false);
                 }
             }
+            //3. Product Link
+            else if(modeStripStatusLabel.Text == "PRODUCT LINK MODE")
+            {
+                DialogResult dialogResult = MessageBox.Show(string.Format("Are you sure you want to delete this product link?" +
+                    "\nProduct Link Name: {0}\nCategory Name: {1}", row.Cells["Name"].Value.ToString(), row.Cells["CategoryName"].Value.ToString()),
+                    "Delete Product Link", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool result = SqliteDAProductLink.DeleteProductLinkById(Convert.ToInt32(row.Cells["Id"].Value));
+                    if (result == true)
+                    {
+                        DialogResult dialog = MessageBox.Show("Product Link was successfully deleted.", "Delete Product Link", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
+                        mainDataGridView.AutoResizeColumns();
+                        toggleClickFirstButtons(false);
+                    }
+                    else
+                    {
+                        DialogResult dialog = MessageBox.Show("Something went wrong. Product Link could not be deleted.", "Delete Product Link Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    toggleClickFirstButtons(false);
+                }
+            }
         }
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
         //1. Invoice Product

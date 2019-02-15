@@ -29,7 +29,8 @@ namespace PriceBookClassLibrary
                     "ProductLink.MeasurementRate, "+
                     "ProductLink.Weighted, "+
                     "Category.Name CategoryName, " +
-                    "Category.Id CategoryId "+
+                    "Category.Id CategoryId, " +
+                    "ProductLink.Deleted "+
                 "FROM ProductLink "+
                 "LEFT JOIN Category "+
                 "ON ProductLink.CategoryId = Category.Id", new DynamicParameters());
@@ -47,8 +48,9 @@ namespace PriceBookClassLibrary
                     "ProductLink.UoM, "+
                     "ProductLink.MeasurementRate, "+
                     "ProductLink.Weighted, "+
-                    "Category.Name CategoryName "+
-                "FROM ProductLink "+
+                    "Category.Name CategoryName, "+
+                    "ProductLink.Deleted " +
+                "FROM ProductLink " +
                 "LEFT JOIN Category "+
                 "ON ProductLink.CategoryId = Category.Id"+
                 "WHERE ProductLink.Id = @Id", new { Id = id}).FirstOrDefault();
@@ -89,7 +91,8 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var affectedRows = cnn.Execute("DELETE FROM ProductLink "+
+                var affectedRows = cnn.Execute("UPDATE ProductLink " +
+                    "SET Deleted='Deleted' "+
                     "WHERE Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }
