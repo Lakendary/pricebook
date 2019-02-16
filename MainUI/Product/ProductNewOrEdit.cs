@@ -35,9 +35,12 @@ namespace MainUI.Product
 
         private void ProductNewOrEdit_Load(object sender, EventArgs e)
         {
-            productLinkComboBox.DataSource = SqliteDAProductLink.GetAllProductLinks();
-            productLinkComboBox.ValueMember = "Id";
-            productLinkComboBox.DisplayMember = "Name";
+            loadProductLinkComboBox();
+            loadBarcodeComboBox();
+            if (formTitleLabel.Text == "Edit Product")
+            {
+                SetProductDefaultValues();
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -48,7 +51,7 @@ namespace MainUI.Product
                 MessageBox.Show("Please enter a number.", "Pack Size Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else
             {
-                //TODO: Refactor code and add comments
+                //TODO: Add comments
                 ProductModel product = new ProductModel();
                 product.BrandName = brandNameTextBox.Text;
                 product.Description = productDescriptionTextBox.Text;
@@ -56,7 +59,7 @@ namespace MainUI.Product
                 product.ProductLinkId = Convert.ToInt32(productLinkComboBox.SelectedValue);
                 if (formTitleLabel.Text == "New Product")
                 {
-                    //Save the product just created. Check whether the product saved correctly.
+                    //Save the product that was just created. Check whether the product saved correctly.
                     int id = SqliteDAProduct.SaveProductAndGetId(product);
                     if (id != 0)
                     {
@@ -83,17 +86,39 @@ namespace MainUI.Product
                     }
                 } else if (formTitleLabel.Text == "Edit Product")
                 {
-                    //TODO: Edit Product
+                    product.Id = this.product.Id;
+                    bool result = SqliteDAProduct.UpdateProductById(product);
+                    if (result == true)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("New product updated successfully", "Edit Product",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. Product could not be updated.", "Edit Product Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            brandNameTextBox.ResetText();
-            packSizeTextBox.ResetText();
-            productDescriptionTextBox.ResetText();
-            productLinkComboBox.SelectedIndex = 0;
+            if (formTitleLabel.Text == "New Product")
+            {
+                brandNameTextBox.ResetText();
+                packSizeTextBox.ResetText();
+                productDescriptionTextBox.ResetText();
+                productLinkComboBox.SelectedIndex = 0;
+            }
+            else if (formTitleLabel.Text == "Edit Product")
+            {
+                SetProductDefaultValues();
+            }
         }
 
         private void SetProductDefaultValues()
@@ -110,9 +135,17 @@ namespace MainUI.Product
             barcodeComboBox.DataSource = SqliteDataAccessBarcode.GetBarcodesByProductId(product.Id);
             barcodeComboBox.DisplayMember = "Barcode";
             barcodeComboBox.ValueMember = "Id";
-            
         }
 
+        private void loadProductLinkComboBox()
+        {
+            productLinkComboBox.DataSource = SqliteDAProductLink.GetAllProductLinks();
+            productLinkComboBox.ValueMember = "Id";
+            productLinkComboBox.DisplayMember = "Name";
+        }
+
+        //Barcode Maintenance (ADD and DELETE) - ONLY IN PRODUCT EDIT MODE
+        //1. Add Barcode To Product
         private void addBarcodeButton_Click(object sender, EventArgs e)
         {
             AddBarcode addBarcodeForm = new AddBarcode(product.Id);
@@ -120,6 +153,7 @@ namespace MainUI.Product
             loadBarcodeComboBox();
         }
 
+        //2. Delete Barcode
         private void deleteBarcodeButton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this barcode?",

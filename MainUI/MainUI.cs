@@ -299,6 +299,7 @@ namespace MainUI
                 product.Id = Convert.ToInt32(row.Cells["Id"].Value);
                 product.PackSize = Convert.ToInt32(row.Cells["PackSize"].Value);
                 product.ProductLinkId = Convert.ToInt32(row.Cells["ProductLinkId"].Value);
+                product.ProductLinkName = row.Cells["ProductLinkName"].Value.ToString();
                 ProductNewOrEdit productForm = new ProductNewOrEdit(product);
                 productForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();

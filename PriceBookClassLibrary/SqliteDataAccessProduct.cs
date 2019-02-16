@@ -111,10 +111,11 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var count = cnn.Execute("UPDATE Product "+
-                    "SET Description=@Description, BrandName=@BrandName, PackSize=@PackSize, "+
-                    "ProductLinkId=@ProductLinkId"+
-                    "WHERE Product.Id= @Id", product);
+                string sql = "UPDATE Product " +
+                    "SET Description=@Description, BrandName=@BrandName, PackSize=@PackSize, " +
+                    "ProductLinkId=@ProductLinkId " +
+                    "WHERE Product.Id= @Id";
+                var count = cnn.Execute(sql, product);
                 return count > 0;
             }
         }
