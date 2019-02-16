@@ -37,5 +37,27 @@ namespace PriceBookClassLibrary
             }
             return true;
         }
+        //2. Get All By Product Id
+        public static List<BarcodeModel> GetBarcodesByProductId(int productId)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<BarcodeModel>("SELECT " +
+                    "Id, Barcode " +
+                    "FROM Barcode " +
+                    "WHERE ProductId = @ProductId;", new { ProductId = productId });
+                return output.ToList();
+            }
+        }
+        //3. Delete By Id
+        public static bool DeleteBarcodeById(int id)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var affectedRows = cnn.Execute("DELETE FROM Barcode " +
+                    "WHERE Id= @Id", new { Id = id });
+                return affectedRows > 0;
+            }
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace MainUI.InvoiceProduct
 
         private void InvoiceProductNewOrEdit_Load(object sender, EventArgs e)
         {
-            //What went wrong here?
+            //TODO: Fix Error - When Product Search form is closed without doing anything
             productFullNameLabel.Text = string.Format("{0} {1}", product.BrandName, product.Description);
             uomLabel.Text = product.UoM;
             if(product.Weighted == "Weighted")

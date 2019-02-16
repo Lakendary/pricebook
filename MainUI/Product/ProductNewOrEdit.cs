@@ -1,12 +1,5 @@
 ﻿using PriceBookClassLibrary;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MainUI.Product
@@ -15,15 +8,28 @@ namespace MainUI.Product
     {
         string mode = "";
         public int productId { get; set; }
+        ProductModel product = new ProductModel();
+
         public ProductNewOrEdit()
         {
             InitializeComponent();
+        }
+        //Initiated when the user clicks edit on the main ui and passes a product to edit.
+        public ProductNewOrEdit(ProductModel product)
+        {
+            InitializeComponent();
+            this.product = product;
+            formTitleLabel.Text = "Edit Product";
+            saveButton.Text = "Edit";
+            SetProductDefaultValues();
+            addBarcodeButton.Enabled = true;
+            deleteBarcodeButton.Enabled = true;
         }
 
         public ProductNewOrEdit(string barcode)
         {
             InitializeComponent();
-            barcodeTextBox.Text = barcode;
+            barcodeComboBox.Text = barcode;
             mode = "INVOICE MODE";
         }
 
@@ -36,20 +42,21 @@ namespace MainUI.Product
 
         private void saveButton_Click(object sender, EventArgs e)
         {
+            //Check if the user entered a valid number in the pack size text box.
             if (!int.TryParse(packSizeTextBox.Text, out int number))
             {
                 MessageBox.Show("Please enter a number.", "Pack Size Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else
             {
                 //TODO: Refactor code and add comments
-                //TODO: Remove SaveProduct and replace with SaveProductAndGetId
                 ProductModel product = new ProductModel();
                 product.BrandName = brandNameTextBox.Text;
                 product.Description = productDescriptionTextBox.Text;
                 product.PackSize = number;
                 product.ProductLinkId = Convert.ToInt32(productLinkComboBox.SelectedValue);
-                if (mode == "INVOICE MODE")
+                if (formTitleLabel.Text == "New Product")
                 {
+                    //Save the product just created. Check whether the product saved correctly.
                     int id = SqliteDAProduct.SaveProductAndGetId(product);
                     if (id != 0)
                     {
@@ -57,51 +64,79 @@ namespace MainUI.Product
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (dialogResult == DialogResult.OK)
                         {
+                            //Set the product id variable equal to the product id saved to the database. The forms product id can be accessed by other forms that need it.
                             productId = id;
-                            BarcodeModel barcode = new BarcodeModel();
-                            barcode.Barcode = barcodeTextBox.Text;
-                            barcode.ProductId = id;
-                            SqliteDataAccessBarcode.SaveBarcode(barcode);
+                            if(barcodeComboBox.Text != "")
+                            {
+                                BarcodeModel barcode = new BarcodeModel();
+                                barcode.Barcode = barcodeComboBox.Text;
+                                barcode.ProductId = id;
+                                SqliteDataAccessBarcode.SaveBarcode(barcode);
+                            }
                             this.Close();
                         }
-
                     }
                     else if (id == 0)
                     {
                         MessageBox.Show("Something went wrong. New product could not be saved.", "New Product Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                } else
+                } else if (formTitleLabel.Text == "Edit Product")
                 {
-                    bool result = SqliteDAProduct.SaveProduct(product);
-                    if (result == true)
-                    {
-                        DialogResult dialogResult = MessageBox.Show("New product created successfully", "New Product",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        if (dialogResult == DialogResult.OK)
-                        {
-
-                            this.Close();
-                        }
-
-                    }
-                    else if (result == false)
-                    {
-                        MessageBox.Show("Something went wrong. New product could not be saved.", "New Product Error",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    //TODO: Edit Product
                 }
-                
             }
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            barcodeTextBox.ResetText();
             brandNameTextBox.ResetText();
             packSizeTextBox.ResetText();
             productDescriptionTextBox.ResetText();
             productLinkComboBox.SelectedIndex = 0;
+        }
+
+        private void SetProductDefaultValues()
+        {
+            productDescriptionTextBox.Text = product.Description;
+            brandNameTextBox.Text = product.BrandName;
+            packSizeTextBox.Text = product.PackSize.ToString();
+            productLinkComboBox.SelectedIndex = productLinkComboBox.FindStringExact(product.ProductLinkName);
+            loadBarcodeComboBox();
+        }
+
+        private void loadBarcodeComboBox()
+        {
+            barcodeComboBox.DataSource = SqliteDataAccessBarcode.GetBarcodesByProductId(product.Id);
+            barcodeComboBox.DisplayMember = "Barcode";
+            barcodeComboBox.ValueMember = "Id";
+            
+        }
+
+        private void addBarcodeButton_Click(object sender, EventArgs e)
+        {
+            AddBarcode addBarcodeForm = new AddBarcode(product.Id);
+            addBarcodeForm.ShowDialog();
+            loadBarcodeComboBox();
+        }
+
+        private void deleteBarcodeButton_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this barcode?",
+                    "Delete Barcode", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (dialogResult == DialogResult.Yes)
+            {
+                bool result = SqliteDataAccessBarcode.DeleteBarcodeById(Convert.ToInt32(barcodeComboBox.SelectedValue));
+                if (result == true)
+                {
+                    DialogResult dialog = MessageBox.Show("Barcode was successfully deleted.", "Delete Barcode", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loadBarcodeComboBox();
+                }
+                else
+                {
+                    DialogResult dialog = MessageBox.Show("Something went wrong. Barcode could not be deleted.", "Delete Barcode Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
         }
     }
 }

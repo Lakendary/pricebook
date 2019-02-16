@@ -40,16 +40,18 @@
             this.productDescriptionLabel = new System.Windows.Forms.Label();
             this.brandNameTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
-            this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.addProductLinkButton = new System.Windows.Forms.Button();
+            this.barcodeComboBox = new System.Windows.Forms.ComboBox();
+            this.deleteBarcodeButton = new System.Windows.Forms.Button();
+            this.addBarcodeButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // productLinkComboBox
             // 
             this.productLinkComboBox.FormattingEnabled = true;
-            this.productLinkComboBox.Location = new System.Drawing.Point(180, 147);
+            this.productLinkComboBox.Location = new System.Drawing.Point(149, 147);
             this.productLinkComboBox.Name = "productLinkComboBox";
-            this.productLinkComboBox.Size = new System.Drawing.Size(161, 25);
+            this.productLinkComboBox.Size = new System.Drawing.Size(192, 25);
             this.productLinkComboBox.TabIndex = 4;
             // 
             // productLinkLabel
@@ -87,7 +89,7 @@
             // resetButton
             // 
             this.resetButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetButton.Location = new System.Drawing.Point(12, 237);
+            this.resetButton.Location = new System.Drawing.Point(17, 237);
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
@@ -108,18 +110,18 @@
             // 
             // packSizeTextBox
             // 
-            this.packSizeTextBox.Location = new System.Drawing.Point(180, 117);
+            this.packSizeTextBox.Location = new System.Drawing.Point(149, 117);
             this.packSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.packSizeTextBox.Name = "packSizeTextBox";
-            this.packSizeTextBox.Size = new System.Drawing.Size(192, 25);
+            this.packSizeTextBox.Size = new System.Drawing.Size(223, 25);
             this.packSizeTextBox.TabIndex = 3;
             // 
             // productDescriptionTextBox
             // 
-            this.productDescriptionTextBox.Location = new System.Drawing.Point(180, 51);
+            this.productDescriptionTextBox.Location = new System.Drawing.Point(149, 51);
             this.productDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productDescriptionTextBox.Name = "productDescriptionTextBox";
-            this.productDescriptionTextBox.Size = new System.Drawing.Size(192, 25);
+            this.productDescriptionTextBox.Size = new System.Drawing.Size(223, 25);
             this.productDescriptionTextBox.TabIndex = 1;
             // 
             // packSizeLabel
@@ -144,10 +146,10 @@
             // 
             // brandNameTextBox
             // 
-            this.brandNameTextBox.Location = new System.Drawing.Point(180, 84);
+            this.brandNameTextBox.Location = new System.Drawing.Point(149, 84);
             this.brandNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.brandNameTextBox.Name = "brandNameTextBox";
-            this.brandNameTextBox.Size = new System.Drawing.Size(192, 25);
+            this.brandNameTextBox.Size = new System.Drawing.Size(223, 25);
             this.brandNameTextBox.TabIndex = 2;
             // 
             // barcodeLabel
@@ -159,14 +161,6 @@
             this.barcodeLabel.Size = new System.Drawing.Size(57, 17);
             this.barcodeLabel.TabIndex = 26;
             this.barcodeLabel.Text = "Barcode";
-            // 
-            // barcodeTextBox
-            // 
-            this.barcodeTextBox.Location = new System.Drawing.Point(180, 179);
-            this.barcodeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.barcodeTextBox.Name = "barcodeTextBox";
-            this.barcodeTextBox.Size = new System.Drawing.Size(192, 25);
-            this.barcodeTextBox.TabIndex = 5;
             // 
             // addProductLinkButton
             // 
@@ -180,21 +174,57 @@
             this.addProductLinkButton.UseVisualStyleBackColor = true;
             this.addProductLinkButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
+            // barcodeComboBox
+            // 
+            this.barcodeComboBox.FormattingEnabled = true;
+            this.barcodeComboBox.Location = new System.Drawing.Point(149, 178);
+            this.barcodeComboBox.Name = "barcodeComboBox";
+            this.barcodeComboBox.Size = new System.Drawing.Size(161, 25);
+            this.barcodeComboBox.TabIndex = 36;
+            // 
+            // deleteBarcodeButton
+            // 
+            this.deleteBarcodeButton.Enabled = false;
+            this.deleteBarcodeButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteBarcodeButton.Location = new System.Drawing.Point(316, 178);
+            this.deleteBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.deleteBarcodeButton.Name = "deleteBarcodeButton";
+            this.deleteBarcodeButton.Size = new System.Drawing.Size(25, 25);
+            this.deleteBarcodeButton.TabIndex = 31;
+            this.deleteBarcodeButton.Text = "-";
+            this.deleteBarcodeButton.UseVisualStyleBackColor = true;
+            this.deleteBarcodeButton.Click += new System.EventHandler(this.deleteBarcodeButton_Click);
+            // 
+            // addBarcodeButton
+            // 
+            this.addBarcodeButton.Enabled = false;
+            this.addBarcodeButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBarcodeButton.Location = new System.Drawing.Point(347, 178);
+            this.addBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.addBarcodeButton.Name = "addBarcodeButton";
+            this.addBarcodeButton.Size = new System.Drawing.Size(25, 25);
+            this.addBarcodeButton.TabIndex = 31;
+            this.addBarcodeButton.Text = "+";
+            this.addBarcodeButton.UseVisualStyleBackColor = true;
+            this.addBarcodeButton.Click += new System.EventHandler(this.addBarcodeButton_Click);
+            // 
             // ProductNewOrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(384, 281);
+            this.Controls.Add(this.barcodeComboBox);
             this.Controls.Add(this.productLinkComboBox);
             this.Controls.Add(this.productLinkLabel);
             this.Controls.Add(this.brandNameLabel);
+            this.Controls.Add(this.addBarcodeButton);
+            this.Controls.Add(this.deleteBarcodeButton);
             this.Controls.Add(this.addProductLinkButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.formTitleLabel);
             this.Controls.Add(this.brandNameTextBox);
-            this.Controls.Add(this.barcodeTextBox);
             this.Controls.Add(this.packSizeTextBox);
             this.Controls.Add(this.productDescriptionTextBox);
             this.Controls.Add(this.barcodeLabel);
@@ -225,7 +255,9 @@
         private System.Windows.Forms.Label productDescriptionLabel;
         private System.Windows.Forms.TextBox brandNameTextBox;
         private System.Windows.Forms.Label barcodeLabel;
-        private System.Windows.Forms.TextBox barcodeTextBox;
         private System.Windows.Forms.Button addProductLinkButton;
+        private System.Windows.Forms.ComboBox barcodeComboBox;
+        private System.Windows.Forms.Button deleteBarcodeButton;
+        private System.Windows.Forms.Button addBarcodeButton;
     }
 }

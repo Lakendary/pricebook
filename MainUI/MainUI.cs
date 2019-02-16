@@ -290,6 +290,21 @@ namespace MainUI
                 mainDataGridView.AutoResizeColumns();
                 toggleClickFirstButtons(false);
             }
+            //4. Product
+            else if (modeStripStatusLabel.Text == "PRODUCT MODE")
+            {
+                ProductModel product = new ProductModel();
+                product.BrandName = row.Cells["BrandName"].Value.ToString();
+                product.Description = row.Cells["Description"].Value.ToString();
+                product.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                product.PackSize = Convert.ToInt32(row.Cells["PackSize"].Value);
+                product.ProductLinkId = Convert.ToInt32(row.Cells["ProductLinkId"].Value);
+                ProductNewOrEdit productForm = new ProductNewOrEdit(product);
+                productForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();
+                mainDataGridView.AutoResizeColumns();
+                toggleClickFirstButtons(false);
+            }
         }
         //TODO: Add a deleted column to each object table and set a deleted object to inactive/deleted
         //DELETE MODELS - CLICK DELETE BUTTON EVENT
