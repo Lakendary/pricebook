@@ -1,38 +1,53 @@
 ﻿using MainUI.Store;
 using PriceBookClassLibrary;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace MainUI.Invoice
 {
     public partial class InvoiceNewOrEdit : Form
     {
+        //TODO: Add comments
         //Global variables
-        public int invoiceId { get; set; }
+        public int invoiceId { get; set; } //For the main ui status bar
+        InvoiceModel invoice = new InvoiceModel();
 
         public InvoiceNewOrEdit()
         {
             InitializeComponent();
         }
 
+        public InvoiceNewOrEdit(InvoiceModel invoice)
+        {
+            InitializeComponent();
+            this.invoice = invoice;
+            invoiceId = invoice.Id;
+            formTitleLabel.Text = "Edit Invoice";
+            saveButton.Text = "Edit";
+        }
+
         private void InvoiceNewAndEdit_Load(object sender, EventArgs e)
         {
             //TODO: Show location as well in the store combo box.
             LoadStoreComboBox();
+            if(formTitleLabel.Text == "Edit Invoice")
+            {
+                SetInvoiceDefaultValues();
+            }
         }
 
         private void resetButton_Click(object sender, EventArgs e)
         {
-            invoiceAmountTextBox.ResetText();
-            invoiceNumberTextBox.ResetText();
-            storeComboBox.SelectedIndex = 0;
+            if(formTitleLabel.Text == "New Invoice")
+            {
+                invoiceAmountTextBox.ResetText();
+                invoiceNumberTextBox.ResetText();
+                storeComboBox.SelectedIndex = 0;
+            } else if (formTitleLabel.Text == "Edit Invoice")
+            {
+                SetInvoiceDefaultValues();
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -49,20 +64,42 @@ namespace MainUI.Invoice
                 invoice.InvoiceNumber = invoiceNumberTextBox.Text;
                 invoice.Saved = "Open";
                 invoice.StoreId = Convert.ToInt32(storeComboBox.SelectedValue);
-                invoiceId = SqliteDAInvoice.SaveInvoice(invoice);
-                if (invoiceId > 0)
+                if (formTitleLabel.Text == "New Invoice")
                 {
-                    DialogResult dialogResult = MessageBox.Show("New invoice created successfully", "New Invoice",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
+                    invoiceId = SqliteDAInvoice.SaveInvoice(invoice);
+                    if (invoiceId > 0)
                     {
-                        this.Close();
+                        DialogResult dialogResult = MessageBox.Show("New invoice created successfully", "New Invoice",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else if (invoiceId == 0)
+                    {
+                        MessageBox.Show("Something went wrong. New invoice could not be saved.", "New Invoice Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else if (invoiceId == 0)
+                else if (formTitleLabel.Text == "Edit Invoice")
                 {
-                    MessageBox.Show("Something went wrong. New invoice could not be saved.", "New Invoice Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    invoice.Id = this.invoice.Id;
+                    bool result = SqliteDAInvoice.UpdateInvoiceById(invoice);
+                    if (result)
+                    {
+                        DialogResult dialogResult = MessageBox.Show("Invoice updated successfully", "Edit Invoice",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else 
+                    {
+                        MessageBox.Show("Something went wrong. Invoice could not be updated.", "Edit Invoice Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -107,6 +144,13 @@ namespace MainUI.Invoice
             LoadStoreComboBox();
         }
 
+        private void SetInvoiceDefaultValues()
+        {
+            storeComboBox.SelectedIndex = storeComboBox.FindStringExact(this.invoice.StoreName);
+            invoiceDateTimePicker.Value = DateTime.Parse(invoice.Date.ToString());
+            invoiceAmountTextBox.Text = invoice.InvoiceAmount.ToString();
+            invoiceNumberTextBox.Text = invoice.InvoiceNumber;
+        }
         //public string GetInvoiceNumber()
         //{
         //    return invoiceId;

@@ -28,7 +28,7 @@ namespace PriceBookClassLibrary
                     "Invoice.Saved, "+
                     "Invoice.Date, "+
                     "Invoice.InvoiceAmount, "+
-                    "Store.Name StoreName, "+
+                    "Store.Name || ', ' || Store.Location StoreName, " +
                     "Invoice.StoreId, " +
                     "Invoice.Deleted " +
                 "FROM Invoice " +
@@ -82,7 +82,7 @@ namespace PriceBookClassLibrary
             {
                 var count = cnn.Execute("UPDATE Invoice "+
                     "SET Date=@Date, InvoiceAmount=@InvoiceAmount, "+
-                    "InvoiceNumber=@InvoiceNumber, Saved=@Saved, StoreId=@StoreId"+
+                    "InvoiceNumber=@InvoiceNumber, Saved=@Saved, StoreId=@StoreId "+
                     "WHERE Invoice.Id = @Id", invoice);
                 return count > 0;
             }

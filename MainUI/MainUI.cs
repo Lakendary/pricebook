@@ -306,6 +306,24 @@ namespace MainUI
                 mainDataGridView.AutoResizeColumns();
                 toggleClickFirstButtons(false);
             }
+            //5. Invoice
+            else if (modeStripStatusLabel.Text == "INVOICE MODE")
+            {
+                InvoiceModel invoice = new InvoiceModel();
+                invoice.Date = row.Cells["Date"].Value.ToString();
+                invoice.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                invoice.InvoiceAmount = Convert.ToDecimal(row.Cells["InvoiceAmount"].Value);
+                invoice.InvoiceNumber = row.Cells["InvoiceNumber"].Value.ToString();
+                invoice.Saved = row.Cells["Saved"].Value.ToString();
+                invoice.StoreId = Convert.ToInt32(row.Cells["StoreId"].Value);
+                invoice.StoreName = row.Cells["StoreName"].Value.ToString();
+                InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit(invoice);
+                invoiceForm.ShowDialog();
+                barCodeSearchPanel.Visible = true;
+                //Barcode text box is not made active here, like when you create a new invoice.
+                invoiceNumberStripStatusLabel.Text = invoiceForm.invoiceId.ToString();
+                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoiceId);
+            }
         }
         //TODO: Add a deleted column to each object table and set a deleted object to inactive/deleted
         //DELETE MODELS - CLICK DELETE BUTTON EVENT

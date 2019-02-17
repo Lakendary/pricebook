@@ -82,7 +82,7 @@
             this.invoiceDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.invoiceDateTimePicker.Location = new System.Drawing.Point(135, 82);
             this.invoiceDateTimePicker.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
-            this.invoiceDateTimePicker.MinDate = new System.DateTime(2019, 1, 1, 0, 0, 0, 0);
+            this.invoiceDateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.invoiceDateTimePicker.Name = "invoiceDateTimePicker";
             this.invoiceDateTimePicker.Size = new System.Drawing.Size(237, 25);
             this.invoiceDateTimePicker.TabIndex = 2;
