@@ -325,7 +325,6 @@ namespace MainUI
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoiceId);
             }
         }
-        //TODO: Add a deleted column to each object table and set a deleted object to inactive/deleted
         //DELETE MODELS - CLICK DELETE BUTTON EVENT
         private void deleteButton_Click(object sender, EventArgs e)
         {
@@ -424,6 +423,42 @@ namespace MainUI
                     else
                     {
                         DialogResult dialog = MessageBox.Show("Something went wrong. Product could not be deleted.", "Delete Product Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    toggleClickFirstButtons(false);
+                }
+            }
+            //5. Invoice
+            else if (modeStripStatusLabel.Text == "INVOICE MODE")
+            {
+                DialogResult dialogResult = MessageBox.Show(string.Format("Are you sure you want to delete this invoice?" +
+                    "\nInvoice Date: {0}\nInvoice Number: {1}", row.Cells["Date"].Value.ToString(), row.Cells["InvoiceNumber"].Value.ToString()),
+                    "Delete Invoice", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool result = false;
+                    if(row.Cells["Saved"].Value.ToString() == "Open")
+                    {
+                        //Invoices marked as open will be permanently deleted from the database
+                        result = SqliteDAInvoice.DeleteOpenInvoiceById(Convert.ToInt32(row.Cells["Id"].Value));
+                    } else if (row.Cells["Saved"].Value.ToString() == "Saved")
+                    {
+                        //Invoices marked as saved will be archived (marked as deleted, but still kept in the database).
+                        result = SqliteDAInvoice.DeleteSavedInvoiceById(Convert.ToInt32(row.Cells["Id"].Value));
+                    }
+
+                    if (result == true)
+                    {
+                        DialogResult dialog = MessageBox.Show("Invoice was successfully deleted.", "Delete Invoice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
+                        mainDataGridView.AutoResizeColumns();
+                        toggleClickFirstButtons(false);
+                    }
+                    else
+                    {
+                        DialogResult dialog = MessageBox.Show("Something went wrong. Invoice could not be deleted.", "Delete Invoice Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else if (dialogResult == DialogResult.No)
