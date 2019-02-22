@@ -23,16 +23,21 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<InvoiceProductModel>("SELECT "+
-                    "Invoice.InvoiceNumber, "+
-                    "Invoice.Date InvoiceDate, "+
+                    "InvoiceProduct.Id, " +
+                    "Invoice.InvoiceNumber, " +
+                    "InvoiceProduct.InvoiceId, " +
+                    "Invoice.Date InvoiceDate, " +
+                    "Product.Id ProductId, "+
                     "Product.BrandName||' '||Product.Description ProductName, "+
                     "InvoiceProduct.Quantity, "+
                     "InvoiceProduct.Weight, "+
                     "InvoiceProduct.TotalPrice, "+
                     "InvoiceProduct.Sale, "+
                     "ProductLink.Name ProductLinkName, "+
-                    "Category.Name CategoryName "+
-                "FROM InvoiceProduct "+
+                    "Category.Name CategoryName, " +
+                    "ProductLink.UoM, "+
+                    "ProductLink.Weighted " +
+                "FROM InvoiceProduct " +
                 "LEFT JOIN Product "+
                 "ON InvoiceProduct.ProductId = Product.Id "+
                 "LEFT JOIN Invoice "+
@@ -49,17 +54,22 @@ namespace PriceBookClassLibrary
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<InvoiceProductModel>("SELECT "+
-                    "Invoice.InvoiceNumber, "+
+                var output = cnn.Query<InvoiceProductModel>("SELECT " +
+                    "InvoiceProduct.Id, "+
+                    "Invoice.InvoiceNumber, " +
+                    "InvoiceProduct.InvoiceId, "+
                     "Invoice.Date InvoiceDate, "+
-                    "Product.BrandName||' '||Product.Description ProductName, "+
+                    "Product.Id ProductId, " +
+                    "Product.BrandName||' '||Product.Description ProductName, " +
                     "InvoiceProduct.Quantity, "+
                     "InvoiceProduct.Weight, "+
                     "InvoiceProduct.TotalPrice, "+
                     "InvoiceProduct.Sale, "+
                     "ProductLink.Name ProductLinkName, "+
-                    "Category.Name CategoryName "+
-                "FROM InvoiceProduct "+
+                    "Category.Name CategoryName, "+
+                    "ProductLink.UoM, " +
+                    "ProductLink.Weighted " +
+                "FROM InvoiceProduct " +
                 "LEFT JOIN Product "+
                 "ON InvoiceProduct.ProductId = Product.Id "+
                 "LEFT JOIN Invoice "+
@@ -78,16 +88,21 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<InvoiceProductModel>("SELECT "+
-                    "Invoice.InvoiceNumber, "+
-                    "Invoice.Date InvoiceDate, "+
-                    "Product.BrandName||' '||Product.Description ProductName, "+
+                    "InvoiceProduct.Id, " +
+                    "Invoice.InvoiceNumber, " +
+                    "InvoiceProduct.InvoiceId, " +
+                    "Invoice.Date InvoiceDate, " +
+                    "Product.Id ProductId, " +
+                    "Product.BrandName||' '||Product.Description ProductName, " +
                     "InvoiceProduct.Quantity, "+
                     "InvoiceProduct.Weight, "+
                     "InvoiceProduct.TotalPrice, "+
                     "InvoiceProduct.Sale, "+
                     "ProductLink.Name ProductLinkName, "+
-                    "Category.Name CategoryName "+
-                "FROM InvoiceProduct "+
+                    "Category.Name CategoryName, "+
+                    "ProductLink.UoM, " +
+                    "ProductLink.Weighted " +
+                "FROM InvoiceProduct " +
                 "LEFT JOIN Product "+
                 "ON InvoiceProduct.ProductId = Product.Id "+
                 "LEFT JOIN Invoice "+
@@ -124,8 +139,7 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var count = cnn.Execute("UPDATE InvoiceProduct "+
-                    "SET InvoiceId= @InvoiceId, ProductId= @ProductId, "+
-                    "Quantity= @Quantity, Sale= @Sale, TotalPrice= @TotalPrice, "+
+                    "SET Quantity= @Quantity, Sale= @Sale, TotalPrice= @TotalPrice, " +
                     "Weight= @Weight "+
                     "WHERE Id= @Id", invoiceProduct);
                 return count > 0;

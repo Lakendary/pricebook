@@ -134,7 +134,9 @@ namespace MainUI
             modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
             try
             {
+                invoiceNumberStripStatusLabel.Text = row.Cells["Id"].Value.ToString();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(row.Cells["Id"].Value));
+                toggleClickFirstButtons(false);
             }
             catch (ArgumentException aex)
             {
@@ -239,6 +241,7 @@ namespace MainUI
             }
         }
         //EDIT MODELS - CLICK EDIT BUTTON EVENT
+        //TODO: Refactor and only send the Id of the object that needs to be edited.
         private void editButton_Click(object sender, EventArgs e)
         {
             //The user first has to select an item from the data grid view, click the edit button and then the edit form for the respective object should open.
@@ -319,10 +322,31 @@ namespace MainUI
                 invoice.StoreName = row.Cells["StoreName"].Value.ToString();
                 InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit(invoice);
                 invoiceForm.ShowDialog();
+                modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
+                toggleClickFirstButtons(false);
                 barCodeSearchPanel.Visible = true;
                 //Barcode text box is not made active here, like when you create a new invoice.
                 invoiceNumberStripStatusLabel.Text = invoiceForm.invoiceId.ToString();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoiceId);
+            }
+            //6. Invoice Product
+            else if (modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
+            {
+                //InvoiceProductModel invoiceProduct = new InvoiceProductModel();
+                //invoiceProduct.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                //invoiceProduct.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+                //invoiceProduct.Sale = row.Cells["Sale"].Value.ToString();
+                //invoiceProduct.TotalPrice = Convert.ToDecimal(row.Cells["TotalPrice"].Value);
+                //invoiceProduct.Weight = Convert.ToInt32(row.Cells["Weight"].Value);
+                //invoiceProduct.ProductName = row.Cells["ProductName"].Value.ToString();
+                //invoiceProduct.UoM = row.Cells["UoM"].Value.ToString();
+                //invoiceProduct.Weighted = row.Cells["Weighted"].Value.ToString();
+                //invoiceProduct.ProductId = Convert.ToInt32(row.Cells["ProductId"].Value);
+                int invoiceProductId = Convert.ToInt32(row.Cells["Id"].Value);
+                InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(invoiceProductId);
+                invoiceProductForm.ShowDialog();
+                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                toggleClickFirstButtons(false);
             }
         }
         //DELETE MODELS - CLICK DELETE BUTTON EVENT

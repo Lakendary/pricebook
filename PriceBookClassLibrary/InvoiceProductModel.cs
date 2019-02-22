@@ -15,6 +15,8 @@ namespace PriceBookClassLibrary
         public int InvoiceId {get; set;}
         public string InvoiceNumber { get; set; }
         public string InvoiceDate {get; set;}
-        public string Sale { get; set; }        
+        public string Sale { get; set; }
+        public string UoM { get; set; }
+        public string Weighted { get; set; }
     }
 }
