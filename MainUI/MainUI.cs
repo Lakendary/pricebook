@@ -77,6 +77,8 @@ namespace MainUI
             mainDataGridView.AutoResizeColumns();
             toggleAllButtons(true);
             toggleClickFirstButtons(false);
+            mainDataGridView.ClearSelection();
+            //TODO: Create a method to house all the toggle buttons, auto resize columns and clear selection.
         }
         //2. Store
         private void storePictureBox_DoubleClick(object sender, EventArgs e)
@@ -144,7 +146,6 @@ namespace MainUI
                 General.LogError(aex);
                 mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
                 mainDataGridView.AutoResizeColumns();
-
             } catch (Exception ex)
             {
                 General.LogError(ex);
@@ -483,6 +484,32 @@ namespace MainUI
                     else
                     {
                         DialogResult dialog = MessageBox.Show("Something went wrong. Invoice could not be deleted.", "Delete Invoice Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    toggleClickFirstButtons(false);
+                }
+            }
+            //6. Invoice Product
+            else if (modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
+            {
+                DialogResult dialogResult = MessageBox.Show(string.Format("Are you sure you want to delete this product from the invoice?" +
+                    "\nProduct Name: {0}", row.Cells["ProductName"].Value.ToString()),
+                    "Delete Invoice Product", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    bool result = SqliteDAInvoiceProduct.DeleteInvoiceProductById(Convert.ToInt32(row.Cells["Id"].Value));
+                    if (result == true)
+                    {
+                        DialogResult dialog = MessageBox.Show("Product was successfully deleted from invoice.", "Delete Invoice Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                        mainDataGridView.AutoResizeColumns();
+                        toggleClickFirstButtons(false);
+                    }
+                    else
+                    {
+                        DialogResult dialog = MessageBox.Show("Something went wrong. Product could not be deleted from invoice.", "Delete Invoice Product Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else if (dialogResult == DialogResult.No)
