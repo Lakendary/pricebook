@@ -19,10 +19,10 @@ namespace MainUI.ProductLink
             InitializeComponent();
         }
 
-        public ProductLinkNewOrEdit(ProductLinkModel productLink)
+        public ProductLinkNewOrEdit(int productLinkId)
         {
             InitializeComponent();
-            this.productLink = productLink;
+            this.productLink = SqliteDAProductLink.GetProductLinkById(productLinkId);
             formTitleLabel.Text = "Edit Product Link";
             saveButton.Text = "Edit";
         }

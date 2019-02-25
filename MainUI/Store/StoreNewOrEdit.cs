@@ -20,10 +20,10 @@ namespace MainUI.Store
             InitializeComponent();
         }
 
-        public StoreNewOrEdit(StoreModel store)
+        public StoreNewOrEdit(int storeId)
         {
             InitializeComponent();
-            this.store = store;
+            this.store = SqliteDAStore.GetStoreById(storeId);
             formTitleLabel.Text = "Edit Store";
             saveButton.Text = "Edit";
         }

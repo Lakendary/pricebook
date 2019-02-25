@@ -34,7 +34,7 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<StoreModel>("SELECT "+
-                    "Name, Location "+
+                    "Id, Name, Location "+
                     "FROM Store "+
                     "WHERE Id = @Id", new { Id = id}).FirstOrDefault();
                 return output;

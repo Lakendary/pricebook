@@ -52,7 +52,7 @@ namespace PriceBookClassLibrary
                     "ProductLink.Deleted " +
                 "FROM ProductLink " +
                 "LEFT JOIN Category "+
-                "ON ProductLink.CategoryId = Category.Id"+
+                "ON ProductLink.CategoryId = Category.Id "+
                 "WHERE ProductLink.Id = @Id", new { Id = id}).FirstOrDefault();
                 return output;
             }

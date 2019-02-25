@@ -22,12 +22,12 @@ namespace MainUI.Category
             InitializeComponent();
         }
 
-        public CategoryNewOrEdit(CategoryModel category)
+        public CategoryNewOrEdit(int categoryId)
         {
             InitializeComponent();
             formTitleLabel.Text = "Edit Category";
             saveButton.Text = "Edit";
-            this.category = category;
+            this.category = SqliteDACategory.GetCategoryById(categoryId);
         }
 
         private void CategoryNewOrEdit_Load(object sender, EventArgs e)
