@@ -93,6 +93,8 @@ namespace MainUI
             modeStripStatusLabel.Text = "PRODUCT MODE";
             mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();
             SetDefaultLoadParameters();
+            mainDataGridView.Columns["Id"].Visible = false;
+            mainDataGridView.Columns["ProductLinkId"].Visible = false;
         }
         //4. Product link 
         private void productLinkPictureBox_DoubleClick(object sender, EventArgs e)
@@ -101,6 +103,8 @@ namespace MainUI
             modeStripStatusLabel.Text = "PRODUCT LINK MODE";
             mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
             SetDefaultLoadParameters();
+            mainDataGridView.Columns["Id"].Visible = false;
+            mainDataGridView.Columns["CategoryId"].Visible = false;
         }
         //5. Invoice
         private void invoicePictureBox_DoubleClick(object sender, EventArgs e)
@@ -109,6 +113,7 @@ namespace MainUI
             modeStripStatusLabel.Text = "INVOICE MODE";
             mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
             SetDefaultLoadParameters();
+            mainDataGridView.Columns["StoreId"].Visible = false;
         }
 
         //LOAD MODELS - CLICK VIEW BUTTON EVENT
@@ -127,21 +132,25 @@ namespace MainUI
             if (modeStripStatusLabel.Text == "CATEGORY MODE")
             {
                 //TODO: Add View Function for categories - FREE VERSION V1.1
+                MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             //2. Store
             else if (modeStripStatusLabel.Text == "STORE MODE")
             {
                 //TODO: Add View Function for stores - FREE VERSION V1.1
+                MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             //3. Product Link
             else if (modeStripStatusLabel.Text == "PRODUCT LINK MODE")
             {
                 //TODO: Add View Function for product links - FREE VERSION V1.1
+                MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             //4. Product
             else if (modeStripStatusLabel.Text == "PRODUCT MODE")
             {
                 //TODO: Add View Function for products - FREE VERSION V1.1
+                MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             //5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")
@@ -170,6 +179,7 @@ namespace MainUI
             else if(modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
             {
                 //TODO: Add View Function for invoice products - FREE VERSION V1.1
+                MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //SAVE MODELS - CLICK NEW BUTTON EVENT
@@ -183,7 +193,7 @@ namespace MainUI
                 CategoryNewOrEdit categoryForm = new CategoryNewOrEdit();
                 categoryForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
-                mainDataGridView.AutoResizeColumns();
+                SetDefaultLoadParameters();
             }
             //2. Store
             else if (modeStripStatusLabel.Text == "STORE MODE")
@@ -191,7 +201,7 @@ namespace MainUI
                 StoreNewOrEdit storeForm = new StoreNewOrEdit();
                 storeForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAStore.GetAllStores();
-                mainDataGridView.AutoResizeColumns();
+                SetDefaultLoadParameters();
             }
             //3. Product Link
             else if (modeStripStatusLabel.Text == "PRODUCT LINK MODE")
@@ -199,7 +209,7 @@ namespace MainUI
                 ProductLinkNewOrEdit productLinkForm = new ProductLinkNewOrEdit();
                 productLinkForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
-                mainDataGridView.AutoResizeColumns();
+                SetDefaultLoadParameters();
             }
             //4. Product
             else if (modeStripStatusLabel.Text == "PRODUCT MODE")
@@ -207,7 +217,7 @@ namespace MainUI
                 ProductNewOrEdit productForm = new ProductNewOrEdit();
                 productForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();
-                mainDataGridView.AutoResizeColumns();
+                SetDefaultLoadParameters();
             }
             //5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")
@@ -301,31 +311,17 @@ namespace MainUI
             //4. Product
             else if (modeStripStatusLabel.Text == "PRODUCT MODE")
             {
-                ProductModel product = new ProductModel();
-                product.BrandName = row.Cells["BrandName"].Value.ToString();
-                product.Description = row.Cells["Description"].Value.ToString();
-                product.Id = Convert.ToInt32(row.Cells["Id"].Value);
-                product.PackSize = Convert.ToInt32(row.Cells["PackSize"].Value);
-                product.ProductLinkId = Convert.ToInt32(row.Cells["ProductLinkId"].Value);
-                product.ProductLinkName = row.Cells["ProductLinkName"].Value.ToString();
-                ProductNewOrEdit productForm = new ProductNewOrEdit(product);
+                int productId = Convert.ToInt32(row.Cells["Id"].Value);
+                ProductNewOrEdit productForm = new ProductNewOrEdit(productId);
                 productForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();
-                mainDataGridView.AutoResizeColumns();
-                toggleClickFirstButtons(false);
+                SetDefaultLoadParameters();
             }
             //5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")
             {
-                InvoiceModel invoice = new InvoiceModel();
-                invoice.Date = row.Cells["Date"].Value.ToString();
-                invoice.Id = Convert.ToInt32(row.Cells["Id"].Value);
-                invoice.InvoiceAmount = Convert.ToDecimal(row.Cells["InvoiceAmount"].Value);
-                invoice.InvoiceNumber = row.Cells["InvoiceNumber"].Value.ToString();
-                invoice.Saved = row.Cells["Saved"].Value.ToString();
-                invoice.StoreId = Convert.ToInt32(row.Cells["StoreId"].Value);
-                invoice.StoreName = row.Cells["StoreName"].Value.ToString();
-                InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit(invoice);
+                int invoiceId = Convert.ToInt32(row.Cells["Id"].Value);
+                InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit(invoiceId);
                 invoiceForm.ShowDialog();
                 modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
                 toggleClickFirstButtons(false);
@@ -337,21 +333,11 @@ namespace MainUI
             //6. Invoice Product
             else if (modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
             {
-                //InvoiceProductModel invoiceProduct = new InvoiceProductModel();
-                //invoiceProduct.Id = Convert.ToInt32(row.Cells["Id"].Value);
-                //invoiceProduct.Quantity = Convert.ToInt32(row.Cells["Quantity"].Value);
-                //invoiceProduct.Sale = row.Cells["Sale"].Value.ToString();
-                //invoiceProduct.TotalPrice = Convert.ToDecimal(row.Cells["TotalPrice"].Value);
-                //invoiceProduct.Weight = Convert.ToInt32(row.Cells["Weight"].Value);
-                //invoiceProduct.ProductName = row.Cells["ProductName"].Value.ToString();
-                //invoiceProduct.UoM = row.Cells["UoM"].Value.ToString();
-                //invoiceProduct.Weighted = row.Cells["Weighted"].Value.ToString();
-                //invoiceProduct.ProductId = Convert.ToInt32(row.Cells["ProductId"].Value);
                 int invoiceProductId = Convert.ToInt32(row.Cells["Id"].Value);
                 InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(invoiceProductId);
                 invoiceProductForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
-                toggleClickFirstButtons(false);
+                SetDefaultLoadParameters();
             }
         }
         //DELETE MODELS - CLICK DELETE BUTTON EVENT

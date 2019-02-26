@@ -15,10 +15,10 @@ namespace MainUI.Product
             InitializeComponent();
         }
         //Initiated when the user clicks edit on the main ui and passes a product to edit.
-        public ProductNewOrEdit(ProductModel product)
+        public ProductNewOrEdit(int productId)
         {
             InitializeComponent();
-            this.product = product;
+            this.product = SqliteDAProduct.GetProductById(productId);
             formTitleLabel.Text = "Edit Product";
             saveButton.Text = "Edit";
             SetProductDefaultValues();
@@ -90,7 +90,7 @@ namespace MainUI.Product
                     bool result = SqliteDAProduct.UpdateProductById(product);
                     if (result == true)
                     {
-                        DialogResult dialogResult = MessageBox.Show("New product updated successfully", "Edit Product",
+                        DialogResult dialogResult = MessageBox.Show("Product updated successfully.", "Edit Product",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (dialogResult == DialogResult.OK)
                         {

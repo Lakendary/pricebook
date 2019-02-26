@@ -43,12 +43,14 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<InvoiceModel>("SELECT "+
-                    "Invoice.InvoiceNumber, "+
+                    "Invoice.Id, " +
+                    "Invoice.InvoiceNumber, " +
                     "Invoice.Saved, "+
                     "Invoice.Date, "+
                     "Invoice.InvoiceAmount, "+
-                    "Store.Name StoreName, " +
-                    "Invoice.Deleted "+
+                    "Store.Name || ', ' || Store.Location StoreName, " +
+                    "Invoice.StoreId, " +
+                    "Invoice.Deleted " +
                 "FROM Invoice "+
                 "LEFT JOIN Store "+
                 "ON Invoice.StoreId = Store.Id "+

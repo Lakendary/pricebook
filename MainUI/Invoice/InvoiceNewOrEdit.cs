@@ -18,11 +18,11 @@ namespace MainUI.Invoice
             InitializeComponent();
         }
 
-        public InvoiceNewOrEdit(InvoiceModel invoice)
+        public InvoiceNewOrEdit(int invoiceId)
         {
             InitializeComponent();
-            this.invoice = invoice;
-            invoiceId = invoice.Id;
+            this.invoice = SqliteDAInvoice.GetInvoiceById(invoiceId);
+            this.invoiceId = invoice.Id;
             formTitleLabel.Text = "Edit Invoice";
             saveButton.Text = "Edit";
         }
