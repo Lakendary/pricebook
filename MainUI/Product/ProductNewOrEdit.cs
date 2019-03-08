@@ -49,7 +49,8 @@ namespace MainUI.Product
             if (!int.TryParse(packSizeTextBox.Text, out int number))
             {
                 MessageBox.Show("Please enter a number.", "Pack Size Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } else
+            }
+            else
             {
                 //TODO: Add comments
                 ProductModel product = new ProductModel();

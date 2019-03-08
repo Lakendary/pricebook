@@ -56,59 +56,76 @@ namespace MainUI.InvoiceProduct
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            InvoiceProductModel invoiceProduct = new InvoiceProductModel();
-            invoiceProduct.InvoiceId = invoiceId;
-            //TODO: Validate the text boxes. Check if user entered a number
-            invoiceProduct.Quantity = Convert.ToInt32(quantityTextBox.Text);
-            if(weightTextBox.Text != "")
-            {
-                invoiceProduct.Weight = Convert.ToInt32(weightTextBox.Text);
-            }
-            invoiceProduct.TotalPrice = Convert.ToDecimal(totalPriceTextBox.Text);
-            if(saleCheckBox.Checked == true)
-            {
-                invoiceProduct.Sale = "Sale";
-            } else if (saleCheckBox.Checked == false)
-            {
-                invoiceProduct.Sale = "Regular";
-            }
-            if (formTitleLabel.Text == "New Invoice Product")
-            {
-                invoiceProduct.ProductId = product.Id;
-                bool result = SqliteDAInvoiceProduct.SaveInvoiceProduct(invoiceProduct);
-                if (result == true)
+            //TODO: Break up the save method into smaller pieces/methods
+            //Check if the user entered a valid number in the pack size text box.
+                ValidateUserInput();
+                InvoiceProductModel invoiceProduct = new InvoiceProductModel();
+                invoiceProduct.InvoiceId = invoiceId;
+                invoiceProduct.Quantity = Convert.ToInt32(quantityTextBox.Text);
+                if (weightTextBox.Text != "")
                 {
-                    DialogResult dialogResult = MessageBox.Show("New invoice product created successfully", "New Invoice Product",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
+                    invoiceProduct.Weight = Convert.ToInt32(weightTextBox.Text);
+                }
+                invoiceProduct.TotalPrice = Convert.ToDecimal(totalPriceTextBox.Text);
+                if (saleCheckBox.Checked == true)
+                {
+                    invoiceProduct.Sale = "Sale";
+                }
+                else if (saleCheckBox.Checked == false)
+                {
+                    invoiceProduct.Sale = "Regular";
+                }
+                if (formTitleLabel.Text == "New Invoice Product")
+                {
+                    invoiceProduct.ProductId = product.Id;
+                    bool result = SqliteDAInvoiceProduct.SaveInvoiceProduct(invoiceProduct);
+                    if (result == true)
                     {
-                        this.Close();
+                        DialogResult dialogResult = MessageBox.Show("New invoice product created successfully", "New Invoice Product",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. New invoice product could not be saved.", "New Invoice Product Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else if (result == false)
+                else if (formTitleLabel.Text == "Edit Invoice Product")
                 {
-                    MessageBox.Show("Something went wrong. New invoice product could not be saved.", "New Invoice Product Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            } else if (formTitleLabel.Text == "Edit Invoice Product")
-            {
-                invoiceProduct.ProductId = this.invoiceProduct.ProductId;
-                invoiceProduct.Id = this.invoiceProduct.Id;
-                bool result = SqliteDAInvoiceProduct.UpdateInvoiceProductById(invoiceProduct);
-                if (result == true)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Invoice product updated successfully", "Edit Invoice Product",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    if (dialogResult == DialogResult.OK)
+                    invoiceProduct.ProductId = this.invoiceProduct.ProductId;
+                    invoiceProduct.Id = this.invoiceProduct.Id;
+                    bool result = SqliteDAInvoiceProduct.UpdateInvoiceProductById(invoiceProduct);
+                    if (result == true)
                     {
-                        this.Close();
+                        DialogResult dialogResult = MessageBox.Show("Invoice product updated successfully", "Edit Invoice Product",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if (dialogResult == DialogResult.OK)
+                        {
+                            this.Close();
+                        }
+                    }
+                    else if (result == false)
+                    {
+                        MessageBox.Show("Something went wrong. Invoice product update could not be saved.", "Edit Invoice Product Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                else if (result == false)
-                {
-                    MessageBox.Show("Something went wrong. Invoice product update could not be saved.", "Edit Invoice Product Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            
+            
+        }
+
+        private void ValidateUserInput()
+        {
+            //TODO: Check if user put a negative number
+            //TODO: Validate total price input
+            //TODO: Validate weight input
+            if (!int.TryParse(quantityTextBox.Text, out int quantity))
+            {
+                MessageBox.Show("Please enter a number.", "Quantity Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
