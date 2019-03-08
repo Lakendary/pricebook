@@ -52,13 +52,13 @@
             this.modeStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.invoiceNumberStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.barCodeSearchPanel = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.mainMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
@@ -317,6 +317,44 @@
             this.barCodeSearchPanel.Size = new System.Drawing.Size(920, 40);
             this.barCodeSearchPanel.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(708, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 17);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "$ X.XX";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(474, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "$ X.XX";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(552, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(148, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Sum of Product Prices:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(313, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(155, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Captured Invoice Total: ";
+            // 
             // barcodeTextBox
             // 
             this.barcodeTextBox.Location = new System.Drawing.Point(66, 9);
@@ -343,44 +381,6 @@
             this.mainDataGridView.Size = new System.Drawing.Size(920, 386);
             this.mainDataGridView.TabIndex = 2;
             this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(313, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Captured Invoice Total: ";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(474, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "$ X.XX";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(552, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Sum of Product Prices:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(708, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "$ X.XX";
             // 
             // MainUI
             // 

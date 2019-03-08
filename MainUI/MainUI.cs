@@ -120,14 +120,18 @@ namespace MainUI
         //1. Invoice Product
         private void viewButton_Click(object sender, EventArgs e)
         {
+            //************************************************************************************************************************************
             //Load all invoice products by invoice id from the database to the main data grid view.
             //There is no invoice product icon to double click on. 
             //If the user wants to get all invoice products, the user will have to run a report from the reports function.
             //Exception handling - if the user doesn't select a cell before clicking view, an argument error is thrown.
             //Error is logged and message shown. Invoice are reloaded again, because if the user clicks on the current data grid view and then on
             //the view button, the error message is thrown again.
+            //************************************************************************************************************************************
+            
             //TODO: Add reports functionality
             //TODO: Add view all invoice products report
+
             //1. Category
             if (modeStripStatusLabel.Text == "CATEGORY MODE")
             {
@@ -184,7 +188,7 @@ namespace MainUI
         }
         //SAVE MODELS - CLICK NEW BUTTON EVENT
         //There is just one click new button event method. Check in which mode the app is in to determine
-        //which object to act on.
+        //which class to act on.
         private void newButton_Click(object sender, EventArgs e)
         {
             //1. Category
@@ -238,13 +242,16 @@ namespace MainUI
             if (e.KeyCode == Keys.Enter)
             {
                 ProductModel product = new ProductModel();
-                //1. Does the user have a barcode? 
-                //NO? - Press Enter on empty text box
+                //1. Does the user have a barcode to scan or type in? 
+                //1.1 NO - Press Enter on empty text box
                 if (barcodeTextBox.Text == "")
                 {
+                    //Get back a product from the product search form. 
+                    //If product search form is closed without selecting a product, e.g. closing the form
+                    //Then exit process and wait for the user to type/scan a barcode or try to search again.
                     product = searchForProduct();
                 }
-                //YES? - Enter barcode and press enter to search for product
+                //1.2 YES - Enter barcode and press enter to search for product
                 else
                 {
                     //Search for product with barcode provided by the user
@@ -262,13 +269,17 @@ namespace MainUI
                     }
                 }
                 //Find Full Product Details with product Id
-                product = SqliteDAProduct.GetProductById(product.Id);
-                //Add Invoice Product Details
-                InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(product, Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
-                invoiceProductForm.ShowDialog();
-                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
-                barcodeTextBox.ResetText();
-                this.ActiveControl = barcodeTextBox;
+                //Check whether the user selected a product in the product search form
+                if(product.Id != 0)
+                {
+                    product = SqliteDAProduct.GetProductById(product.Id);
+                    //Add Invoice Product Details
+                    InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(product, Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                    invoiceProductForm.ShowDialog();
+                    mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                    barcodeTextBox.ResetText();
+                    this.ActiveControl = barcodeTextBox;
+                }
             }
         }
         //EDIT MODELS - CLICK EDIT BUTTON EVENT
