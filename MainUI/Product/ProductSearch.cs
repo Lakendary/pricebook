@@ -17,17 +17,20 @@ namespace MainUI.Product
         public int productId { get; set; }
         DataGridViewRow row;
         public bool openNewProductForm { get; set; }
+        public string mode;
         //TODO: Select item from data grid view and add invoice product details
-        public ProductSearch()
+        public ProductSearch(string mode)
         {
             InitializeComponent();
+            this.mode = mode;
             //TODO: Add Plus picture to add product picture box
         }
 
-        public ProductSearch(string barcode)
+        public ProductSearch(string barcode, string mode)
         {
             InitializeComponent();
             this.barcode = barcode;
+            this.mode = mode;
         }
 
         private void ProductSearch_Load(object sender, EventArgs e)
@@ -91,7 +94,7 @@ namespace MainUI.Product
         {
             try
             {
-                if (productSearchDataGridView.SelectedRows != null && productSearchDataGridView.SelectedRows.Count > 0)
+                if (productSearchDataGridView.SelectedRows != null && productSearchDataGridView.SelectedRows.Count > 0 && mode == "INVOICE PRODUCT MODE")
                 {
                     addProductToInvoiceButton.Enabled = true;
                 }

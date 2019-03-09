@@ -543,7 +543,7 @@ namespace MainUI
         //Clicking the search button - needs to be customized per object
         private void searchButton_Click(object sender, EventArgs e)
         {
-            ProductSearch productSearchForm = new ProductSearch();
+            ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
             productSearchForm.ShowDialog();
         }
         //Changing global mode variable to mode in status strip label
@@ -585,7 +585,7 @@ namespace MainUI
         private ProductModel searchForProduct()
         {
             ProductModel product = new ProductModel();
-            ProductSearch productSearchForm = new ProductSearch(barcodeTextBox.Text);
+            ProductSearch productSearchForm = new ProductSearch(barcodeTextBox.Text, modeStripStatusLabel.Text);
             productSearchForm.ShowDialog();
             //Does the user want to add a new product with/without the barcode in the textbox?
             //YES?
@@ -601,6 +601,18 @@ namespace MainUI
                 product.Id = productSearchForm.productId;
             }
             return product;
+        }
+
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Add Import Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Add Export Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

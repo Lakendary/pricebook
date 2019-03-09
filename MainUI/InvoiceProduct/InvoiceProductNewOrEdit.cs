@@ -58,7 +58,7 @@ namespace MainUI.InvoiceProduct
         {
             //TODO: Break up the save method into smaller pieces/methods
             //Check if the user entered a valid number in the pack size text box.
-                ValidateUserInput();
+                CheckIfQuantityIsANumber();
                 InvoiceProductModel invoiceProduct = new InvoiceProductModel();
                 invoiceProduct.InvoiceId = invoiceId;
                 invoiceProduct.Quantity = Convert.ToInt32(quantityTextBox.Text);
@@ -118,7 +118,7 @@ namespace MainUI.InvoiceProduct
             
         }
 
-        private void ValidateUserInput()
+        private int CheckIfQuantityIsANumber()
         {
             //TODO: Check if user put a negative number
             //TODO: Validate total price input
@@ -127,6 +127,8 @@ namespace MainUI.InvoiceProduct
             {
                 MessageBox.Show("Please enter a number.", "Quantity Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            return quantity;
         }
 
         private void resetButton_Click(object sender, EventArgs e)

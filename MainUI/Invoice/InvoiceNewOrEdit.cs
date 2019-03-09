@@ -29,7 +29,6 @@ namespace MainUI.Invoice
 
         private void InvoiceNewAndEdit_Load(object sender, EventArgs e)
         {
-            //TODO: Show location as well in the store combo box.
             LoadStoreComboBox();
             if(formTitleLabel.Text == "Edit Invoice")
             {
