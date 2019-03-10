@@ -542,6 +542,12 @@ namespace MainUI
                 if (e.RowIndex >= 0)
                 {
                     row = this.mainDataGridView.Rows[e.RowIndex];
+                    if (modeStripStatusLabel.Text == "INVOICE MODE" &&
+                        row.Cells["Saved"].Value.ToString() == "Saved")
+                    {
+                        deleteButton.Enabled = false;
+                        editButton.Enabled = false;
+                    }
                 }
             }
             catch (System.Exception ex)
