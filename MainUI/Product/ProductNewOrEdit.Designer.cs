@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductNewOrEdit));
             this.productLinkComboBox = new System.Windows.Forms.ComboBox();
             this.productLinkLabel = new System.Windows.Forms.Label();
             this.brandNameLabel = new System.Windows.Forms.Label();
@@ -244,7 +245,10 @@
             this.Controls.Add(this.packSizeLabel);
             this.Controls.Add(this.productDescriptionLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ProductNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Product";

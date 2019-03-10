@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InvoiceProductNewOrEdit));
             this.quantityTextBox = new System.Windows.Forms.TextBox();
             this.quantityLabel = new System.Windows.Forms.Label();
             this.formTitleLabel = new System.Windows.Forms.Label();
@@ -177,10 +178,13 @@
             this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.formTitleLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "InvoiceProductNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "InvoiceProductNewOrEdit";
+            this.Text = "New Or Edit Invoice Product";
             this.Load += new System.EventHandler(this.InvoiceProductNewOrEdit_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

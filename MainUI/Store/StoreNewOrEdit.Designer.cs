@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StoreNewOrEdit));
             this.storeLocationTextBox = new System.Windows.Forms.TextBox();
             this.storeNameTextBox = new System.Windows.Forms.TextBox();
             this.invoiceNumberLabel = new System.Windows.Forms.Label();
@@ -121,7 +122,10 @@
             this.Controls.Add(this.invoiceNumberLabel);
             this.Controls.Add(this.invoiceAmountLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "StoreNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Store";
