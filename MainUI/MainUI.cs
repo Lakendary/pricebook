@@ -159,6 +159,8 @@ namespace MainUI
                     invoiceNumberStripStatusLabel.Text = row.Cells["Id"].Value.ToString();
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(row.Cells["Id"].Value));
                     mainDataGridView.AutoResizeColumns();
+                    mainDataGridView.Columns["InvoiceId"].Visible = false;
+                    mainDataGridView.Columns["ProductId"].Visible = false;
                     toggleClickFirstButtons(false);
                 }
                 catch (ArgumentException aex)
@@ -288,6 +290,8 @@ namespace MainUI
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
                     mainDataGridView.AutoResizeColumns();
                     barCodeSearchPanel.Visible = true;
+                    mainDataGridView.Columns["ProductId"].Visible = false;
+                    mainDataGridView.Columns["InvoiceId"].Visible = false;
                     calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
                     barcodeTextBox.ResetText();
                     this.ActiveControl = barcodeTextBox;
@@ -352,6 +356,8 @@ namespace MainUI
                 invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
                 mainDataGridView.AutoResizeColumns();
+                mainDataGridView.Columns["ProductId"].Visible = false;
+                mainDataGridView.Columns["InvoiceId"].Visible = false;
                 calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
             }
             //6. Invoice Product
@@ -361,6 +367,8 @@ namespace MainUI
                 InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(invoiceProductId);
                 invoiceProductForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                mainDataGridView.Columns["ProductId"].Visible = false;
+                mainDataGridView.Columns["InvoiceId"].Visible = false;
                 SetDefaultLoadParameters();
             }
         }
@@ -519,6 +527,8 @@ namespace MainUI
                         DialogResult dialog = MessageBox.Show("Product was successfully deleted from invoice.", "Delete Invoice Product", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
                         mainDataGridView.AutoResizeColumns();
+                        mainDataGridView.Columns["ProductId"].Visible = false;
+                        mainDataGridView.Columns["InvoiceId"].Visible = false;
                         toggleClickFirstButtons(false);
                     }
                     else
