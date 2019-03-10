@@ -228,13 +228,29 @@ namespace MainUI
             {
                 InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit();
                 invoiceForm.ShowDialog();
-                barCodeSearchPanel.Visible = true;
-                this.ActiveControl = barcodeTextBox;
-                invoiceNumberStripStatusLabel.Text = invoiceForm.invoiceId.ToString();
-                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoiceId);
-                modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
+                //Check if user clicked the save button.
+                if (invoiceForm.userClickedSaveButton)
+                {
+                    barCodeSearchPanel.Visible = true;
+                    calculateInvoiceTotals(invoiceForm.invoice);
+                    this.ActiveControl = barcodeTextBox;
+                    invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
+                    mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
+                    modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
+                }
             }
         }
+
+        private void calculateInvoiceTotals(InvoiceModel invoiceModel)
+        {
+            InvoiceModel model = new InvoiceModel();
+            model = invoiceModel;
+            capturedInvoiceTotalAmountLabel.Text = string.Format("${0:#,0.00}", model.InvoiceAmount);
+            InvoiceProductModel invoiceProduct = new InvoiceProductModel();
+            invoiceProduct = SqliteDAInvoiceProduct.GetInvoiceTotalById(Convert.ToInt32(model.Id));
+            sumOfProductPricesAmountLabel.Text = string.Format("${0:#,0.00}", invoiceProduct.TotalPrice); 
+        }
+
         //SAVE MODELS - BARCODE PRESS ENTER IN TEXT BOX EVENT
         //Add invoice products to the invoice by either searching for the product by barcode, or by using the product search form.
         private void barcodeTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -277,6 +293,8 @@ namespace MainUI
                     InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(product, Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
                     invoiceProductForm.ShowDialog();
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                    barCodeSearchPanel.Visible = true;
+                    calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
                     barcodeTextBox.ResetText();
                     this.ActiveControl = barcodeTextBox;
                 }
@@ -338,8 +356,8 @@ namespace MainUI
                 toggleClickFirstButtons(false);
                 barCodeSearchPanel.Visible = true;
                 //Barcode text box is not made active here, like when you create a new invoice.
-                invoiceNumberStripStatusLabel.Text = invoiceForm.invoiceId.ToString();
-                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoiceId);
+                invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
+                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
             }
             //6. Invoice Product
             else if (modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
@@ -580,6 +598,7 @@ namespace MainUI
             toggleAllButtons(true);
             toggleClickFirstButtons(false);
             mainDataGridView.ClearSelection();
+            barCodeSearchPanel.Visible = false;
         }
         //Open Search form and get data back
         private ProductModel searchForProduct()

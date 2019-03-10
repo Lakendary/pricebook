@@ -111,5 +111,7 @@ namespace PriceBookClassLibrary
                 return affectedRows > 0;
             }
         }
+
+        
     }
 }

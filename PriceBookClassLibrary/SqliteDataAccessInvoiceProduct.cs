@@ -155,5 +155,18 @@ namespace PriceBookClassLibrary
                 return affectedRows > 0;
             }
         }
+        //7. Find Invoice Total by Id
+        public static InvoiceProductModel GetInvoiceTotalById(int id)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<InvoiceProductModel>("SELECT " +
+                    "InvoiceProduct.InvoiceId, " +
+                    "SUM(InvoiceProduct.TotalPrice) TotalPrice " +
+                "FROM InvoiceProduct " +
+                "WHERE InvoiceProduct.InvoiceId = @Id", new { Id = id }).FirstOrDefault();
+                return output;
+            }
+        }
     }
 }

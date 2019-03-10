@@ -10,19 +10,22 @@ namespace MainUI.Invoice
     {
         //TODO: Add comments
         //Global variables
-        public int invoiceId { get; set; } //For the main ui status bar
-        InvoiceModel invoice = new InvoiceModel();
+        //public int invoiceId { get; set; } //For the main ui status bar
+        public bool userClickedSaveButton { get; set; } //To check if user unexpectately closed the form
+        public InvoiceModel invoice { get; set; }
 
         public InvoiceNewOrEdit()
         {
             InitializeComponent();
+            this.invoice = new InvoiceModel();
         }
 
         public InvoiceNewOrEdit(int invoiceId)
         {
             InitializeComponent();
+            this.invoice = new InvoiceModel();
             this.invoice = SqliteDAInvoice.GetInvoiceById(invoiceId);
-            this.invoiceId = invoice.Id;
+            //this.invoiceId = invoice.Id;
             formTitleLabel.Text = "Edit Invoice";
             saveButton.Text = "Edit";
         }
@@ -30,7 +33,8 @@ namespace MainUI.Invoice
         private void InvoiceNewAndEdit_Load(object sender, EventArgs e)
         {
             LoadStoreComboBox();
-            if(formTitleLabel.Text == "Edit Invoice")
+            userClickedSaveButton = false;
+            if (formTitleLabel.Text == "Edit Invoice")
             {
                 SetInvoiceDefaultValues();
             }
@@ -53,34 +57,48 @@ namespace MainUI.Invoice
         {
             InvoiceModel invoice = new InvoiceModel();
             
-            if (!decimal.TryParse(invoiceAmountTextBox.Text, out decimal number))
+            if (!decimal.TryParse(invoiceAmountTextBox.Text, out decimal invoiceAmount))
             {
-                MessageBox.Show("Please enter a number.", "Invoice Amount Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter a positive number.", "Invoice Amount Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             } else
             {
                 invoice.Date = invoiceDateTimePicker.Value.ToString("yyyy-MM-dd");
-                invoice.InvoiceAmount = Math.Round(number, 2, MidpointRounding.ToEven);
+                //This forces a positive number to be saved. It already doesn't allow the user to use a negative, but if they copy paste a negative number,
+                //this will convert that negative number into a postive one.
+                if(invoiceAmount > 0)
+                {
+                    invoice.InvoiceAmount = Math.Round(invoiceAmount, 2, MidpointRounding.ToEven);
+                } else
+                {
+                    invoiceAmount = invoiceAmount * -1;
+                    invoice.InvoiceAmount = Math.Round(invoiceAmount, 2, MidpointRounding.ToEven);
+                }
                 invoice.InvoiceNumber = invoiceNumberTextBox.Text;
                 invoice.Saved = "Open";
                 invoice.StoreId = Convert.ToInt32(storeComboBox.SelectedValue);
+
+                //New Invoice
                 if (formTitleLabel.Text == "New Invoice")
                 {
-                    invoiceId = SqliteDAInvoice.SaveInvoice(invoice);
-                    if (invoiceId > 0)
+                    int result = SqliteDAInvoice.SaveInvoice(invoice);
+                    this.invoice = SqliteDAInvoice.GetInvoiceById(result);
+                    if (result > 0)
                     {
                         DialogResult dialogResult = MessageBox.Show("New invoice created successfully", "New Invoice",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (dialogResult == DialogResult.OK)
                         {
+                            userClickedSaveButton = true;
                             this.Close();
                         }
                     }
-                    else if (invoiceId == 0)
+                    else if (result == 0)
                     {
                         MessageBox.Show("Something went wrong. New invoice could not be saved.", "New Invoice Error",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+                //Edit Invoice
                 else if (formTitleLabel.Text == "Edit Invoice")
                 {
                     invoice.Id = this.invoice.Id;
@@ -91,6 +109,7 @@ namespace MainUI.Invoice
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (dialogResult == DialogResult.OK)
                         {
+                            userClickedSaveButton = true;
                             this.Close();
                         }
                     }
@@ -150,6 +169,27 @@ namespace MainUI.Invoice
             invoiceAmountTextBox.Text = invoice.InvoiceAmount.ToString();
             invoiceNumberTextBox.Text = invoice.InvoiceNumber;
         }
+
+        private void invoiceAmountTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        //private void InvoiceNewOrEdit_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+
+        //}
+
+
         //public string GetInvoiceNumber()
         //{
         //    return invoiceId;

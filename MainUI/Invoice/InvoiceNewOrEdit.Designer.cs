@@ -59,6 +59,7 @@
             this.invoiceAmountTextBox.Name = "invoiceAmountTextBox";
             this.invoiceAmountTextBox.Size = new System.Drawing.Size(237, 25);
             this.invoiceAmountTextBox.TabIndex = 3;
+            this.invoiceAmountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.invoiceAmountTextBox_KeyPress);
             // 
             // dateLabel
             // 
@@ -89,6 +90,7 @@
             // 
             // storeComboBox
             // 
+            this.storeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.storeComboBox.FormattingEnabled = true;
             this.storeComboBox.Location = new System.Drawing.Point(135, 51);
             this.storeComboBox.Name = "storeComboBox";
@@ -193,7 +195,10 @@
             this.Controls.Add(this.storeNameLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "InvoiceNewOrEdit";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Or Edit Invoice";
             this.Load += new System.EventHandler(this.InvoiceNewAndEdit_Load);

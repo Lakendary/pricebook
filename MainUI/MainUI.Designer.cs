@@ -52,10 +52,10 @@
             this.modeStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.invoiceNumberStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.barCodeSearchPanel = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.sumOfProductPricesAmountLabel = new System.Windows.Forms.Label();
+            this.capturedInvoiceTotalAmountLabel = new System.Windows.Forms.Label();
+            this.sumOfProductPricesLabel = new System.Windows.Forms.Label();
+            this.capturedInvoiceTotalLabel = new System.Windows.Forms.Label();
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
@@ -308,10 +308,10 @@
             // 
             // barCodeSearchPanel
             // 
-            this.barCodeSearchPanel.Controls.Add(this.label4);
-            this.barCodeSearchPanel.Controls.Add(this.label2);
-            this.barCodeSearchPanel.Controls.Add(this.label3);
-            this.barCodeSearchPanel.Controls.Add(this.label1);
+            this.barCodeSearchPanel.Controls.Add(this.sumOfProductPricesAmountLabel);
+            this.barCodeSearchPanel.Controls.Add(this.capturedInvoiceTotalAmountLabel);
+            this.barCodeSearchPanel.Controls.Add(this.sumOfProductPricesLabel);
+            this.barCodeSearchPanel.Controls.Add(this.capturedInvoiceTotalLabel);
             this.barCodeSearchPanel.Controls.Add(this.barcodeTextBox);
             this.barCodeSearchPanel.Controls.Add(this.barcodeLabel);
             this.barCodeSearchPanel.Location = new System.Drawing.Point(12, 536);
@@ -319,43 +319,43 @@
             this.barCodeSearchPanel.Size = new System.Drawing.Size(920, 40);
             this.barCodeSearchPanel.TabIndex = 0;
             // 
-            // label4
+            // sumOfProductPricesAmountLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(708, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 17);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "$ X.XX";
+            this.sumOfProductPricesAmountLabel.AutoSize = true;
+            this.sumOfProductPricesAmountLabel.Location = new System.Drawing.Point(708, 12);
+            this.sumOfProductPricesAmountLabel.Name = "sumOfProductPricesAmountLabel";
+            this.sumOfProductPricesAmountLabel.Size = new System.Drawing.Size(46, 17);
+            this.sumOfProductPricesAmountLabel.TabIndex = 2;
+            this.sumOfProductPricesAmountLabel.Text = "$ X.XX";
             // 
-            // label2
+            // capturedInvoiceTotalAmountLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(474, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "$ X.XX";
+            this.capturedInvoiceTotalAmountLabel.AutoSize = true;
+            this.capturedInvoiceTotalAmountLabel.Location = new System.Drawing.Point(474, 12);
+            this.capturedInvoiceTotalAmountLabel.Name = "capturedInvoiceTotalAmountLabel";
+            this.capturedInvoiceTotalAmountLabel.Size = new System.Drawing.Size(46, 17);
+            this.capturedInvoiceTotalAmountLabel.TabIndex = 2;
+            this.capturedInvoiceTotalAmountLabel.Text = "$ X.XX";
             // 
-            // label3
+            // sumOfProductPricesLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(552, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Sum of Product Prices:";
+            this.sumOfProductPricesLabel.AutoSize = true;
+            this.sumOfProductPricesLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sumOfProductPricesLabel.Location = new System.Drawing.Point(552, 12);
+            this.sumOfProductPricesLabel.Name = "sumOfProductPricesLabel";
+            this.sumOfProductPricesLabel.Size = new System.Drawing.Size(148, 17);
+            this.sumOfProductPricesLabel.TabIndex = 2;
+            this.sumOfProductPricesLabel.Text = "Sum of Product Prices:";
             // 
-            // label1
+            // capturedInvoiceTotalLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(313, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(155, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Captured Invoice Total: ";
+            this.capturedInvoiceTotalLabel.AutoSize = true;
+            this.capturedInvoiceTotalLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.capturedInvoiceTotalLabel.Location = new System.Drawing.Point(313, 12);
+            this.capturedInvoiceTotalLabel.Name = "capturedInvoiceTotalLabel";
+            this.capturedInvoiceTotalLabel.Size = new System.Drawing.Size(155, 17);
+            this.capturedInvoiceTotalLabel.TabIndex = 2;
+            this.capturedInvoiceTotalLabel.Text = "Captured Invoice Total: ";
             // 
             // barcodeTextBox
             // 
@@ -451,10 +451,10 @@
         private System.Windows.Forms.TextBox barcodeTextBox;
         private System.Windows.Forms.Label barcodeLabel;
         private System.Windows.Forms.ToolStripStatusLabel invoiceNumberStripStatusLabel;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label sumOfProductPricesAmountLabel;
+        private System.Windows.Forms.Label capturedInvoiceTotalAmountLabel;
+        private System.Windows.Forms.Label sumOfProductPricesLabel;
+        private System.Windows.Forms.Label capturedInvoiceTotalLabel;
     }
 }
 
