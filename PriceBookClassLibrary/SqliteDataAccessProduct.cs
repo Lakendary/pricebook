@@ -153,13 +153,15 @@ namespace PriceBookClassLibrary
                     "Category.Name CategoryName, " +
                     "Product.ProductLinkId ProductLinkId, " +
                     "ProductLink.UoM UoM, " +
-                    "ProductLink.Weighted " +
+                    "ProductLink.Weighted, " +
+                    "Product.Deleted " +
                 "FROM Product " +
                 "LEFT JOIN ProductLink " +
                 "ON Product.ProductLinkId = ProductLink.Id " +
                 "LEFT JOIN Category " +
                 "ON ProductLink.CategoryId = Category.Id " +
-                "WHERE 1=1 ";
+                "WHERE 1=1 " +
+                "AND Product.Deleted LIKE 'Active' ";
             //Add search criteria to search string depending if product's properties are not empty
             if (product.BrandName != "")
                 output += string.Format("AND Product.BrandName LIKE '%{0}%' ", product.BrandName);

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MainUI.Category;
 using MainUI.Product;
@@ -67,7 +60,7 @@ namespace MainUI
         }
 
         //LOAD MODELS - DOUBLE CLICK PICTURE BOX EVENT
-        //TODO: Remove Id columns and other unwanted columns from each objects get all function.
+        //TODO: Remove unwanted columns from each objects get all function.
         //1. Category
         private void categoryPictureBox_DoubleClick(object sender, EventArgs e)
         {
@@ -241,15 +234,7 @@ namespace MainUI
             }
         }
 
-        private void calculateInvoiceTotals(InvoiceModel invoiceModel)
-        {
-            InvoiceModel model = new InvoiceModel();
-            model = invoiceModel;
-            capturedInvoiceTotalAmountLabel.Text = string.Format("${0:#,0.00}", model.InvoiceAmount);
-            InvoiceProductModel invoiceProduct = new InvoiceProductModel();
-            invoiceProduct = SqliteDAInvoiceProduct.GetInvoiceTotalById(Convert.ToInt32(model.Id));
-            sumOfProductPricesAmountLabel.Text = string.Format("${0:#,0.00}", invoiceProduct.TotalPrice); 
-        }
+        
 
         //SAVE MODELS - BARCODE PRESS ENTER IN TEXT BOX EVENT
         //Add invoice products to the invoice by either searching for the product by barcode, or by using the product search form.
@@ -301,7 +286,6 @@ namespace MainUI
             }
         }
         //EDIT MODELS - CLICK EDIT BUTTON EVENT
-        //TODO: Refactor and only send the Id of the object that needs to be edited.
         private void editButton_Click(object sender, EventArgs e)
         {
             //The user first has to select an item from the data grid view, click the edit button and then the edit form for the respective object should open.
@@ -358,6 +342,7 @@ namespace MainUI
                 //Barcode text box is not made active here, like when you create a new invoice.
                 invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
+                calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
             }
             //6. Invoice Product
             else if (modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
@@ -542,8 +527,6 @@ namespace MainUI
         private void mainDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             toggleClickFirstButtons(true);
-            //if (modeStripStatusLabel.Text == "INVOICE MODE")
-            //{
             try
             {
                 if (e.RowIndex >= 0)
@@ -555,7 +538,6 @@ namespace MainUI
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            //}
         }
         //OTHER EVENTS
         //Clicking the search button - needs to be customized per object
@@ -564,10 +546,37 @@ namespace MainUI
             ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
             productSearchForm.ShowDialog();
         }
+
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Add Import Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Add Export Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
         //Changing global mode variable to mode in status strip label
         private void modeStripStatusLabel_TextChanged(object sender, EventArgs e)
         {
             mode = modeStripStatusLabel.Text;
+        }
+        private void saveInvoiceButton_Click(object sender, EventArgs e)
+        {
+            if (SqliteDAInvoice.UpdateInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)))
+            {
+                DialogResult result = MessageBox.Show("Successfully marked this invoice as saved.", "Save Invoice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                {
+                    saveInvoiceButton.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. Could not save invoice.", "Save Invoice Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         //OTHER METHODS
         //Enable/disable all main buttons
@@ -621,17 +630,24 @@ namespace MainUI
             }
             return product;
         }
-
-        private void importButton_Click(object sender, EventArgs e)
+        //Display the captured invoice total and also calculate the sum of the total price for all invoice products
+        private void calculateInvoiceTotals(InvoiceModel invoiceModel)
         {
-            //TODO: Add Import Function - FREE VERSION V1.1
-            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void exportButton_Click(object sender, EventArgs e)
-        {
-            //TODO: Add Export Function - FREE VERSION V1.1
-            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            InvoiceModel model = new InvoiceModel();
+            model = invoiceModel;
+            capturedInvoiceTotalAmountLabel.Text = string.Format("${0:#,0.00}", model.InvoiceAmount);
+            InvoiceProductModel invoiceProduct = new InvoiceProductModel();
+            invoiceProduct = SqliteDAInvoiceProduct.GetInvoiceTotalById(Convert.ToInt32(model.Id));
+            sumOfProductPricesAmountLabel.Text = string.Format("${0:#,0.00}", invoiceProduct.TotalPrice);
+            //Show save button if captured invoice total and sum of invoice products are equal
+            if (model.InvoiceAmount == invoiceProduct.TotalPrice)
+            {
+                saveInvoiceButton.Enabled = true;
+            }
+            else
+            {
+                saveInvoiceButton.Enabled = false;
+            }
         }
     }
 }

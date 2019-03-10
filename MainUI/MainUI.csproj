@@ -110,6 +110,7 @@
     <Compile Include="Store\StoreNewOrEdit.Designer.cs">
       <DependentUpon>StoreNewOrEdit.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\product-add.png" />
     <EmbeddedResource Include="Category\CategoryNewOrEdit.resx">
       <DependentUpon>CategoryNewOrEdit.cs</DependentUpon>
     </EmbeddedResource>

@@ -59,6 +59,7 @@
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
+            this.saveInvoiceButton = new System.Windows.Forms.Button();
             this.mainMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
@@ -308,6 +309,7 @@
             // 
             // barCodeSearchPanel
             // 
+            this.barCodeSearchPanel.Controls.Add(this.saveInvoiceButton);
             this.barCodeSearchPanel.Controls.Add(this.sumOfProductPricesAmountLabel);
             this.barCodeSearchPanel.Controls.Add(this.capturedInvoiceTotalAmountLabel);
             this.barCodeSearchPanel.Controls.Add(this.sumOfProductPricesLabel);
@@ -384,6 +386,16 @@
             this.mainDataGridView.TabIndex = 2;
             this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
             // 
+            // saveInvoiceButton
+            // 
+            this.saveInvoiceButton.Location = new System.Drawing.Point(789, 9);
+            this.saveInvoiceButton.Name = "saveInvoiceButton";
+            this.saveInvoiceButton.Size = new System.Drawing.Size(128, 23);
+            this.saveInvoiceButton.TabIndex = 3;
+            this.saveInvoiceButton.Text = "Save Invoice";
+            this.saveInvoiceButton.UseVisualStyleBackColor = true;
+            this.saveInvoiceButton.Click += new System.EventHandler(this.saveInvoiceButton_Click);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -455,6 +467,7 @@
         private System.Windows.Forms.Label capturedInvoiceTotalAmountLabel;
         private System.Windows.Forms.Label sumOfProductPricesLabel;
         private System.Windows.Forms.Label capturedInvoiceTotalLabel;
+        private System.Windows.Forms.Button saveInvoiceButton;
     }
 }
 

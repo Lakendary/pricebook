@@ -18,12 +18,10 @@ namespace MainUI.Product
         DataGridViewRow row;
         public bool openNewProductForm { get; set; }
         public string mode;
-        //TODO: Select item from data grid view and add invoice product details
         public ProductSearch(string mode)
         {
             InitializeComponent();
             this.mode = mode;
-            //TODO: Add Plus picture to add product picture box
         }
 
         public ProductSearch(string barcode, string mode)
@@ -64,6 +62,10 @@ namespace MainUI.Product
             product.Description = productDescriptionTextBox.Text;
             product.Weighted = weightedComboBox.Text;
             productSearchDataGridView.DataSource = SqliteDAProduct.GetAllProducts(product);
+            productSearchDataGridView.AutoResizeColumns();
+            productSearchDataGridView.Columns["ProductLinkId"].Visible = false;
+            productSearchDataGridView.Columns["Id"].Visible = false;
+            productSearchDataGridView.Columns["Deleted"].Visible = false;
         }
 
         private void clearButton_Click(object sender, EventArgs e)
@@ -77,15 +79,6 @@ namespace MainUI.Product
 
         private void addProductPictureBox_Click(object sender, EventArgs e)
         {
-            //if(barcode != "")
-            //{
-            //    ProductNewOrEdit productForm = new ProductNewOrEdit(barcode);
-            //    productForm.ShowDialog();
-            //} else
-            //{
-            //    ProductNewOrEdit productForm = new ProductNewOrEdit();
-            //    productForm.ShowDialog();
-            //}
             openNewProductForm = true;
             this.Close();
         }

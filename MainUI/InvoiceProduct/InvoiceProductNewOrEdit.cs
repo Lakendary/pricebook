@@ -120,9 +120,6 @@ namespace MainUI.InvoiceProduct
 
         private int CheckIfQuantityIsANumber()
         {
-            //TODO: Check if user put a negative number
-            //TODO: Validate total price input
-            //TODO: Validate weight input
             if (!int.TryParse(quantityTextBox.Text, out int quantity))
             {
                 MessageBox.Show("Please enter a number.", "Quantity Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

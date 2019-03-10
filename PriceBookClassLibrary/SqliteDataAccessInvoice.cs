@@ -95,7 +95,7 @@ namespace PriceBookClassLibrary
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var affectedRows = cnn.Execute("DELETE FROM Invoice "+
-                    "WHERE Id= @Id", new {Id = id});
+                    "WHERE Invoice.Id= @Id", new {Id = id});
                 return affectedRows > 0;
             }
         }
@@ -107,11 +107,21 @@ namespace PriceBookClassLibrary
             {
                 var affectedRows = cnn.Execute("UDPATE Invoice " +
                     "SET Deleted='Deleted' " +
-                    "WHERE Id= @Id", new { Id = id });
+                    "WHERE Invoice.Id= @Id", new { Id = id });
                 return affectedRows > 0;
             }
         }
 
-        
+        //7. Update By Id - SAVE INVOICE
+        public static bool UpdateInvoiceById(int id)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var count = cnn.Execute("UPDATE Invoice " +
+                    "SET Saved='Saved' " +
+                    "WHERE Invoice.Id = @Id", new { Id = id });
+                return count > 0;
+            }
+        }
     }
 }
