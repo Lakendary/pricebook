@@ -56,19 +56,20 @@ namespace PriceBookClassLibrary
             {
                 var output = cnn.Query<InvoiceProductModel>("SELECT " +
                     "InvoiceProduct.Id, "+
-                    "Invoice.InvoiceNumber, " +
-                    "InvoiceProduct.InvoiceId, "+
-                    "Invoice.Date InvoiceDate, "+
+                    "InvoiceProduct.InvoiceId, " +
                     "Product.Id ProductId, " +
+                    "ProductLink.Name ProductLinkName, " +
                     "Product.BrandName||' '||Product.Description ProductName, " +
-                    "InvoiceProduct.Quantity, "+
                     "InvoiceProduct.Weight, "+
-                    "InvoiceProduct.TotalPrice, "+
+                    "InvoiceProduct.Quantity, " +
+                    "InvoiceProduct.TotalPrice, " +
                     "InvoiceProduct.Sale, "+
-                    "ProductLink.Name ProductLinkName, "+
-                    "Category.Name CategoryName, "+
+                    "Product.PackSize, "+
                     "ProductLink.UoM, " +
-                    "ProductLink.Weighted " +
+                    "ProductLink.Weighted, " +
+                    "Category.Name CategoryName, " +
+                    "Invoice.InvoiceNumber, " +
+                    "Invoice.Date InvoiceDate " +
                 "FROM InvoiceProduct " +
                 "LEFT JOIN Product "+
                 "ON InvoiceProduct.ProductId = Product.Id "+

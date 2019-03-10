@@ -59,7 +59,9 @@ namespace MainUI
             }
         }
 
+        //********************************************************************************************//
         //LOAD MODELS - DOUBLE CLICK PICTURE BOX EVENT
+        //********************************************************************************************//
         //TODO: Remove unwanted columns from each objects get all function.
         //1. Category
         private void categoryPictureBox_DoubleClick(object sender, EventArgs e)
@@ -109,7 +111,9 @@ namespace MainUI
             mainDataGridView.Columns["StoreId"].Visible = false;
         }
 
+        //********************************************************************************************//
         //LOAD MODELS - CLICK VIEW BUTTON EVENT
+        //********************************************************************************************//
         //1. Invoice Product
         private void viewButton_Click(object sender, EventArgs e)
         {
@@ -121,9 +125,6 @@ namespace MainUI
             //Error is logged and message shown. Invoice are reloaded again, because if the user clicks on the current data grid view and then on
             //the view button, the error message is thrown again.
             //************************************************************************************************************************************
-            
-            //TODO: Add reports functionality
-            //TODO: Add view all invoice products report
 
             //1. Category
             if (modeStripStatusLabel.Text == "CATEGORY MODE")
@@ -157,6 +158,7 @@ namespace MainUI
                 {
                     invoiceNumberStripStatusLabel.Text = row.Cells["Id"].Value.ToString();
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(row.Cells["Id"].Value));
+                    mainDataGridView.AutoResizeColumns();
                     toggleClickFirstButtons(false);
                 }
                 catch (ArgumentException aex)
@@ -179,7 +181,10 @@ namespace MainUI
                 MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        //********************************************************************************************//
         //SAVE MODELS - CLICK NEW BUTTON EVENT
+        //********************************************************************************************//
         //There is just one click new button event method. Check in which mode the app is in to determine
         //which class to act on.
         private void newButton_Click(object sender, EventArgs e)
@@ -229,6 +234,9 @@ namespace MainUI
                     this.ActiveControl = barcodeTextBox;
                     invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
+                    mainDataGridView.AutoResizeColumns();
+                    mainDataGridView.Columns["ProductId"].Visible = false;
+                    mainDataGridView.Columns["InvoiceId"].Visible = false;
                     modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
                 }
             }
@@ -278,6 +286,7 @@ namespace MainUI
                     InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(product, Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
                     invoiceProductForm.ShowDialog();
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                    mainDataGridView.AutoResizeColumns();
                     barCodeSearchPanel.Visible = true;
                     calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
                     barcodeTextBox.ResetText();
@@ -342,6 +351,7 @@ namespace MainUI
                 //Barcode text box is not made active here, like when you create a new invoice.
                 invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
+                mainDataGridView.AutoResizeColumns();
                 calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
             }
             //6. Invoice Product
