@@ -58,7 +58,7 @@
             this.invoiceAmountTextBox.Location = new System.Drawing.Point(135, 113);
             this.invoiceAmountTextBox.Name = "invoiceAmountTextBox";
             this.invoiceAmountTextBox.Size = new System.Drawing.Size(237, 25);
-            this.invoiceAmountTextBox.TabIndex = 3;
+            this.invoiceAmountTextBox.TabIndex = 4;
             this.invoiceAmountTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.invoiceAmountTextBox_KeyPress);
             // 
             // dateLabel
@@ -76,7 +76,7 @@
             this.invoiceNumberTextBox.Location = new System.Drawing.Point(135, 144);
             this.invoiceNumberTextBox.Name = "invoiceNumberTextBox";
             this.invoiceNumberTextBox.Size = new System.Drawing.Size(206, 25);
-            this.invoiceNumberTextBox.TabIndex = 4;
+            this.invoiceNumberTextBox.TabIndex = 5;
             // 
             // invoiceDateTimePicker
             // 
@@ -86,7 +86,7 @@
             this.invoiceDateTimePicker.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.invoiceDateTimePicker.Name = "invoiceDateTimePicker";
             this.invoiceDateTimePicker.Size = new System.Drawing.Size(237, 25);
-            this.invoiceDateTimePicker.TabIndex = 2;
+            this.invoiceDateTimePicker.TabIndex = 3;
             // 
             // storeComboBox
             // 
@@ -134,7 +134,7 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 6;
+            this.saveButton.TabIndex = 7;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -146,7 +146,7 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 7;
+            this.resetButton.TabIndex = 8;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             // 
@@ -157,7 +157,7 @@
             this.generateInvoiceNumberButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.generateInvoiceNumberButton.Name = "generateInvoiceNumberButton";
             this.generateInvoiceNumberButton.Size = new System.Drawing.Size(25, 25);
-            this.generateInvoiceNumberButton.TabIndex = 5;
+            this.generateInvoiceNumberButton.TabIndex = 6;
             this.generateInvoiceNumberButton.Text = "+";
             this.generateInvoiceNumberButton.UseVisualStyleBackColor = true;
             this.generateInvoiceNumberButton.Click += new System.EventHandler(this.generateInvoiceNumberButton_Click);
@@ -169,7 +169,7 @@
             this.addStoreButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addStoreButton.Name = "addStoreButton";
             this.addStoreButton.Size = new System.Drawing.Size(25, 25);
-            this.addStoreButton.TabIndex = 5;
+            this.addStoreButton.TabIndex = 2;
             this.addStoreButton.Text = "+";
             this.addStoreButton.UseVisualStyleBackColor = true;
             this.addStoreButton.Click += new System.EventHandler(this.addStoreButton_Click);

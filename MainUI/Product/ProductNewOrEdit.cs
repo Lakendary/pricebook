@@ -1,4 +1,5 @@
-﻿using PriceBookClassLibrary;
+﻿using MainUI.ProductLink;
+using PriceBookClassLibrary;
 using System;
 using System.Windows.Forms;
 
@@ -171,6 +172,34 @@ namespace MainUI.Product
                 {
                     DialogResult dialog = MessageBox.Show("Something went wrong. Barcode could not be deleted.", "Delete Barcode Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+        }
+
+        //Add new product link
+        private void addProductLinkButton_Click(object sender, EventArgs e)
+        {
+            ProductLinkNewOrEdit productLinkForm = new ProductLinkNewOrEdit();
+            productLinkForm.ShowDialog();
+            loadProductLinkComboBox();
+        }
+
+        //Change Unit of measure label according to product link selected
+        private void productLinkComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //look for a product link object by the combobox's value
+            ProductLinkModel productLink = new ProductLinkModel();
+            int number;
+
+            bool success = Int32.TryParse(productLinkComboBox.SelectedValue.ToString(), out number);
+            if (success)
+            {
+                productLink = SqliteDAProductLink.GetProductLinkById(number);
+                //change the uom label text value to product link object's uom
+                uomLabel.Text = productLink.UoM.ToString();
+            }
+            else
+            {
+                uomLabel.Text = "";
             }
         }
     }

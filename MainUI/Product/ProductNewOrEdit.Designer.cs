@@ -44,6 +44,7 @@
             this.barcodeComboBox = new System.Windows.Forms.ComboBox();
             this.deleteBarcodeButton = new System.Windows.Forms.Button();
             this.addBarcodeButton = new System.Windows.Forms.Button();
+            this.uomLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // productLinkComboBox
@@ -53,6 +54,7 @@
             this.productLinkComboBox.Name = "productLinkComboBox";
             this.productLinkComboBox.Size = new System.Drawing.Size(192, 25);
             this.productLinkComboBox.TabIndex = 4;
+            this.productLinkComboBox.SelectedValueChanged += new System.EventHandler(this.productLinkComboBox_SelectedValueChanged);
             // 
             // productLinkLabel
             // 
@@ -113,7 +115,7 @@
             this.packSizeTextBox.Location = new System.Drawing.Point(149, 117);
             this.packSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.packSizeTextBox.Name = "packSizeTextBox";
-            this.packSizeTextBox.Size = new System.Drawing.Size(223, 25);
+            this.packSizeTextBox.Size = new System.Drawing.Size(161, 25);
             this.packSizeTextBox.TabIndex = 3;
             // 
             // productDescriptionTextBox
@@ -172,7 +174,7 @@
             this.addProductLinkButton.TabIndex = 31;
             this.addProductLinkButton.Text = "+";
             this.addProductLinkButton.UseVisualStyleBackColor = true;
-            this.addProductLinkButton.Click += new System.EventHandler(this.saveButton_Click);
+            this.addProductLinkButton.Click += new System.EventHandler(this.addProductLinkButton_Click);
             // 
             // barcodeComboBox
             // 
@@ -208,6 +210,16 @@
             this.addBarcodeButton.UseVisualStyleBackColor = true;
             this.addBarcodeButton.Click += new System.EventHandler(this.addBarcodeButton_Click);
             // 
+            // uomLabel
+            // 
+            this.uomLabel.AutoSize = true;
+            this.uomLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uomLabel.Location = new System.Drawing.Point(313, 123);
+            this.uomLabel.Name = "uomLabel";
+            this.uomLabel.Size = new System.Drawing.Size(36, 17);
+            this.uomLabel.TabIndex = 26;
+            this.uomLabel.Text = "uom";
+            // 
             // ProductNewOrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -228,6 +240,7 @@
             this.Controls.Add(this.packSizeTextBox);
             this.Controls.Add(this.productDescriptionTextBox);
             this.Controls.Add(this.barcodeLabel);
+            this.Controls.Add(this.uomLabel);
             this.Controls.Add(this.packSizeLabel);
             this.Controls.Add(this.productDescriptionLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -259,5 +272,6 @@
         private System.Windows.Forms.ComboBox barcodeComboBox;
         private System.Windows.Forms.Button deleteBarcodeButton;
         private System.Windows.Forms.Button addBarcodeButton;
+        private System.Windows.Forms.Label uomLabel;
     }
 }
