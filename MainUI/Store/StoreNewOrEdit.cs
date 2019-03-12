@@ -2,15 +2,7 @@
 using PriceBookClassLibrary;
 using PriceBookClassLibrary.Validators;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-//using FluentValidation;
 
 namespace MainUI.Store
 {
@@ -157,7 +149,7 @@ namespace MainUI.Store
             }
             else if (result == false)
             {
-                MessageBox.Show("Something went wrong. New store could not be saved.", "New Store Error",
+                MessageBox.Show("Something went wrong. New store could not be saved.\nCheck the error log for more information.", "New Store Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -179,7 +171,7 @@ namespace MainUI.Store
             }
             else if (result == false)
             {
-                MessageBox.Show("Something went wrong. Store update could not be saved.", "Store Edit Error",
+                MessageBox.Show("Something went wrong. Store update could not be saved.\nCheck the error log for more information.", "Store Edit Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

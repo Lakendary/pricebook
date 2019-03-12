@@ -1,12 +1,6 @@
 ﻿using PriceBookClassLibrary;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MainUI.Category
@@ -14,8 +8,9 @@ namespace MainUI.Category
     public partial class CategoryNewOrEdit : Form
     {
         //Form variables
-        List<CategoryModel> mainCategories;
+        List<CategoryModel> mainCategories = new List<CategoryModel>();
         CategoryModel category = new CategoryModel();
+        bool newCategory;
 
         public CategoryNewOrEdit()
         {
@@ -32,19 +27,29 @@ namespace MainUI.Category
 
         private void CategoryNewOrEdit_Load(object sender, EventArgs e)
         {
-            //Add a none category instance to the list of main categories that are loaded to the combo box.
-            CategoryModel category = new CategoryModel();
-            category.Id = 0;
-            category.Name = "<NONE>";
-            mainCategories = SqliteDACategory.GetMainCategoryOnly();
-            mainCategories.Insert(0, category);
-            mainCategoryComboBox.DataSource = mainCategories;
-            mainCategoryComboBox.DisplayMember = "Name";
-            mainCategoryComboBox.ValueMember = "Id";
+            LoadMainCategoryComboBox();
+
             if (formTitleLabel.Text == "Edit Category")
             {
                 SetCategoryToDefaultValues();
             }
+        }
+
+        private void LoadMainCategoryComboBox()
+        {
+            //Add a none category instance to the list of main categories that are loaded to the combo box.
+            //Create a category with no main category
+            CategoryModel category = new CategoryModel();
+            category.Id = 0;
+            category.Name = "<NONE>";
+            //Get the list of main categories
+            this.mainCategories = SqliteDACategory.GetMainCategoryOnly();
+            //Add no main category to the start of the list
+            this.mainCategories.Insert(0, category);
+            //Wire up the main category combobox.
+            mainCategoryComboBox.DataSource = this.mainCategories;
+            mainCategoryComboBox.DisplayMember = "Name";
+            mainCategoryComboBox.ValueMember = "Id";
         }
 
         private void saveButton_Click(object sender, EventArgs e)
