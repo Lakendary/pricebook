@@ -58,21 +58,21 @@
             // 
             this.invoiceNumberLabel.AutoSize = true;
             this.invoiceNumberLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.invoiceNumberLabel.Location = new System.Drawing.Point(12, 92);
+            this.invoiceNumberLabel.Location = new System.Drawing.Point(14, 92);
             this.invoiceNumberLabel.Name = "invoiceNumberLabel";
-            this.invoiceNumberLabel.Size = new System.Drawing.Size(97, 17);
+            this.invoiceNumberLabel.Size = new System.Drawing.Size(61, 17);
             this.invoiceNumberLabel.TabIndex = 5;
-            this.invoiceNumberLabel.Text = "Store Location";
+            this.invoiceNumberLabel.Text = "Location";
             // 
             // invoiceAmountLabel
             // 
             this.invoiceAmountLabel.AutoSize = true;
             this.invoiceAmountLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.invoiceAmountLabel.Location = new System.Drawing.Point(12, 59);
+            this.invoiceAmountLabel.Location = new System.Drawing.Point(14, 59);
             this.invoiceAmountLabel.Name = "invoiceAmountLabel";
-            this.invoiceAmountLabel.Size = new System.Drawing.Size(80, 17);
+            this.invoiceAmountLabel.Size = new System.Drawing.Size(44, 17);
             this.invoiceAmountLabel.TabIndex = 6;
-            this.invoiceAmountLabel.Text = "Store Name";
+            this.invoiceAmountLabel.Text = "Name";
             // 
             // formTitleLabel
             // 

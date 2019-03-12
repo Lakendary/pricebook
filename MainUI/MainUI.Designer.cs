@@ -52,6 +52,7 @@
             this.modeStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.invoiceNumberStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.barCodeSearchPanel = new System.Windows.Forms.Panel();
+            this.saveInvoiceButton = new System.Windows.Forms.Button();
             this.sumOfProductPricesAmountLabel = new System.Windows.Forms.Label();
             this.capturedInvoiceTotalAmountLabel = new System.Windows.Forms.Label();
             this.sumOfProductPricesLabel = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
-            this.saveInvoiceButton = new System.Windows.Forms.Button();
             this.mainMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
@@ -321,6 +321,16 @@
             this.barCodeSearchPanel.Size = new System.Drawing.Size(920, 40);
             this.barCodeSearchPanel.TabIndex = 0;
             // 
+            // saveInvoiceButton
+            // 
+            this.saveInvoiceButton.Location = new System.Drawing.Point(789, 9);
+            this.saveInvoiceButton.Name = "saveInvoiceButton";
+            this.saveInvoiceButton.Size = new System.Drawing.Size(128, 23);
+            this.saveInvoiceButton.TabIndex = 3;
+            this.saveInvoiceButton.Text = "Save Invoice";
+            this.saveInvoiceButton.UseVisualStyleBackColor = true;
+            this.saveInvoiceButton.Click += new System.EventHandler(this.saveInvoiceButton_Click);
+            // 
             // sumOfProductPricesAmountLabel
             // 
             this.sumOfProductPricesAmountLabel.AutoSize = true;
@@ -378,23 +388,17 @@
             // 
             // mainDataGridView
             // 
+            this.mainDataGridView.AllowUserToAddRows = false;
+            this.mainDataGridView.AllowUserToDeleteRows = false;
+            this.mainDataGridView.AllowUserToOrderColumns = true;
             this.mainDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mainDataGridView.Location = new System.Drawing.Point(12, 144);
             this.mainDataGridView.Name = "mainDataGridView";
+            this.mainDataGridView.ReadOnly = true;
             this.mainDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.mainDataGridView.Size = new System.Drawing.Size(920, 386);
             this.mainDataGridView.TabIndex = 2;
             this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
-            // 
-            // saveInvoiceButton
-            // 
-            this.saveInvoiceButton.Location = new System.Drawing.Point(789, 9);
-            this.saveInvoiceButton.Name = "saveInvoiceButton";
-            this.saveInvoiceButton.Size = new System.Drawing.Size(128, 23);
-            this.saveInvoiceButton.TabIndex = 3;
-            this.saveInvoiceButton.Text = "Save Invoice";
-            this.saveInvoiceButton.UseVisualStyleBackColor = true;
-            this.saveInvoiceButton.Click += new System.EventHandler(this.saveInvoiceButton_Click);
             // 
             // MainUI
             // 

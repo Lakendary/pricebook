@@ -13,9 +13,15 @@ namespace PriceBookClassLibrary.Validators
         {
             RuleFor(s => s.Name)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .NotEmpty().WithMessage("The store name cannot be empty.")
-                .Length(2, 50).WithMessage("The store name must have 2 to 50 characters.")
-                .Must(beAValidStoreName).WithMessage("The store name has invalid characters.");
+                .NotEmpty().WithMessage("{PropertyName} cannot be empty.")
+                .Length(2, 50).WithMessage("{PropertyName} can only have {MinLength} to {MaxLength} characters.")
+                .Must(beAValidStoreName).WithMessage("{PropertyName} has invalid characters.");
+
+            RuleFor(s => s.Location)
+                .Cascade(CascadeMode.StopOnFirstFailure)
+                .NotEmpty().WithMessage("{PropertyName} cannot be empty.")
+                .Length(2, 50).WithMessage("{PropertyName} can only have {MinLength} to {MaxLength} characters.")
+                .Must(beAValidStoreName).WithMessage("{PropertyName} has invalid characters.");
         }
 
         protected bool beAValidStoreName(string storeName)

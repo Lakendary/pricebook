@@ -16,7 +16,19 @@ namespace MainUI.Store
 {
     public partial class StoreNewOrEdit : Form
     {
+
+        //******************************************************************************************************
+        //  Index
+        //******************************************************************************************************
+        //  1. Global variables
+        //  2. Events Initialize methods
+        //  3. Form Load Event
+        //  4. Mouse Button Clicks
+        //  5. Other Methods
+        //******************************************************************************************************
+
         //Global variables
+        //******************************************************************************************************
         StoreModel store = new StoreModel();
         bool newStore = true;
         StoreModel existingStore = new StoreModel();
@@ -24,6 +36,7 @@ namespace MainUI.Store
 
         //Methods
         //Events - Initialize
+        //******************************************************************************************************
         //1. If a new store is created, this method is initialized.
         public StoreNewOrEdit()
         {
@@ -44,12 +57,14 @@ namespace MainUI.Store
         }
 
         //Events - Form Load
+        //******************************************************************************************************
         private void StoreNewOrEdit_Load(object sender, EventArgs e)
         {
             SetStoreToDefaultValues();
         }
 
         //Events - Button Clicks
+        //******************************************************************************************************
         //1. Save Button Click
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -82,8 +97,11 @@ namespace MainUI.Store
             }
         }
 
+        //Other Methods
+        //******************************************************************************************************
         private void SetStoreToDefaultValues()
         {
+            //Insert the store information passed from the main ui's data gridview.
             storeNameTextBox.Text = this.existingStore.Name;
             storeLocationTextBox.Text = this.existingStore.Location;
         }
@@ -102,7 +120,6 @@ namespace MainUI.Store
             }
         }
 
-
         private bool ValidateStoreInformation()
         {
             // Validate my data and save in the results variable
@@ -114,7 +131,7 @@ namespace MainUI.Store
             {
                 foreach (ValidationFailure failure in results.Errors)
                 {
-                    MessageBox.Show($"{ failure.PropertyName }: { failure.ErrorMessage }");
+                    MessageBox.Show($"{ failure.ErrorMessage }", "Store Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return false;
             }
@@ -124,9 +141,9 @@ namespace MainUI.Store
             }
         }
 
-        //This method is run if its a new store that's needs to be commited to the database.
         private void saveNewStoreInformationToDb()
         {
+            //This method executes if its a new store that's needs to be commited to the database.
             //Pass store instance to save store method. If the method returns true, the information was successfully committed to the database.
             bool result = SqliteDAStore.SaveStore(this.store);
             if (result == true)
@@ -145,9 +162,9 @@ namespace MainUI.Store
             }
         }
 
-        //This method updates an existing store. 
         private void saveExistingStoreInformationToDb()
         {
+            //This method updates an existing store. 
             //Pass store information to update store method. Check if the update was successfully committed to the database and inform the user. Close
             //this form if the edit was successful.
             bool result = SqliteDAStore.UpdateStoreById(store);
