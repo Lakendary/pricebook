@@ -19,7 +19,7 @@ namespace PriceBookClassLibrary.Validators
 
             RuleFor(c => c.MainCategory)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .Length(2, 50).WithMessage("{PropertyName} can only have {MinLength} to {MaxLength} characters.")
+                .Length(0, 50).WithMessage("{PropertyName} can only have {MaxLength} characters.")
                 .Must(beAValidName).WithMessage("{PropertyName} has invalid characters.");
         }
 

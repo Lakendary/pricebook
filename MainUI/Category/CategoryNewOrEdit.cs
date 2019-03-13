@@ -1,4 +1,6 @@
-﻿using PriceBookClassLibrary;
+﻿using FluentValidation.Results;
+using PriceBookClassLibrary;
+using PriceBookClassLibrary.Validators;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -59,7 +61,7 @@ namespace MainUI.Category
         {
             SetCategoryInformation();
             //Validate category information
-            if(CategoryValidator())
+            if(ValidateCategoryInformation())
             {
                 if(this.newCategory)
                 {
