@@ -25,7 +25,6 @@ namespace MainUI.Store
         bool newStore = true;
         StoreModel existingStore = new StoreModel();
 
-
         //Methods
         //Events - Initialize
         //******************************************************************************************************
@@ -52,7 +51,9 @@ namespace MainUI.Store
         //******************************************************************************************************
         private void StoreNewOrEdit_Load(object sender, EventArgs e)
         {
-            SetStoreToDefaultValues();
+            if(!newStore){
+                SetStoreToDefaultValues();
+            }
         }
 
         //Events - Button Clicks
@@ -80,12 +81,10 @@ namespace MainUI.Store
             if (!this.newStore)
             {
                 SetStoreToDefaultValues();
-
             }
-            else if (formTitleLabel.Text == "New Store")
+            else if (this.newStore)
             {
-                storeNameTextBox.ResetText();
-                storeLocationTextBox.ResetText();
+                ClearStoreToBlankValues();
             }
         }
 
@@ -98,6 +97,12 @@ namespace MainUI.Store
             storeLocationTextBox.Text = this.existingStore.Location;
         }
 
+        private void ClearStoreToBlankValues()
+        {
+            //Clear textbox controls
+            storeNameTextBox.ResetText();
+            storeLocationTextBox.ResetText();
+        }
         private void SetStoreInformation()
         {
             //Store the current information and store it in the store variable.
@@ -116,7 +121,7 @@ namespace MainUI.Store
         {
             // Validate my data and save in the results variable
             StoreValidator storeValidator = new StoreValidator();
-            var results = storeValidator.Validate(store);
+            var results = storeValidator.Validate(this.store);
 
             // Check if the validator found any validation errors. 
             if (results.IsValid == false)
