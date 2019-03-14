@@ -7,7 +7,9 @@ using System.Windows.Forms;
 
 namespace MainUI.Category
 {
-    //******************************************************************************************************
+    public partial class CategoryNewOrEdit : Form
+    {
+        //******************************************************************************************************
         //  Index
         //******************************************************************************************************
         //  1. Global variables
@@ -16,8 +18,6 @@ namespace MainUI.Category
         //  4. Mouse Button Clicks
         //  5. Other Methods
         //******************************************************************************************************
-    public partial class CategoryNewOrEdit : Form
-    {
         //Global variables
         //******************************************************************************************************
         List<CategoryModel> mainCategories = new List<CategoryModel>();
@@ -106,25 +106,6 @@ namespace MainUI.Category
             mainCategoryComboBox.ValueMember = "Id";
         }
 
-        private void SetCategoryInformation()
-        {
-            this.category.Name = categoryNameTextBox.Text;
-            //Check if <NONE> was selected in the main category combobox 
-            if (mainCategoryComboBox.Text == "<NONE>")
-            {
-                this.category.MainCategory = "";
-            }
-            else
-            {
-                this.category.MainCategory = mainCategoryComboBox.Text;
-            }
-
-            if(!newCategory)
-            {
-                this.category.Id = this.existingCategory.Id;
-            }
-        }
-
         private void SetCategoryToDefaultValues()
         {
             categoryNameTextBox.Text = this.existingCategory.Name;
@@ -136,11 +117,33 @@ namespace MainUI.Category
                 mainCategoryComboBox.SelectedIndex = mainCategoryComboBox.FindStringExact(this.existingCategory.MainCategory);
             }
         }
+
         private void ClearCategoryToBlankValues()
         {
             categoryNameTextBox.ResetText();
             mainCategoryComboBox.SelectedIndex = 0;
         }
+
+        private void SetCategoryInformation()
+        {
+            //Copy user info to form category variable.
+            this.category.Name = categoryNameTextBox.Text;
+            //Check if <NONE> was selected in the main category combobox 
+            if (mainCategoryComboBox.Text == "<NONE>")
+            {
+                this.category.MainCategory = "";
+            }
+            else
+            {
+                this.category.MainCategory = mainCategoryComboBox.Text;
+            }
+
+            if (!newCategory)
+            {
+                this.category.Id = this.existingCategory.Id;
+            }
+        }
+
         private bool ValidateCategoryInformation()
         {
             // Validate my data and save in the results variable
@@ -164,8 +167,7 @@ namespace MainUI.Category
 
         private void saveNewCategoryInformationToDb()
         {
-            bool result = SqliteDACategory.SaveCategory(category);
-            if (result == true)
+            if (SqliteDACategory.SaveCategory(this.category))
             {
                 DialogResult dialogResult = MessageBox.Show("New category created successfully", "New Category",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -174,7 +176,7 @@ namespace MainUI.Category
                     this.Close();
                 }
             }
-            else if (result == false)
+            else
             {
                 MessageBox.Show("Something went wrong. New category could not be saved.\nCheck the error log for more information.", "New Category Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -183,8 +185,7 @@ namespace MainUI.Category
 
         private void saveExistingCategoryInformationToDb()
         {
-            bool result = SqliteDACategory.UpdateCategoryById(this.category);
-            if (result == true)
+            if (SqliteDACategory.UpdateCategoryById(this.category))
             {
                 DialogResult dialogResult = MessageBox.Show("Category updated successfully", "Category Edit",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -193,7 +194,7 @@ namespace MainUI.Category
                     this.Close();
                 }
             }
-            else if (result == false)
+            else
             {
                 MessageBox.Show("Something went wrong. Category update could not be saved.\nCheck the error log for more information.", "Category Edit Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

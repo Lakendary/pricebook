@@ -25,7 +25,6 @@ namespace PriceBookClassLibrary.Validators
 
             RuleFor(p => p.PackSize)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .Length(2, 50).WithMessage("{PropertyName} must be between {MinLength} and {MaxLength} characters.")
                 .Must(beAPositiveNumber).WithMessage("{PropertyName} must be a positive whole number.")
                 .Must(beNotBeABigNumber).WithMessage("{PropertyName} must be less than a million.");
         }
@@ -35,6 +34,8 @@ namespace PriceBookClassLibrary.Validators
             name = name.Replace(" ", "");
             name = name.Replace("-", "");
             name = name.Replace("'", "");
+            name = name.Replace("&", "");
+            name = name.Replace("+", "");
             return name.All(Char.IsLetter);
         }
 

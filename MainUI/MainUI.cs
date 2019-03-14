@@ -647,7 +647,7 @@ namespace MainUI
             {
                 ProductNewOrEdit productForm = new ProductNewOrEdit(barcodeTextBox.Text);
                 productForm.ShowDialog();
-                product.Id = productForm.productId;
+                product.Id = productForm.product.Id;
             }
             //NO?
             else
