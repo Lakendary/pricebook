@@ -59,7 +59,7 @@ namespace MainUI.Product
             loadBarcodeComboBox();
             if (!this.newProduct)
             {
-                SetProductDefaultValues();
+                SetProductToDefaultValues();
             }
         }
 
@@ -91,7 +91,7 @@ namespace MainUI.Product
             }
             else if (!this.newProduct)
             {
-                SetProductDefaultValues();
+                SetProductToDefaultValues();
             }
         }
 
@@ -170,7 +170,7 @@ namespace MainUI.Product
             productLinkComboBox.DisplayMember = "Name";
         }
 
-        private void SetProductDefaultValues()
+        private void SetProductToDefaultValues()
         {
             productDescriptionTextBox.Text = this.existingProduct.Description;
             brandNameTextBox.Text = this.existingProduct.BrandName;
