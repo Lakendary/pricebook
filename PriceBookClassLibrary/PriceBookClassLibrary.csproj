@@ -81,6 +81,7 @@
     <Compile Include="SqliteDataAccessStore.cs" />
     <Compile Include="StoreModel.cs" />
     <Compile Include="Validators\CategoryValidator.cs" />
+    <Compile Include="Validators\InvoiceValidator.cs" />
     <Compile Include="Validators\ProductLinkValidator.cs" />
     <Compile Include="Validators\ProductValidator.cs" />
     <Compile Include="Validators\StoreValidator.cs" />

@@ -109,6 +109,7 @@ namespace MainUI
             mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
             SetDefaultLoadParameters();
             mainDataGridView.Columns["StoreId"].Visible = false;
+            mainDataGridView.Columns["InvoiceAmount"].DefaultCellStyle.Format = "0.00##";
         }
 
         //********************************************************************************************//

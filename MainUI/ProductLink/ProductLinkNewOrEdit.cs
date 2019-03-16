@@ -73,7 +73,8 @@ namespace MainUI.ProductLink
             if(this.newProductLink)
             {
                 ClearProductLinkToBlankValues();
-            } else if (!this.newProductLink)
+            }
+            else if (!this.newProductLink)
             {
                 SetProductLinkToDefaultValues();
             }
