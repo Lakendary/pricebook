@@ -88,13 +88,16 @@ namespace MainUI.ProductLink
 
         //Other Methods
         //******************************************************************************************************
+        //  Wire up the combo boxes in the form.
         private void LoadCategoryComboBox()
         {
             categoryComboBox.DataSource = SqliteDACategory.GetSubcategoryOnly();
             categoryComboBox.DisplayMember = "Name";
             categoryComboBox.ValueMember = "Id";
         }
-
+        // When the user is editing an existing product link, this method helps to return to the original values
+        // at the start of the editing process. This method helps when the user made an error and wishes to return
+        // back to default.
         private void SetProductLinkToDefaultValues()
         {
             productLinkNameTextBox.Text = this.existingProductLink.Name;
@@ -109,7 +112,8 @@ namespace MainUI.ProductLink
             measurementRateTextBox.Text = this.existingProductLink.MeasurementRate.ToString();
             categoryComboBox.SelectedIndex = categoryComboBox.FindStringExact(this.existingProductLink.CategoryName);
         }
-
+        //  When the user is creating a new product link, this method helps to erase all the information in the form's
+        //  controls. This method helps the user to clear whatever mistakes were made.
         private void ClearProductLinkToBlankValues()
         {
             productLinkNameTextBox.ResetText();
@@ -118,7 +122,8 @@ namespace MainUI.ProductLink
             categoryComboBox.SelectedIndex = 0;
             uomComboBox.SelectedIndex = 0;
         }
-
+        //  This method copies all the information from the form's controls (user input) and places it into a product 
+        //  link object. 
         private void SetProductLinkInformation()
         {
             if(int.TryParse(measurementRateTextBox.Text, out int result))
@@ -142,7 +147,7 @@ namespace MainUI.ProductLink
                 this.productLink.Id = this.existingProductLink.Id;
             }
         }
-
+        //  This checks whether the user's input is valid before committing anything to the database.
         private bool ValidateProductLinkInformation()
         {
             // Validate my data and save in the results variable
@@ -163,7 +168,7 @@ namespace MainUI.ProductLink
                 return true;
             }
         }
-
+        //  This method saves the new product link information, which was added by the user, to the database.
         private void saveNewProductLinkInformationToDb()
         {
             if (SqliteDAProductLink.SaveProductLink(this.productLink))
@@ -181,7 +186,7 @@ namespace MainUI.ProductLink
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //  This method saves the updated product link information to the database. 
         private void saveExistingProductLinkInformationToDb()
         {
             if (SqliteDAProductLink.UpdateProductLinkById(productLink))
