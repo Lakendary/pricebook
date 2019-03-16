@@ -243,9 +243,6 @@ namespace MainUI
                 }
             }
         }
-
-        
-
         //SAVE MODELS - BARCODE PRESS ENTER IN TEXT BOX EVENT
         //Add invoice products to the invoice by either searching for the product by barcode, or by using the product search form.
         private void barcodeTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -281,7 +278,7 @@ namespace MainUI
                 }
                 //Find Full Product Details with product Id
                 //Check whether the user selected a product in the product search form
-                if(product.Id != 0)
+                if (product.Id != 0)
                 {
                     product = SqliteDAProduct.GetProductById(product.Id);
                     //Add Invoice Product Details
@@ -298,7 +295,26 @@ namespace MainUI
                 }
             }
         }
+
+        private void saveInvoiceButton_Click(object sender, EventArgs e)
+        {
+            if (SqliteDAInvoice.UpdateInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)))
+            {
+                DialogResult result = MessageBox.Show("Successfully marked this invoice as saved.", "Save Invoice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (result == DialogResult.OK)
+                {
+                    saveInvoiceButton.Enabled = false;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. Could not save invoice.", "Save Invoice Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //********************************************************************************************//
         //EDIT MODELS - CLICK EDIT BUTTON EVENT
+        //********************************************************************************************//
         private void editButton_Click(object sender, EventArgs e)
         {
             //The user first has to select an item from the data grid view, click the edit button and then the edit form for the respective object should open.
@@ -328,7 +344,7 @@ namespace MainUI
             //3. Product Link
             else if (modeStripStatusLabel.Text == "PRODUCT LINK MODE")
             {
-                int productLinkId =  Convert.ToInt32(row.Cells["Id"].Value);
+                int productLinkId = Convert.ToInt32(row.Cells["Id"].Value);
                 ProductLinkNewOrEdit productLinkForm = new ProductLinkNewOrEdit(productLinkId);
                 productLinkForm.ShowDialog();
                 mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
@@ -372,7 +388,9 @@ namespace MainUI
                 SetDefaultLoadParameters();
             }
         }
+        //********************************************************************************************//
         //DELETE MODELS - CLICK DELETE BUTTON EVENT
+        //********************************************************************************************//
         private void deleteButton_Click(object sender, EventArgs e)
         {
             //1. Category
@@ -390,11 +408,13 @@ namespace MainUI
                         mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
                         mainDataGridView.AutoResizeColumns();
                         toggleClickFirstButtons(false);
-                    } else
+                    }
+                    else
                     {
                         DialogResult dialog = MessageBox.Show("Something went wrong. Category could not be deleted.", "Delete Category Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                } else if (dialogResult == DialogResult.No)
+                }
+                else if (dialogResult == DialogResult.No)
                 {
                     toggleClickFirstButtons(false);
                 }
@@ -490,7 +510,8 @@ namespace MainUI
                     {
                         //Invoices marked as open will be permanently deleted from the database
                         result = SqliteDAInvoice.DeleteOpenInvoiceById(Convert.ToInt32(row.Cells["Id"].Value));
-                    } else if (row.Cells["Saved"].Value.ToString() == "Saved")
+                    }
+                    else if (row.Cells["Saved"].Value.ToString() == "Saved")
                     {
                         //Invoices marked as saved will be archived (marked as deleted, but still kept in the database).
                         result = SqliteDAInvoice.DeleteSavedInvoiceById(Convert.ToInt32(row.Cells["Id"].Value));
@@ -542,7 +563,13 @@ namespace MainUI
                 }
             }
         }
+
+        
+        //********************************************************************************************//
+        //OTHER EVENTS
+        //********************************************************************************************//
         //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
+        //********************************************************************************************//
         //1. Invoice Product
         private void mainDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -565,12 +592,20 @@ namespace MainUI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //OTHER EVENTS
+
+        //Changing global mode variable to mode in status strip label
+        private void modeStripStatusLabel_TextChanged(object sender, EventArgs e)
+        {
+            mode = modeStripStatusLabel.Text;
+        }
+
         //Clicking the search button - needs to be customized per object
         private void searchButton_Click(object sender, EventArgs e)
         {
-            ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
-            productSearchForm.ShowDialog();
+            //ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
+            //productSearchForm.ShowDialog();
+            //TODO: Add Search Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void importButton_Click(object sender, EventArgs e)
@@ -584,26 +619,7 @@ namespace MainUI
             //TODO: Add Export Function - FREE VERSION V1.1
             MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        //Changing global mode variable to mode in status strip label
-        private void modeStripStatusLabel_TextChanged(object sender, EventArgs e)
-        {
-            mode = modeStripStatusLabel.Text;
-        }
-        private void saveInvoiceButton_Click(object sender, EventArgs e)
-        {
-            if (SqliteDAInvoice.UpdateInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)))
-            {
-                DialogResult result = MessageBox.Show("Successfully marked this invoice as saved.", "Save Invoice", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (result == DialogResult.OK)
-                {
-                    saveInvoiceButton.Enabled = false;
-                }
-            }
-            else
-            {
-                MessageBox.Show("Something went wrong. Could not save invoice.", "Save Invoice Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
         //OTHER METHODS
         //Enable/disable all main buttons
         private void toggleAllButtons(bool input)
