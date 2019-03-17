@@ -1,5 +1,3 @@
-using System;
-
 namespace PriceBookClassLibrary
 {
     public class InvoiceModel

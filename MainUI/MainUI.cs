@@ -375,6 +375,8 @@ namespace MainUI
                 mainDataGridView.AutoResizeColumns();
                 mainDataGridView.Columns["ProductId"].Visible = false;
                 mainDataGridView.Columns["InvoiceId"].Visible = false;
+                mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
+                
                 calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
             }
             //6. Invoice Product
