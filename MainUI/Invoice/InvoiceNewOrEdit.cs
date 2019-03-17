@@ -20,15 +20,15 @@ namespace MainUI.Invoice
         //  6. Other Methods
         //******************************************************************************************************
         
-        //Global variables
+        //  Global variables
         //******************************************************************************************************
         public bool userClickedSaveButton { get; set; } = false;//To check if user unexpectately closed the form
         public InvoiceModel invoice { get; set; } = new InvoiceModel();
         InvoiceModel existingInvoice = new InvoiceModel();
         bool newInvoice = true;
 
-        //Methods
-        //Events - Initialize
+        //  Methods
+        //  Events - Initialize
         //******************************************************************************************************
         //  1. New Invoice Initialize
         public InvoiceNewOrEdit()

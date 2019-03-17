@@ -26,7 +26,7 @@ namespace PriceBookClassLibrary.Validators
                 .Must(notBeABigNumber).WithMessage("{PropertyName} must be less than a million.");
         }
 
-        protected bool beAValidName(string name)
+        private bool beAValidName(string name)
         {
             name = name.Replace(" ", "");
             name = name.Replace("-", "");
@@ -36,7 +36,7 @@ namespace PriceBookClassLibrary.Validators
             return name.All(Char.IsLetter);
         }
 
-        protected bool beAPositiveNumber(int num)
+        private bool beAPositiveNumber(int num)
         {
             if(num > 0)
             {
@@ -45,7 +45,7 @@ namespace PriceBookClassLibrary.Validators
             return false;
         }
 
-        protected bool notBeABigNumber(int num)
+        private bool notBeABigNumber(int num)
         {
             if(num > 0 && num < 1000000)
             {

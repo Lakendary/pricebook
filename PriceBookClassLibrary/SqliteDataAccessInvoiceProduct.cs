@@ -10,12 +10,12 @@ namespace PriceBookClassLibrary
 {
     public class SqliteDAInvoiceProduct
     {
-        //A. Connection String
+        //  A. Connection String
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
-        //1. Get All
+        //  1. Get All
         public static List<InvoiceProductModel> GetAllInvoiceProducts()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -47,7 +47,7 @@ namespace PriceBookClassLibrary
                 return output.ToList();
             }
         }
-        //2. Get All by Invoice Id
+        //  2. Get All by Invoice Id
         public static List<InvoiceProductModel> GetAllInvoiceProductsByInvoiceId(int id)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -81,7 +81,7 @@ namespace PriceBookClassLibrary
                 return output.ToList();
             }
         }
-        //3. Get By Id
+        //  3. Get By Id
         public static InvoiceProductModel GetInvoiceProductById(int id)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -114,7 +114,7 @@ namespace PriceBookClassLibrary
                 return output;
             }
         }
-        //4. Save To DB
+        //  4. Save To DB
         public static bool SaveInvoiceProduct(InvoiceProductModel invoiceProduct)
         {
             try{
@@ -132,7 +132,7 @@ namespace PriceBookClassLibrary
             }
             return true;
         }
-        //5. Update By Id
+        //  5. Update By Id
         public static bool UpdateInvoiceProductById(InvoiceProductModel invoiceProduct)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -144,7 +144,7 @@ namespace PriceBookClassLibrary
                 return count > 0;
             }
         }
-        //6. Delete By Id
+        //  6. Delete By Id
         public static bool DeleteInvoiceProductById(int id)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -154,7 +154,7 @@ namespace PriceBookClassLibrary
                 return affectedRows > 0;
             }
         }
-        //7. Find Invoice Total by Id
+        //  7. Find Invoice Total by Id
         public static InvoiceProductModel GetInvoiceTotalById(int id)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
