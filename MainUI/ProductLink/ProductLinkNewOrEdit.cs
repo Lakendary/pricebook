@@ -18,6 +18,7 @@ namespace MainUI.ProductLink
         //  4. Mouse Button Clicks
         //  5. Other Methods
         //******************************************************************************************************
+        
         //Global variables
         //******************************************************************************************************
         ProductLinkModel productLink = new ProductLinkModel();
@@ -27,11 +28,12 @@ namespace MainUI.ProductLink
         //Methods
         //Events - Initialize
         //******************************************************************************************************
+        //  1. New Product Link Initialize
         public ProductLinkNewOrEdit()
         {
             InitializeComponent();
         }
-
+        //  2. Existing Product Link Initialize
         public ProductLinkNewOrEdit(int productLinkId)
         {
             InitializeComponent();
@@ -52,6 +54,9 @@ namespace MainUI.ProductLink
             }
         }
 
+        //  Events - Button Clicks
+        //******************************************************************************************************
+        //  1. Save Button Click
         private void saveButton_Click(object sender, EventArgs e)
         {
             SetProductLinkInformation();
@@ -67,7 +72,7 @@ namespace MainUI.ProductLink
                 }
             }
         }
-
+        //  2. Reset Button Click
         private void resetButton_Click(object sender, EventArgs e)
         {
             if(this.newProductLink)
@@ -79,7 +84,7 @@ namespace MainUI.ProductLink
                 SetProductLinkToDefaultValues();
             }
         }
-
+        //  3. Add Category Button Click
         private void addCategoryButton_Click(object sender, EventArgs e)
         {
             CategoryNewOrEdit categoryForm = new CategoryNewOrEdit();
@@ -96,9 +101,9 @@ namespace MainUI.ProductLink
             categoryComboBox.DisplayMember = "Name";
             categoryComboBox.ValueMember = "Id";
         }
-        // When the user is editing an existing product link, this method helps to return to the original values
-        // at the start of the editing process. This method helps when the user made an error and wishes to return
-        // back to default.
+        //  When the user is editing an existing product link, this method helps to return to the original values
+        //  at the start of the editing process. This method helps when the user made an error and wishes to return
+        //  back to default.
         private void SetProductLinkToDefaultValues()
         {
             productLinkNameTextBox.Text = this.existingProductLink.Name;
