@@ -18,6 +18,7 @@ namespace MainUI.Product
         //  4. Mouse Button Clicks
         //  5. Other Methods
         //******************************************************************************************************
+        
         //  Global variables
         //******************************************************************************************************
         public ProductModel product { get; set; }  = new ProductModel();
@@ -152,20 +153,22 @@ namespace MainUI.Product
 
         //  Other Methods
         //******************************************************************************************************
+        //  Wire up the barcode combo box with a list of barcodes for this product from the database.
         private void loadBarcodeComboBox()
         {
             barcodeComboBox.DataSource = SqliteDataAccessBarcode.GetBarcodesByProductId(this.existingProduct.Id);
             barcodeComboBox.DisplayMember = "Barcode";
             barcodeComboBox.ValueMember = "Id";
         }
-
+        //  Wire up the product link combo box with a list of all active product links from the database.
         private void loadProductLinkComboBox()
         {
+            //  TODO: Make sure only a list of ACTIVE product links are returned. 
             productLinkComboBox.DataSource = SqliteDAProductLink.GetAllProductLinks();
             productLinkComboBox.ValueMember = "Id";
             productLinkComboBox.DisplayMember = "Name";
         }
-
+        //  Reset to default values (existing product)
         private void SetProductToDefaultValues()
         {
             productDescriptionTextBox.Text = this.existingProduct.Description;
@@ -174,7 +177,7 @@ namespace MainUI.Product
             productLinkComboBox.SelectedIndex = productLinkComboBox.FindStringExact(this.existingProduct.ProductLinkName);
             loadBarcodeComboBox();
         }
-
+        //  Clear to blank form
         private void ClearProductToBlankValues()
         {
             brandNameTextBox.ResetText();
@@ -182,7 +185,7 @@ namespace MainUI.Product
             productDescriptionTextBox.ResetText();
             productLinkComboBox.SelectedIndex = 0;
         }
-
+        //  Store user input into the product object.
         private void SetProductInformation()
         {
             this.product.BrandName = brandNameTextBox.Text;
@@ -197,7 +200,7 @@ namespace MainUI.Product
                 this.product.Id = this.existingProduct.Id;
             }
         }
-
+        //  Verify that product object has valid information before committing to the database.
         private bool ValidateProductInformation()
         {
             // Validate my data and save in the results variable
@@ -218,7 +221,7 @@ namespace MainUI.Product
                 return true;
             }
         }
-
+        //  Commit to database - new product
         private void saveNewProductInformationToDb()
         {
             //Save the product that was just created. Check whether the product saved correctly.
@@ -247,7 +250,7 @@ namespace MainUI.Product
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        // Commit to databse - existing product
         private void saveExistingProductInformationToDb()
         {
             if (SqliteDAProduct.UpdateProductById(product))

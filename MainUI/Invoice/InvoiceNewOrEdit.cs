@@ -18,6 +18,7 @@ namespace MainUI.Invoice
         //  4. Mouse Button Clicks
         //  5. Other Methods
         //******************************************************************************************************
+        
         //Global variables
         //******************************************************************************************************
         public bool userClickedSaveButton { get; set; } = false;//To check if user unexpectately closed the form
@@ -109,9 +110,10 @@ namespace MainUI.Invoice
                 invoiceNumberTextBox.Text = GenerateInvoiceNumber();
             }
         }
-        
+
         //  Other Event Methods
         //******************************************************************************************************
+        //  Only allow positive numbers and one digit in the invoice amount textbox. 
         private void invoiceAmountTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
@@ -128,7 +130,7 @@ namespace MainUI.Invoice
 
         //  Other Methods
         //******************************************************************************************************
-        //  Wires up the store combo box with a list of stores from the database.
+        //  Wire up the store combo box with a list of stores from the database.
         private void LoadStoreComboBox()
         {
             storeComboBox.DataSource = SqliteDAStore.GetAllStoresForComboBox();
