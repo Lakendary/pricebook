@@ -49,6 +49,7 @@
             this.quantityTextBox.Name = "quantityTextBox";
             this.quantityTextBox.Size = new System.Drawing.Size(50, 25);
             this.quantityTextBox.TabIndex = 1;
+            this.quantityTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.quantityTextBox_KeyPress);
             // 
             // quantityLabel
             // 
@@ -86,6 +87,7 @@
             this.weightTextBox.Name = "weightTextBox";
             this.weightTextBox.Size = new System.Drawing.Size(50, 25);
             this.weightTextBox.TabIndex = 2;
+            this.weightTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.weightTextBox_KeyPress);
             // 
             // productFullNameLabel
             // 
@@ -123,6 +125,7 @@
             this.totalPriceTextBox.Name = "totalPriceTextBox";
             this.totalPriceTextBox.Size = new System.Drawing.Size(98, 25);
             this.totalPriceTextBox.TabIndex = 3;
+            this.totalPriceTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.totalPriceTextBox_KeyPress);
             // 
             // saleCheckBox
             // 

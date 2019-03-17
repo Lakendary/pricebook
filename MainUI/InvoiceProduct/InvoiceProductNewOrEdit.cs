@@ -92,6 +92,45 @@ namespace MainUI.InvoiceProduct
             }
         }
 
+        //  Other Event Methods
+        //******************************************************************************************************
+        //  Only allow positive numbers in the quantity amount textbox. 
+        private void quantityTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        //  Only allow positive numbers and one digit in the weight textbox. 
+        private void weightTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+        //  Only allow positive numbers and one digit in the total price textbox. 
+        private void totalPriceTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+        
         //  Other Methods
         //******************************************************************************************************
         //  Wire up the product details labels with the product from the database. 
@@ -106,6 +145,7 @@ namespace MainUI.InvoiceProduct
             else if (product.Weighted == "Pre-Packaged")
             {
                 weightTextBox.Enabled = false;
+                weightTextBox.Text = "0";
             }
         }
         //  Reset to default values (existing invoice)
@@ -148,8 +188,16 @@ namespace MainUI.InvoiceProduct
             this.invoiceProduct.InvoiceId = invoiceId;
             this.invoiceProduct.ProductId = product.Id;
             this.invoiceProduct.Quantity = CheckIfQuantityIsANumber();
-            this.invoiceProduct.TotalPrice = Convert.ToDecimal(totalPriceTextBox.Text);
-            if (weightTextBox.Text != "")
+            if(totalPriceTextBox.Text != "")
+            {
+                this.invoiceProduct.TotalPrice = Convert.ToDecimal(totalPriceTextBox.Text);
+            }
+            if (this.product.Weighted == "Weighted" && weightTextBox.Text == "")
+            {
+                MessageBox.Show("This is a weighted product. It requires a weight value.", "Invoice Product Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
             {
                 this.invoiceProduct.Weight = Convert.ToInt32(weightTextBox.Text);
             }
@@ -167,11 +215,30 @@ namespace MainUI.InvoiceProduct
             }
         }
         //  Verify that invoice product object has valid information before committing to the database.
+        //  Part one: Check whether its a weighted item or not. 
+        private ValidationResult ValidationResult()
+        {
+            ValidationResult results;
+            // Validate my data and save in the results variable
+            if (this.product.Weighted == "Weighted")
+            {
+                bool weighted = true;
+                InvoiceProductValidator invoiceProductValidator = new InvoiceProductValidator(weighted);
+                results = invoiceProductValidator.Validate(this.invoiceProduct);
+                return results;
+            }
+            else
+            {
+                InvoiceProductValidator invoiceProductValidator = new InvoiceProductValidator();
+                results = invoiceProductValidator.Validate(this.invoiceProduct);
+                return results;
+            }
+        }
+        //  Part two: Show errors if there are any.
         private bool ValidateInvoiceProductInformation()
         {
-            // Validate my data and save in the results variable
-            InvoiceProductValidator invoiceProductValidator = new InvoiceProductValidator();
-            var results = invoiceProductValidator.Validate(this.invoiceProduct);
+
+            var results = ValidationResult();
 
             // Check if the validator found any validation errors. 
             if (results.IsValid == false)
@@ -239,5 +306,7 @@ namespace MainUI.InvoiceProduct
             }
             return quantity;
         }
+
+        
     }
 }
