@@ -13,13 +13,13 @@ namespace MainUI
     public partial class MainUI : Form
     {
         //********************************************************************************************//
-        //************************************INDEX***************************************************//
+        //  Index
         //********************************************************************************************//
-        // 1. Form Global Variables
-        // 2. Initial Component Method
-        // 3. Form Load Method
-        // 4. Seed Database
-        // 5. Read Main Function Objects [CRUD]
+        //  1. Form Global Variables
+        //  2. Initial Component Method
+        //  3. Form Load Method
+        //  4. Seed Database
+        //  5. Read Main Function Objects [CRUD]
         //
         //
         //
@@ -27,16 +27,23 @@ namespace MainUI
         //
         //********************************************************************************************//
 
-        //Form Global variables
+        //********************************************************************************************//
+        //  Form Global variables
+        //********************************************************************************************//
         DataGridViewRow row;
         public string mode { get; set; }
 
-        //Initial Component Method
+        //********************************************************************************************//
+        //  Initial Component Method
+        //********************************************************************************************//
         public MainUI()
         {
             InitializeComponent();
         }
-        //Form Load Method
+
+        //********************************************************************************************//
+        //  Form Load Method
+        //********************************************************************************************//
         private void MainUI_Load(object sender, EventArgs e)
         {
             modeStripStatusLabel.Text = "DEFAULT MODE";
@@ -44,8 +51,10 @@ namespace MainUI
             barCodeSearchPanel.Visible = false;
         }
 
-        //EVENTS
-        //SEED DATABASE - DOUBLE CLICK PICTURE BOX EVENT
+        //********************************************************************************************//
+        //  EVENTS
+        //********************************************************************************************//
+        //  SEED DATABASE - DOUBLE CLICK PICTURE BOX EVENT
         private void infoPictureBox_DoubleClick(object sender, EventArgs e)
         {
             //Seed the database with sample data. 
@@ -60,10 +69,10 @@ namespace MainUI
         }
 
         //********************************************************************************************//
-        //LOAD MODELS - DOUBLE CLICK PICTURE BOX EVENT
+        //  LOAD MODELS - DOUBLE CLICK PICTURE BOX EVENT
         //********************************************************************************************//
-        //TODO: Remove unwanted columns from each objects get all function.
-        //1. Category
+        //  TODO: Remove unwanted columns from each objects get all function.
+        //  1. Category
         private void categoryPictureBox_DoubleClick(object sender, EventArgs e)
         {
             //Load all categories from the database to the main data grid view.
@@ -72,7 +81,7 @@ namespace MainUI
             SetDefaultLoadParameters();
             mainDataGridView.Columns["Id"].Visible = false;
         }
-        //2. Store
+        //  2. Store
         private void storePictureBox_DoubleClick(object sender, EventArgs e)
         {
             //Load all stores from the database to the main data grid view.
@@ -81,7 +90,7 @@ namespace MainUI
             SetDefaultLoadParameters();
             mainDataGridView.Columns["Id"].Visible = false;
         }
-        //3. Product
+        //  3. Product
         private void productPictureBox_DoubleClick(object sender, EventArgs e)
         {
             //Load all products from the database to the main data grid view.
@@ -91,7 +100,7 @@ namespace MainUI
             mainDataGridView.Columns["Id"].Visible = false;
             mainDataGridView.Columns["ProductLinkId"].Visible = false;
         }
-        //4. Product link 
+        //  4. Product link 
         private void productLinkPictureBox_DoubleClick(object sender, EventArgs e)
         {
             //Load all product links from the database to the main data grid view.
@@ -101,7 +110,7 @@ namespace MainUI
             mainDataGridView.Columns["Id"].Visible = false;
             mainDataGridView.Columns["CategoryId"].Visible = false;
         }
-        //5. Invoice
+        //  5. Invoice
         private void invoicePictureBox_DoubleClick(object sender, EventArgs e)
         {
             //Load all invoices from the database to the main data grid view.
@@ -113,9 +122,8 @@ namespace MainUI
         }
 
         //********************************************************************************************//
-        //LOAD MODELS - CLICK VIEW BUTTON EVENT
+        //  LOAD MODELS - CLICK VIEW BUTTON EVENT
         //********************************************************************************************//
-        //1. Invoice Product
         private void viewButton_Click(object sender, EventArgs e)
         {
             //************************************************************************************************************************************
@@ -186,7 +194,7 @@ namespace MainUI
         }
 
         //********************************************************************************************//
-        //SAVE MODELS - CLICK NEW BUTTON EVENT
+        //  SAVE MODELS - CLICK NEW BUTTON EVENT
         //********************************************************************************************//
         //There is just one click new button event method. Check in which mode the app is in to determine
         //which class to act on.
@@ -244,8 +252,13 @@ namespace MainUI
                 }
             }
         }
-        //SAVE MODELS - BARCODE PRESS ENTER IN TEXT BOX EVENT
-        //Add invoice products to the invoice by either searching for the product by barcode, or by using the product search form.
+        
+        //********************************************************************************************//
+        //  SAVE MODELS - BARCODE PANEL CONTROLS
+        //********************************************************************************************//
+        //  SAVE MODELS - BARCODE PRESS ENTER IN TEXT BOX EVENT
+        //  Add invoice products to the invoice by either searching for the product by barcode, 
+        // or by using the product search form.
         private void barcodeTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -296,7 +309,9 @@ namespace MainUI
                 }
             }
         }
-
+        //  SAVE MODELS - CLICK SAVE INVOICE BUTTON EVENT
+        //  Change status of invoice if the captured invoice price equals to the sum of invoice product's 
+        //  total price.
         private void saveInvoiceButton_Click(object sender, EventArgs e)
         {
             if (SqliteDAInvoice.UpdateInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)))
@@ -314,7 +329,7 @@ namespace MainUI
         }
 
         //********************************************************************************************//
-        //EDIT MODELS - CLICK EDIT BUTTON EVENT
+        //  EDIT MODELS - CLICK EDIT BUTTON EVENT
         //********************************************************************************************//
         private void editButton_Click(object sender, EventArgs e)
         {
@@ -391,6 +406,7 @@ namespace MainUI
                 SetDefaultLoadParameters();
             }
         }
+        
         //********************************************************************************************//
         //DELETE MODELS - CLICK DELETE BUTTON EVENT
         //********************************************************************************************//
@@ -567,13 +583,35 @@ namespace MainUI
             }
         }
 
-        
         //********************************************************************************************//
-        //OTHER EVENTS
+        //  FUTURE FUNCTIONS
         //********************************************************************************************//
-        //USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
+        //  Create filters and sorting functions for each object (invoice, product, store etc.)
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            //ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
+            //productSearchForm.ShowDialog();
+            //TODO: Add Search Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        //  Pro version: import objects from csv file
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Add Import Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        //  Export data grid view to csv
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            //TODO: Add Export Function - FREE VERSION V1.1
+            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
         //********************************************************************************************//
-        //1. Invoice Product
+        //  OTHER EVENTS
+        //********************************************************************************************//
+        //  USE CELL CLICK DATA FROM DATA GRID VIEW - CELL MOUSE CLICK on DATA GRID VIEW
+        //********************************************************************************************//
         private void mainDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             toggleClickFirstButtons(true);
@@ -582,6 +620,7 @@ namespace MainUI
                 if (e.RowIndex >= 0)
                 {
                     row = this.mainDataGridView.Rows[e.RowIndex];
+                    //  1. Invoice Product
                     if (modeStripStatusLabel.Text == "INVOICE MODE" &&
                         row.Cells["Saved"].Value.ToString() == "Saved")
                     {
@@ -602,28 +641,9 @@ namespace MainUI
             mode = modeStripStatusLabel.Text;
         }
 
-        //Clicking the search button - needs to be customized per object
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-            //ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
-            //productSearchForm.ShowDialog();
-            //TODO: Add Search Function - FREE VERSION V1.1
-            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void importButton_Click(object sender, EventArgs e)
-        {
-            //TODO: Add Import Function - FREE VERSION V1.1
-            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void exportButton_Click(object sender, EventArgs e)
-        {
-            //TODO: Add Export Function - FREE VERSION V1.1
-            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-        
-        //OTHER METHODS
+        //********************************************************************************************//
+        //  OTHER METHODS
+        //********************************************************************************************//
         //Enable/disable all main buttons
         private void toggleAllButtons(bool input)
         {

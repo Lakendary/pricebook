@@ -18,21 +18,22 @@ namespace MainUI.Product
         //  4. Mouse Button Clicks
         //  5. Other Methods
         //******************************************************************************************************
-        //Global variables
+        //  Global variables
         //******************************************************************************************************
         public ProductModel product { get; set; }  = new ProductModel();
         ProductModel existingProduct = new ProductModel();
         bool newProduct = true;
 
-        //Methods
-        //Events - Initialize
+        //  Methods
+        //  Events - Initialize
         //******************************************************************************************************
+        //  1. New Product Initialize
         public ProductNewOrEdit()
         {
             InitializeComponent();
         }
-
-        //Initiated when the user clicks edit on the main ui and passes a product to edit.
+        //  2. Existing Invoice Initialize
+        //  Initiated when the user clicks edit on the main ui and passes a product to edit.
         public ProductNewOrEdit(int productId)
         {
             InitializeComponent();
@@ -43,15 +44,14 @@ namespace MainUI.Product
             addBarcodeButton.Enabled = true;
             deleteBarcodeButton.Enabled = true;
         }
-
-        //  TODO: Find out when this method is called.
+        //  3. Existing Invoice Initialize (From Product Search Form)
         public ProductNewOrEdit(string barcode)
         {
             InitializeComponent();
             barcodeComboBox.Text = barcode;
         }
 
-        //Events - Form Load
+        //  Events - Form Load
         //******************************************************************************************************
         private void ProductNewOrEdit_Load(object sender, EventArgs e)
         {
@@ -63,9 +63,9 @@ namespace MainUI.Product
             }
         }
 
-        //Events - Button Clicks
+        //  Events - Button Clicks
         //******************************************************************************************************
-        //1. Save Button Click
+        //  1. Save Button Click
         private void saveButton_Click(object sender, EventArgs e)
         {
             SetProductInformation();
@@ -81,8 +81,7 @@ namespace MainUI.Product
                 } 
             }
         }
-
-        //2. Reset Button Click
+        //  2. Reset Button Click
         private void resetButton_Click(object sender, EventArgs e)
         {
             if (this.newProduct)
@@ -94,16 +93,14 @@ namespace MainUI.Product
                 SetProductToDefaultValues();
             }
         }
-
-        //3. Add Product Link Button Click
+        //  3. Add Product Link Button Click
         private void addProductLinkButton_Click(object sender, EventArgs e)
         {
             ProductLinkNewOrEdit productLinkForm = new ProductLinkNewOrEdit();
             productLinkForm.ShowDialog();
             loadProductLinkComboBox();
         }
-
-        //4. Add Barcode Button Click
+        //  4. Add Barcode Button Click
         private void addBarcodeButton_Click(object sender, EventArgs e)
         {
             //Open the add new barcode form.
@@ -111,8 +108,7 @@ namespace MainUI.Product
             addBarcodeForm.ShowDialog();
             loadBarcodeComboBox();
         }
-
-        //5. Delete Barcode Button Click
+        //  5. Delete Barcode Button Click
         private void deleteBarcodeButton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this barcode?",
@@ -134,9 +130,9 @@ namespace MainUI.Product
             }
         }
 
-        //Other Event Methods
+        //  Other Event Methods
         //******************************************************************************************************
-        //Change Unit of measure label according to product link selected
+        //  Change Unit of measure label according to product link selected
         private void productLinkComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             //look for a product link object by the combobox's value
@@ -154,7 +150,7 @@ namespace MainUI.Product
             }
         }
 
-        //Other Methods
+        //  Other Methods
         //******************************************************************************************************
         private void loadBarcodeComboBox()
         {

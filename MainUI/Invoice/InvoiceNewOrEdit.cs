@@ -3,7 +3,6 @@ using MainUI.Store;
 using PriceBookClassLibrary;
 using PriceBookClassLibrary.Validators;
 using System;
-using System.Globalization;
 using System.Windows.Forms;
 
 namespace MainUI.Invoice
@@ -29,11 +28,12 @@ namespace MainUI.Invoice
         //Methods
         //Events - Initialize
         //******************************************************************************************************
+        //  1. New Invoice Initialize
         public InvoiceNewOrEdit()
         {
             InitializeComponent();
         }
-
+        //  2. Existing Invoice Initialize
         public InvoiceNewOrEdit(int invoiceId)
         {
             InitializeComponent();
@@ -43,7 +43,7 @@ namespace MainUI.Invoice
             this.newInvoice = false;
         }
 
-        //Events - Form Load
+        //  Events - Form Load
         //******************************************************************************************************
         private void InvoiceNewAndEdit_Load(object sender, EventArgs e)
         {
@@ -54,6 +54,9 @@ namespace MainUI.Invoice
             }
         }
 
+        //  Events - Button Clicks
+        //******************************************************************************************************
+        //  1. Save Button Click
         private void saveButton_Click(object sender, EventArgs e)
         {
             SetInvoiceInformation();
@@ -69,7 +72,7 @@ namespace MainUI.Invoice
                 }
             }
         }
-
+        //  2. Reset Button Click
         private void resetButton_Click(object sender, EventArgs e)
         {
             if (this.newInvoice)
@@ -81,14 +84,14 @@ namespace MainUI.Invoice
                 SetInvoiceDefaultValues();
             }
         }
-
+        //  3. Add Store Button Click
         private void addStoreButton_Click(object sender, EventArgs e)
         {
             StoreNewOrEdit storeForm = new StoreNewOrEdit();
             storeForm.ShowDialog();
             LoadStoreComboBox();
         }
-
+        //  4. Generate an Invoice Number Button Click
         private void generateInvoiceNumberButton_Click(object sender, EventArgs e)
         {
             if (invoiceDateTimePicker.Value == null)
@@ -106,7 +109,9 @@ namespace MainUI.Invoice
                 invoiceNumberTextBox.Text = GenerateInvoiceNumber();
             }
         }
-
+        
+        //  Other Event Methods
+        //******************************************************************************************************
         private void invoiceAmountTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
@@ -121,13 +126,16 @@ namespace MainUI.Invoice
             }
         }
 
+        //  Other Methods
+        //******************************************************************************************************
+        //  Wires up the store combo box with a list of stores from the database.
         private void LoadStoreComboBox()
         {
             storeComboBox.DataSource = SqliteDAStore.GetAllStoresForComboBox();
             storeComboBox.DisplayMember = "Name";
             storeComboBox.ValueMember = "Id";
         }
-
+        //  Reset to default values (existing invoice)
         private void SetInvoiceDefaultValues()
         {
             storeComboBox.SelectedIndex = storeComboBox.FindStringExact(this.existingInvoice.StoreName);
@@ -135,14 +143,14 @@ namespace MainUI.Invoice
             invoiceAmountTextBox.Text = this.existingInvoice.InvoiceAmount.ToString();
             invoiceNumberTextBox.Text = this.existingInvoice.InvoiceNumber;
         }
-
+        //  Clear to blank form
         private void ClearInvoiceToBlankValues()
         {
             invoiceAmountTextBox.ResetText();
             invoiceNumberTextBox.ResetText();
             storeComboBox.SelectedIndex = 0;
         }
-
+        //  Store user input into the invoice object.
         private void SetInvoiceInformation()
         {
             this.invoice.InvoiceAmount = ConvertToMoneyAmount(invoiceAmountTextBox.Text);
@@ -156,24 +164,7 @@ namespace MainUI.Invoice
                 this.invoice.Id = this.existingInvoice.Id;
             }
         }
-
-        private decimal ConvertToMoneyAmount(string input)
-        {
-            if (!decimal.TryParse(input, out decimal result))
-            {
-                //This forces a positive number to be saved. It already doesn't allow the user to use a negative, but if they copy paste a negative number,
-                //this will convert that negative number into a postive one.
-                if (result < 0)
-                {
-                    result = result * -1;
-                }
-            }
-            result = result + Convert.ToDecimal(0.0001);
-            result = Math.Round(result, 2, MidpointRounding.ToEven);
-
-            return result;
-        }
-
+        //  Verify that invoice object has valid information before committing to the database.
         private bool ValidateInvoiceInformation()
         {
             // Validate my data and save in the results variable
@@ -194,7 +185,7 @@ namespace MainUI.Invoice
                 return true;
             }
         }
-
+        //  Commit to database - new invoice
         private void saveNewInvoiceInformationToDb()
         {
             this.invoice.Id = SqliteDAInvoice.SaveInvoice(invoice);
@@ -215,7 +206,7 @@ namespace MainUI.Invoice
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        // Commit to databse - existing invoice
         private void saveExistingInvoiceInformationToDb()
         {
             invoice.Id = this.invoice.Id;
@@ -236,7 +227,7 @@ namespace MainUI.Invoice
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //  Create an invoice number from the store and date data in the form.
         private string GenerateInvoiceNumber()
         {
             Random random = new Random();
@@ -245,6 +236,23 @@ namespace MainUI.Invoice
                 storeComboBox.SelectedValue.ToString().PadLeft(3,'0'), 
                 randomNumber.ToString().PadLeft(3,'0'));
             return invoiceNumber;
+        }
+        //  Convert a string into a positive amount with two decimal places.
+        private decimal ConvertToMoneyAmount(string input)
+        {
+            if (!decimal.TryParse(input, out decimal result))
+            {
+                //This forces a positive number to be saved. It already doesn't allow the user to use a negative, but if they copy paste a negative number,
+                //this will convert that negative number into a postive one.
+                if (result < 0)
+                {
+                    result = result * -1;
+                }
+            }
+            result = result + Convert.ToDecimal(0.0001);
+            result = Math.Round(result, 2, MidpointRounding.ToEven);
+
+            return result;
         }
     }
 }
