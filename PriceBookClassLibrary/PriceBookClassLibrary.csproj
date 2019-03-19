@@ -80,6 +80,7 @@
     <Compile Include="SqliteDataAccessProductLink.cs" />
     <Compile Include="SqliteDataAccessStore.cs" />
     <Compile Include="StoreModel.cs" />
+    <Compile Include="Validators\BarcodeValidator.cs" />
     <Compile Include="Validators\CategoryValidator.cs" />
     <Compile Include="Validators\InvoiceProductValidator.cs" />
     <Compile Include="Validators\InvoiceValidator.cs" />
