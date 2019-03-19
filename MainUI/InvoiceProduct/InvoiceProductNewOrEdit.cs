@@ -151,25 +151,25 @@ namespace MainUI.InvoiceProduct
         //  Reset to default values (existing invoice)
         private void SetInvoiceProductDefaultValues()
         {
-            productFullNameLabel.Text = invoiceProduct.ProductName;
-            quantityTextBox.Text = invoiceProduct.Quantity.ToString();
+            productFullNameLabel.Text = this.existingInvoiceProduct.ProductName;
+            quantityTextBox.Text = this.existingInvoiceProduct.Quantity.ToString();
             //Make sure only weighted products can be edited and show no weight for pre-packaged products (0 throws an error)
-            if (invoiceProduct.Weighted == "Pre-Packaged")
+            if (this.existingInvoiceProduct.Weighted == "Pre-Packaged")
             {
-                weightTextBox.Text = "";
+                weightTextBox.Text = "0";
                 weightTextBox.Enabled = false;
             }
             else
             {
-                weightTextBox.Text = invoiceProduct.Weight.ToString();
+                weightTextBox.Text = this.existingInvoiceProduct.Weight.ToString();
             }
-            totalPriceTextBox.Text = invoiceProduct.TotalPrice.ToString();
-            uomLabel.Text = invoiceProduct.UoM;
-            if (invoiceProduct.Sale == "Sale")
+            totalPriceTextBox.Text = this.existingInvoiceProduct.TotalPrice.ToString();
+            uomLabel.Text = this.existingInvoiceProduct.UoM;
+            if (this.existingInvoiceProduct.Sale == "Sale")
             {
                 saleCheckBox.Checked = true;
             }
-            else if (invoiceProduct.Sale == "Regular")
+            else if (this.existingInvoiceProduct.Sale == "Regular")
             {
                 saleCheckBox.Checked = false;
             }
@@ -187,17 +187,15 @@ namespace MainUI.InvoiceProduct
         {
             this.invoiceProduct.InvoiceId = invoiceId;
             this.invoiceProduct.ProductId = product.Id;
-            this.invoiceProduct.Quantity = CheckIfQuantityIsANumber();
-            if(totalPriceTextBox.Text != "")
+            if (quantityTextBox.Text != "")
+            {
+                this.invoiceProduct.Quantity = Convert.ToInt32(quantityTextBox.Text);
+            }
+            if (totalPriceTextBox.Text != "")
             {
                 this.invoiceProduct.TotalPrice = Convert.ToDecimal(totalPriceTextBox.Text);
             }
-            if (this.product.Weighted == "Weighted" && weightTextBox.Text == "")
-            {
-                MessageBox.Show("This is a weighted product. It requires a weight value.", "Invoice Product Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
+            if (weightTextBox.Text != "")
             {
                 this.invoiceProduct.Weight = Convert.ToInt32(weightTextBox.Text);
             }
@@ -292,21 +290,5 @@ namespace MainUI.InvoiceProduct
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        //  Return a positive number or an error if conversion cannot happen.
-        private int CheckIfQuantityIsANumber()
-        {
-            if (!int.TryParse(quantityTextBox.Text, out int quantity))
-            {
-                MessageBox.Show("Please enter a number.", "Quantity Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            //  Convert any negative number into a positive one before returning it
-            if(quantity < 0)
-            {
-                quantity = quantity * -1;
-            }
-            return quantity;
-        }
-
-        
     }
 }

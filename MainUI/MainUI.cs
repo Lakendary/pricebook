@@ -246,6 +246,7 @@ namespace MainUI
                     invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
                     mainDataGridView.AutoResizeColumns();
+                    mainDataGridView.ClearSelection();
                     mainDataGridView.Columns["ProductId"].Visible = false;
                     mainDataGridView.Columns["InvoiceId"].Visible = false;
                     modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
@@ -384,10 +385,12 @@ namespace MainUI
                 modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
                 toggleClickFirstButtons(false);
                 barCodeSearchPanel.Visible = true;
+                this.ActiveControl = barcodeTextBox;
                 //Barcode text box is not made active here, like when you create a new invoice.
                 invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
                 mainDataGridView.AutoResizeColumns();
+                mainDataGridView.ClearSelection();
                 mainDataGridView.Columns["ProductId"].Visible = false;
                 mainDataGridView.Columns["InvoiceId"].Visible = false;
                 mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
@@ -400,10 +403,16 @@ namespace MainUI
                 int invoiceProductId = Convert.ToInt32(row.Cells["Id"].Value);
                 InvoiceProductNewOrEdit invoiceProductForm = new InvoiceProductNewOrEdit(invoiceProductId);
                 invoiceProductForm.ShowDialog();
+                barCodeSearchPanel.Visible = true;
+                this.ActiveControl = barcodeTextBox;
                 mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
+                mainDataGridView.AutoResizeColumns();
+                mainDataGridView.ClearSelection();
                 mainDataGridView.Columns["ProductId"].Visible = false;
                 mainDataGridView.Columns["InvoiceId"].Visible = false;
-                SetDefaultLoadParameters();
+                mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
+
+                calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
             }
         }
         
