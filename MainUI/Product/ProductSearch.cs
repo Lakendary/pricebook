@@ -133,7 +133,7 @@ namespace MainUI.Product
             category.Name = "<ALL>";
 
             //Load Combo Boxes. Add <ALL> option at the beginning of list.
-            categories = SqliteDACategory.GetAllCategories();
+            categories = SqliteDACategory.GetSubcategoryOnly();
             categories.Insert(0, category);
             categoryComboBox.DataSource = categories;
             categoryComboBox.ValueMember = "Id";

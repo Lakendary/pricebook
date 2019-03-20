@@ -20,11 +20,6 @@ namespace MainUI
         //  3. Form Load Method
         //  4. Seed Database
         //  5. Read Main Function Objects [CRUD]
-        //
-        //
-        //
-        //
-        //
         //********************************************************************************************//
 
         //********************************************************************************************//
@@ -259,7 +254,7 @@ namespace MainUI
         //********************************************************************************************//
         //  SAVE MODELS - BARCODE PRESS ENTER IN TEXT BOX EVENT
         //  Add invoice products to the invoice by either searching for the product by barcode, 
-        // or by using the product search form.
+        //  or by using the product search form.
         private void barcodeTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -334,10 +329,12 @@ namespace MainUI
         //********************************************************************************************//
         private void editButton_Click(object sender, EventArgs e)
         {
-            //The user first has to select an item from the data grid view, click the edit button and then the edit form for the respective object should open.
-            //All the object properties are collected from the selected datagridview row and sent to the edit form. There the user will edit the object properties and update the database.
-            //The datagridview reloads and gets all objects and turns off the view/edit/delete buttons.
-            //1. Category
+            //  The user first has to select an item from the data grid view, click the edit button and 
+            //  then the edit form for the respective object should open.
+            //  All the object properties are collected from the selected datagridview row and sent to 
+            //  the edit form. There the user will edit the object properties and update the database.
+            //  The datagridview reloads and gets all objects and turns off the view/edit/delete buttons.
+            //  1. Category
             if (modeStripStatusLabel.Text == "CATEGORY MODE")
             {
                 //Create object
@@ -349,7 +346,7 @@ namespace MainUI
                 mainDataGridView.DataSource = SqliteDACategory.GetAllCategories();
                 SetDefaultLoadParameters();
             }
-            //2. Store
+            //  2. Store
             else if (modeStripStatusLabel.Text == "STORE MODE")
             {
                 int storeId = Convert.ToInt32(row.Cells["Id"].Value);
@@ -358,7 +355,7 @@ namespace MainUI
                 mainDataGridView.DataSource = SqliteDAStore.GetAllStores();
                 SetDefaultLoadParameters();
             }
-            //3. Product Link
+            //  3. Product Link
             else if (modeStripStatusLabel.Text == "PRODUCT LINK MODE")
             {
                 int productLinkId = Convert.ToInt32(row.Cells["Id"].Value);
@@ -367,7 +364,7 @@ namespace MainUI
                 mainDataGridView.DataSource = SqliteDAProductLink.GetAllProductLinks();
                 SetDefaultLoadParameters();
             }
-            //4. Product
+            //  4. Product
             else if (modeStripStatusLabel.Text == "PRODUCT MODE")
             {
                 int productId = Convert.ToInt32(row.Cells["Id"].Value);
@@ -376,7 +373,7 @@ namespace MainUI
                 mainDataGridView.DataSource = SqliteDAProduct.GetAllProducts();
                 SetDefaultLoadParameters();
             }
-            //5. Invoice
+            //  5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")
             {
                 int invoiceId = Convert.ToInt32(row.Cells["Id"].Value);
@@ -397,7 +394,7 @@ namespace MainUI
                 
                 calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
             }
-            //6. Invoice Product
+            //  6. Invoice Product
             else if (modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
             {
                 int invoiceProductId = Convert.ToInt32(row.Cells["Id"].Value);
@@ -417,7 +414,7 @@ namespace MainUI
         }
         
         //********************************************************************************************//
-        //DELETE MODELS - CLICK DELETE BUTTON EVENT
+        //  DELETE MODELS - CLICK DELETE BUTTON EVENT
         //********************************************************************************************//
         private void deleteButton_Click(object sender, EventArgs e)
         {
@@ -598,10 +595,19 @@ namespace MainUI
         //  Create filters and sorting functions for each object (invoice, product, store etc.)
         private void searchButton_Click(object sender, EventArgs e)
         {
-            //ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
-            //productSearchForm.ShowDialog();
-            //TODO: Add Search Function - FREE VERSION V1.1
-            MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if(modeStripStatusLabel.Text == "PRODUCT MODE")
+            {
+                ProductSearch productSearchForm = new ProductSearch(modeStripStatusLabel.Text);
+                productSearchForm.ShowDialog();
+                mainDataGridView.DataSource = productSearchForm.products;
+                mainDataGridView.AutoResizeColumns();
+            }
+            else
+            {
+                //TODO: Add Search Function - FREE VERSION V1.1
+                MessageBox.Show("Function will be available in a future release version.", "Future Version",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }         
         }
         //  Pro version: import objects from csv file
         private void importButton_Click(object sender, EventArgs e)
@@ -644,7 +650,7 @@ namespace MainUI
             }
         }
 
-        //Changing global mode variable to mode in status strip label
+        //  Changing global mode variable to mode in status strip label
         private void modeStripStatusLabel_TextChanged(object sender, EventArgs e)
         {
             mode = modeStripStatusLabel.Text;
@@ -653,7 +659,7 @@ namespace MainUI
         //********************************************************************************************//
         //  OTHER METHODS
         //********************************************************************************************//
-        //Enable/disable all main buttons
+        //  Enable/disable all main buttons
         private void toggleAllButtons(bool input)
         {
             newButton.Enabled = input;
@@ -664,7 +670,7 @@ namespace MainUI
             viewButton.Enabled = input;
             deleteButton.Enabled = input;
         }
-        //Enable/disable all click first main buttons
+        //  Enable/disable all click first main buttons
         private void toggleClickFirstButtons(bool input)
         {
             //The user first needs to click on the data grid view to select a cell. An instance must be selected first,
@@ -674,7 +680,7 @@ namespace MainUI
             viewButton.Enabled = input;
             deleteButton.Enabled = input;
         }
-        //Set default parameters when you load an object
+        //  Set default parameters when you load an object
         private void SetDefaultLoadParameters()
         {
             mainDataGridView.AutoResizeColumns();
@@ -683,7 +689,7 @@ namespace MainUI
             mainDataGridView.ClearSelection();
             barCodeSearchPanel.Visible = false;
         }
-        //Open Search form and get data back
+        //  Open Search form and get data back
         private ProductModel searchForProduct()
         {
             ProductModel product = new ProductModel();
@@ -704,7 +710,8 @@ namespace MainUI
             }
             return product;
         }
-        //Display the captured invoice total and also calculate the sum of the total price for all invoice products
+        //  Display the captured invoice total and also calculate the sum of the total price for 
+        //  all invoice products
         private void calculateInvoiceTotals(InvoiceModel invoiceModel)
         {
             InvoiceModel model = new InvoiceModel();
