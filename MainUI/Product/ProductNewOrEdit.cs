@@ -16,7 +16,8 @@ namespace MainUI.Product
         //  2. Events Initialize methods
         //  3. Form Load Event
         //  4. Mouse Button Clicks
-        //  5. Other Methods
+        //  5. Other Event Methods
+        //  6. Other Methods
         //******************************************************************************************************
         
         //  Global variables

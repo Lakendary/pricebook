@@ -1,29 +1,43 @@
 ﻿using PriceBookClassLibrary;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MainUI.Product
 {
     public partial class ProductSearch : Form
     {
+        //******************************************************************************************************
+        //  Index
+        //******************************************************************************************************
+        //  1. Global variables
+        //  2. Events Initialize methods
+        //  3. Form Load Event
+        //  4. Mouse Button Clicks
+        //  5. Other Event Methods
+        //  6. Other Methods
+        //******************************************************************************************************
+
+        //  Global variables
+        //******************************************************************************************************
         public string barcode = "";
         public int productId { get; set; }
         DataGridViewRow row;
         public bool openNewProductForm { get; set; }
         public string mode;
+        ProductModel product = new ProductModel();
+        public List<ProductModel> products = new List<ProductModel>();
+
+        //  Methods
+        //  Events - Initialize
+        //******************************************************************************************************
+        //  1. Product Mode Initialize
         public ProductSearch(string mode)
         {
             InitializeComponent();
             this.mode = mode;
         }
-
+        //  2. Invoice Product Mode Initialize
         public ProductSearch(string barcode, string mode)
         {
             InitializeComponent();
@@ -31,7 +45,84 @@ namespace MainUI.Product
             this.mode = mode;
         }
 
+        //  Events - Form Load
+        //******************************************************************************************************
         private void ProductSearch_Load(object sender, EventArgs e)
+        {
+            loadCategoryComboBox();
+        }
+
+        //  Events - Button Clicks
+        //******************************************************************************************************
+        //  1. Search Button Click
+        private void searchButton_Click(object sender, EventArgs e)
+        {
+            SetProductInformation();
+            SearchForProducts();
+            if (mode == "INVOICE PRODUCT MODE")
+            {
+                PopulateDGVWithSearchResults();
+            }
+            else if (mode == "PRODUCT MODE")
+            {
+                this.Close();
+            }
+        }
+        //  2. Search Button Click
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            ClearProductSearchToBlankValues();
+        }
+        //  3. Add Product To Invoice Button Click
+        private void addProductToInvoiceButton_Click(object sender, EventArgs e)
+        {
+            productId = Convert.ToInt32(row.Cells["Id"].Value);
+            if (barcode != "")
+            {
+                BarcodeModel barcode = new BarcodeModel();
+                barcode.Barcode = this.barcode;
+                barcode.ProductId = productId;
+                SqliteDataAccessBarcode.SaveBarcode(barcode);
+            }
+            this.Close();
+        }
+        //  Other Event Methods
+        //******************************************************************************************************
+        //  Click the Add Product Picture Box to open a new product form to add a product that doesn't exist in
+        //  the database.
+        private void addProductPictureBox_Click(object sender, EventArgs e)
+        {
+            openNewProductForm = true;
+            this.Close();
+        }
+        //  Click the data grid view to select a product and activate the Add To Invoice button if required.
+        private void productSearchDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            try
+            {
+                if (productSearchDataGridView.SelectedRows != null && 
+                    productSearchDataGridView.SelectedRows.Count > 0 && mode == "INVOICE PRODUCT MODE")
+                {
+                    addProductToInvoiceButton.Enabled = true;
+                }
+
+                if (e.RowIndex >= 0)
+                {
+                    row = this.productSearchDataGridView.Rows[e.RowIndex];
+                }
+            }
+            catch (System.Exception ex)
+            {
+                General.LogError(ex);
+                MessageBox.Show("Something went wrong.\nCheck the error log for more information.", 
+                    "Data Grid View Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //  Other Methods
+        //******************************************************************************************************
+        //  Wire up the category combo box with a list of categories from the database.
+        private void loadCategoryComboBox()
         {
             List<CategoryModel> categories = new List<CategoryModel>();
 
@@ -52,23 +143,8 @@ namespace MainUI.Product
             categoryComboBox.SelectedIndex = 0;
             weightedComboBox.SelectedIndex = 0;
         }
-
-        private void searchButton_Click(object sender, EventArgs e)
-        {
-            ProductModel product = new ProductModel();
-            product.ProductLinkName = productLinkNameTextBox.Text;
-            product.CategoryName = categoryComboBox.Text;
-            product.BrandName = brandNameTextBox.Text;
-            product.Description = productDescriptionTextBox.Text;
-            product.Weighted = weightedComboBox.Text;
-            productSearchDataGridView.DataSource = SqliteDAProduct.GetAllProducts(product);
-            productSearchDataGridView.AutoResizeColumns();
-            productSearchDataGridView.Columns["ProductLinkId"].Visible = false;
-            productSearchDataGridView.Columns["Id"].Visible = false;
-            productSearchDataGridView.Columns["Deleted"].Visible = false;
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
+        //  Clear to blank search
+        private void ClearProductSearchToBlankValues()
         {
             productLinkNameTextBox.ResetText();
             brandNameTextBox.ResetText();
@@ -76,44 +152,28 @@ namespace MainUI.Product
             categoryComboBox.SelectedIndex = 0;
             weightedComboBox.SelectedIndex = 0;
         }
-
-        private void addProductPictureBox_Click(object sender, EventArgs e)
+        //  Store user input into the product object
+        private void SetProductInformation()
         {
-            openNewProductForm = true;
-            this.Close();
+            this.product.ProductLinkName = productLinkNameTextBox.Text;
+            this.product.CategoryName = categoryComboBox.Text;
+            this.product.BrandName = brandNameTextBox.Text;
+            this.product.Description = productDescriptionTextBox.Text;
+            this.product.Weighted = weightedComboBox.Text;
         }
-
-        private void productSearchDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        //  Search for all products based on the parameters set by the user
+        private void SearchForProducts()
         {
-            try
-            {
-                if (productSearchDataGridView.SelectedRows != null && productSearchDataGridView.SelectedRows.Count > 0 && mode == "INVOICE PRODUCT MODE")
-                {
-                    addProductToInvoiceButton.Enabled = true;
-                }
-
-                if (e.RowIndex >= 0)
-                {
-                    row = this.productSearchDataGridView.Rows[e.RowIndex];
-                }
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            this.products = SqliteDAProduct.GetAllProducts(this.product);
         }
-
-        private void addProductToInvoiceButton_Click(object sender, EventArgs e)
+        //  Wire up the data grid view with the results from the search query
+        private void PopulateDGVWithSearchResults()
         {
-            productId = Convert.ToInt32(row.Cells["Id"].Value);
-            if(barcode != "")
-            {
-                BarcodeModel barcode = new BarcodeModel();
-                barcode.Barcode = this.barcode;
-                barcode.ProductId = productId;
-                SqliteDataAccessBarcode.SaveBarcode(barcode);
-            }
-            this.Close();
+            productSearchDataGridView.DataSource = this.products;
+            productSearchDataGridView.AutoResizeColumns();
+            productSearchDataGridView.Columns["ProductLinkId"].Visible = false;
+            productSearchDataGridView.Columns["Id"].Visible = false;
+            productSearchDataGridView.Columns["Deleted"].Visible = false;
         }
     }
 }
