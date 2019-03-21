@@ -110,7 +110,7 @@ namespace MainUI
         {
             //Load all invoices from the database to the main data grid view.
             modeStripStatusLabel.Text = "INVOICE MODE";
-            mainDataGridView.DataSource = SqliteDAInvoice.GetAllInvoices();
+            mainDataGridView.DataSource = SqliteDAInvoice.GetAllCurrentActiveInvoices();
             SetDefaultLoadParameters();
             mainDataGridView.Columns["StoreId"].Visible = false;
             mainDataGridView.Columns["InvoiceAmount"].DefaultCellStyle.Format = "0.00##";

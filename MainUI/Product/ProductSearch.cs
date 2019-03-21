@@ -86,6 +86,7 @@ namespace MainUI.Product
             }
             this.Close();
         }
+        
         //  Other Event Methods
         //******************************************************************************************************
         //  Click the Add Product Picture Box to open a new product form to add a product that doesn't exist in

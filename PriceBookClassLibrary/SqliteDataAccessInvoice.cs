@@ -123,5 +123,29 @@ namespace PriceBookClassLibrary
                 return count > 0;
             }
         }
+
+        //8. Get All Active (not deleted) Invoices Not Older than 30 Days
+        public static List<InvoiceModel> GetAllCurrentActiveInvoices()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<InvoiceModel>("SELECT "+
+                    "Invoice.Id, "+
+                    "Invoice.InvoiceNumber, "+
+                    "Invoice.Saved, "+
+                    "Invoice.Date, "+
+                    "Invoice.InvoiceAmount, "+
+                    "Store.Name || ', ' || Store.Location StoreName, "+
+                    "Invoice.StoreId, "+
+                    "Invoice.Deleted "+
+                "FROM Invoice "+
+                "LEFT JOIN Store "+
+                "ON Invoice.StoreId = Store.Id "+
+                "WHERE Invoice.Deleted = 'Active' "+
+                "AND Invoice.Date <= DATE('NOW') "+
+                "AND Invoice.Date >= DATE('NOW', '-1 MONTH')", new DynamicParameters());
+                return output.ToList();
+            }
+        }
     }
 }
