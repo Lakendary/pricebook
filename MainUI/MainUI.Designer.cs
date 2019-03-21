@@ -60,6 +60,7 @@
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
+            this.updateButton = new System.Windows.Forms.Button();
             this.mainMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
@@ -202,6 +203,7 @@
             // 
             // buttonsPanel
             // 
+            this.buttonsPanel.Controls.Add(this.updateButton);
             this.buttonsPanel.Controls.Add(this.exportButton);
             this.buttonsPanel.Controls.Add(this.importButton);
             this.buttonsPanel.Controls.Add(this.searchButton);
@@ -216,6 +218,7 @@
             // 
             // exportButton
             // 
+            this.exportButton.Enabled = false;
             this.exportButton.Location = new System.Drawing.Point(612, 2);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(96, 36);
@@ -226,6 +229,7 @@
             // 
             // importButton
             // 
+            this.importButton.Enabled = false;
             this.importButton.Location = new System.Drawing.Point(510, 2);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(96, 36);
@@ -236,6 +240,7 @@
             // 
             // searchButton
             // 
+            this.searchButton.Enabled = false;
             this.searchButton.Location = new System.Drawing.Point(408, 2);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(96, 36);
@@ -400,6 +405,17 @@
             this.mainDataGridView.TabIndex = 2;
             this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
             // 
+            // updateButton
+            // 
+            this.updateButton.Enabled = false;
+            this.updateButton.Location = new System.Drawing.Point(714, 2);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(96, 36);
+            this.updateButton.TabIndex = 0;
+            this.updateButton.Text = "Update";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -472,6 +488,7 @@
         private System.Windows.Forms.Label sumOfProductPricesLabel;
         private System.Windows.Forms.Label capturedInvoiceTotalLabel;
         private System.Windows.Forms.Button saveInvoiceButton;
+        private System.Windows.Forms.Button updateButton;
     }
 }
 

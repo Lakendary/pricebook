@@ -143,7 +143,7 @@ namespace PriceBookClassLibrary
                 "ON Invoice.StoreId = Store.Id "+
                 "WHERE Invoice.Deleted = 'Active' "+
                 "AND Invoice.Date <= DATE('NOW') "+
-                "AND Invoice.Date >= DATE('NOW', '-1 MONTH')", new DynamicParameters());
+                "AND Invoice.Date >= DATE('NOW', '-3 MONTH')", new DynamicParameters());
                 return output.ToList();
             }
         }

@@ -7,6 +7,9 @@ using MainUI.Store;
 using MainUI.Invoice;
 using PriceBookClassLibrary;
 using MainUI.InvoiceProduct;
+using System.Threading.Tasks;
+using Squirrel;
+using System.Diagnostics;
 
 namespace MainUI
 {
@@ -94,6 +97,7 @@ namespace MainUI
             SetDefaultLoadParameters();
             mainDataGridView.Columns["Id"].Visible = false;
             mainDataGridView.Columns["ProductLinkId"].Visible = false;
+            searchButton.Enabled = true;
         }
         //  4. Product link 
         private void productLinkPictureBox_DoubleClick(object sender, EventArgs e)
@@ -235,6 +239,8 @@ namespace MainUI
                 //Check if user clicked the save button.
                 if (invoiceForm.userClickedSaveButton)
                 {
+                    newButton.Enabled = false;
+                    viewButton.Enabled = false;
                     barCodeSearchPanel.Visible = true;
                     calculateInvoiceTotals(invoiceForm.invoice);
                     this.ActiveControl = barcodeTextBox;
@@ -391,7 +397,9 @@ namespace MainUI
                 mainDataGridView.Columns["ProductId"].Visible = false;
                 mainDataGridView.Columns["InvoiceId"].Visible = false;
                 mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
-                
+                newButton.Enabled = false;
+                viewButton.Enabled = false;
+
                 calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
             }
             //  6. Invoice Product
@@ -621,6 +629,11 @@ namespace MainUI
             //TODO: Add Export Function - FREE VERSION V1.1
             MessageBox.Show("Function will be available in a future release version.", "Future Version", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+        //  Update application to latest version
+        private void updateButton_Click(object sender, EventArgs e)
+        {
+            CheckForUpdates();
+        }
 
         //********************************************************************************************//
         //  OTHER EVENTS
@@ -663,12 +676,13 @@ namespace MainUI
         private void toggleAllButtons(bool input)
         {
             newButton.Enabled = input;
-            searchButton.Enabled = input;
-            importButton.Enabled = input;
-            exportButton.Enabled = input;
             editButton.Enabled = input;
             viewButton.Enabled = input;
             deleteButton.Enabled = input;
+            //  Future buttons
+            //searchButton.Enabled = input;
+            //importButton.Enabled = input;
+            //exportButton.Enabled = input;
         }
         //  Enable/disable all click first main buttons
         private void toggleClickFirstButtons(bool input)
@@ -729,6 +743,24 @@ namespace MainUI
             {
                 saveInvoiceButton.Enabled = false;
             }
+        }
+        //Check for updates
+        private async Task CheckForUpdates()
+        {
+            //  TODO: Create a network path/web server or github to host new releases
+            using (var manager = new UpdateManager(@"C:\Temp\Releases"))
+            {
+                await manager.UpdateApp();
+            }
+        }
+
+        private string AddVersionNumber()
+        {
+            string version = "";
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
+            version = $"v.{versionInfo.FileVersion}";
+            return version;
         }
     }
 }
