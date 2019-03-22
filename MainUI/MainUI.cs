@@ -744,7 +744,7 @@ namespace MainUI
                 saveInvoiceButton.Enabled = false;
             }
         }
-        //Check for updates
+        //  Check for updates
         private async Task CheckForUpdates()
         {
             //  TODO: Create a network path/web server or github to host new releases
@@ -753,9 +753,10 @@ namespace MainUI
                 await manager.UpdateApp();
             }
         }
-
+        //  Return version number of current version.
         private string AddVersionNumber()
         {
+            //  TODO: Create an about section to display the current version number
             string version = "";
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             FileVersionInfo versionInfo = FileVersionInfo.GetVersionInfo(assembly.Location);
