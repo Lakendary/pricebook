@@ -1,5 +1,5 @@
 # PriceBook
-![Build](https://sqlitebrowser.org/dl/) [![Wiki](https://img.shields.io/badge/docs-wiki-blue.svg)](https://github.com/Lakendary/pricebook/wiki) [![Gitter](https://badges.gitter.im/price-book/community.svg)](https://gitter.im/price-book/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+![Build](https://img.shields.io/badge/build-passing-success.svg) [![Wiki](https://img.shields.io/badge/docs-wiki-blue.svg)](https://github.com/Lakendary/pricebook/wiki) [![Gitter](https://badges.gitter.im/price-book/community.svg)](https://gitter.im/price-book/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 ![PriceBook Logo](https://www.jaderickerts.com/images/portfolio/PriceBook%20-%20Detail.PNG)
 
