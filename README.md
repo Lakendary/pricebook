@@ -7,11 +7,12 @@
 This is a project for a .NET framework desktop application for Windows that tracks grocery prices. 
 
 ## 2. How to install it
-Uncompress the zip file, open the folder and run Setup.exe. The program will open up automatically.
+Uncompress the zip file, open the folder and run Setup.exe. The application will open up automatically once the install completed.
+
 **System Requirements:**
 - Windows 7 or above
 - .NET Framework 4.6
 - [DB Browser for SQLite](https://sqlitebrowser.org/dl/) (for database queries)
-- Windows 7 or above.
+
 ## 3. Releases
 - [Version 1.0.0](https://github.com/Lakendary/pricebook/releases/tag/v1.0) - 12 June 2019
