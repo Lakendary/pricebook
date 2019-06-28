@@ -10,6 +10,7 @@ using MainUI.InvoiceProduct;
 using System.Threading.Tasks;
 using Squirrel;
 using System.Diagnostics;
+using MainUI.Report;
 
 namespace MainUI
 {
@@ -119,21 +120,20 @@ namespace MainUI
             mainDataGridView.Columns["StoreId"].Visible = false;
             mainDataGridView.Columns["InvoiceAmount"].DefaultCellStyle.Format = "0.00##";
         }
+        //  6. Reports
+        private void reportPictureBox_DoubleClick(object sender, EventArgs e)
+        {
+            modeStripStatusLabel.Text = "REPORT MODE";
+            Reports reportForm = new Reports();
+            reportForm.ShowDialog();
+        }
 
         //********************************************************************************************//
         //  LOAD MODELS - CLICK VIEW BUTTON EVENT
         //********************************************************************************************//
         private void viewButton_Click(object sender, EventArgs e)
         {
-            //************************************************************************************************************************************
-            //Load all invoice products by invoice id from the database to the main data grid view.
-            //There is no invoice product icon to double click on. 
-            //If the user wants to get all invoice products, the user will have to run a report from the reports function.
-            //Exception handling - if the user doesn't select a cell before clicking view, an argument error is thrown.
-            //Error is logged and message shown. Invoice are reloaded again, because if the user clicks on the current data grid view and then on
-            //the view button, the error message is thrown again.
-            //************************************************************************************************************************************
-
+            
             //1. Category
             if (modeStripStatusLabel.Text == "CATEGORY MODE")
             {
@@ -161,6 +161,15 @@ namespace MainUI
             //5. Invoice
             else if (modeStripStatusLabel.Text == "INVOICE MODE")
             {
+                //************************************************************************************************************************************
+                //Load all invoice products by invoice id from the database to the main data grid view.
+                //There is no invoice product icon to double click on. 
+                //If the user wants to get all invoice products, the user will have to run a report from the reports function.
+                //Exception handling - if the user doesn't select a cell before clicking view, an argument error is thrown.
+                //Error is logged and message shown. Invoice are reloaded again, because if the user clicks on the current data grid view and then on
+                //the view button, the error message is thrown again.
+                //************************************************************************************************************************************
+
                 modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
                 try
                 {
@@ -195,8 +204,8 @@ namespace MainUI
         //********************************************************************************************//
         //  SAVE MODELS - CLICK NEW BUTTON EVENT
         //********************************************************************************************//
-        //There is just one click new button event method. Check in which mode the app is in to determine
-        //which class to act on.
+        //  There is just one click new button event method. Check in which mode the app is in to 
+        //  determine which class to act on.
         private void newButton_Click(object sender, EventArgs e)
         {
             //1. Category
@@ -236,25 +245,16 @@ namespace MainUI
             {
                 InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit();
                 invoiceForm.ShowDialog();
-                //Check if user clicked the save button.
+                //  Check if user clicked the save button.
+                //  TODO: What happens if the user doesn't click the save button in the next form?
                 if (invoiceForm.userClickedSaveButton)
                 {
-                    newButton.Enabled = false;
-                    viewButton.Enabled = false;
-                    barCodeSearchPanel.Visible = true;
-                    calculateInvoiceTotals(invoiceForm.invoice);
-                    this.ActiveControl = barcodeTextBox;
-                    invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
-                    mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
-                    mainDataGridView.AutoResizeColumns();
-                    mainDataGridView.ClearSelection();
-                    mainDataGridView.Columns["ProductId"].Visible = false;
-                    mainDataGridView.Columns["InvoiceId"].Visible = false;
-                    modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
+                    SetDefaultLoadParametersForInvoiceBarcodeMode(invoiceForm.invoice);
                 }
             }
         }
-        
+
+
         //********************************************************************************************//
         //  SAVE MODELS - BARCODE PANEL CONTROLS
         //********************************************************************************************//
@@ -385,22 +385,7 @@ namespace MainUI
                 int invoiceId = Convert.ToInt32(row.Cells["Id"].Value);
                 InvoiceNewOrEdit invoiceForm = new InvoiceNewOrEdit(invoiceId);
                 invoiceForm.ShowDialog();
-                modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
-                toggleClickFirstButtons(false);
-                barCodeSearchPanel.Visible = true;
-                this.ActiveControl = barcodeTextBox;
-                //Barcode text box is not made active here, like when you create a new invoice.
-                invoiceNumberStripStatusLabel.Text = invoiceForm.invoice.Id.ToString();
-                mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoiceForm.invoice.Id);
-                mainDataGridView.AutoResizeColumns();
-                mainDataGridView.ClearSelection();
-                mainDataGridView.Columns["ProductId"].Visible = false;
-                mainDataGridView.Columns["InvoiceId"].Visible = false;
-                mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
-                newButton.Enabled = false;
-                viewButton.Enabled = false;
-
-                calculateInvoiceTotals(SqliteDAInvoice.GetInvoiceById(Convert.ToInt32(invoiceNumberStripStatusLabel.Text)));
+                SetDefaultLoadParametersForInvoiceBarcodeMode(invoiceForm.invoice);
             }
             //  6. Invoice Product
             else if (modeStripStatusLabel.Text == "INVOICE PRODUCT MODE")
@@ -722,20 +707,19 @@ namespace MainUI
             {
                 product.Id = productSearchForm.productId;
             }
+            //TODO: What would happen if no id is returned from the form? Will it ever be NULL?
             return product;
         }
         //  Display the captured invoice total and also calculate the sum of the total price for 
         //  all invoice products
         private void calculateInvoiceTotals(InvoiceModel invoiceModel)
         {
-            InvoiceModel model = new InvoiceModel();
-            model = invoiceModel;
-            capturedInvoiceTotalAmountLabel.Text = string.Format("${0:#,0.00}", model.InvoiceAmount);
+            capturedInvoiceTotalAmountLabel.Text = string.Format("${0:#,0.00}", invoiceModel.InvoiceAmount);
             InvoiceProductModel invoiceProduct = new InvoiceProductModel();
-            invoiceProduct = SqliteDAInvoiceProduct.GetInvoiceTotalById(Convert.ToInt32(model.Id));
+            invoiceProduct = SqliteDAInvoiceProduct.GetInvoiceTotalById(Convert.ToInt32(invoiceModel.Id));
             sumOfProductPricesAmountLabel.Text = string.Format("${0:#,0.00}", invoiceProduct.TotalPrice);
             //Show save button if captured invoice total and sum of invoice products are equal
-            if (model.InvoiceAmount == invoiceProduct.TotalPrice)
+            if (invoiceModel.InvoiceAmount == invoiceProduct.TotalPrice)
             {
                 saveInvoiceButton.Enabled = true;
             }
@@ -763,5 +747,22 @@ namespace MainUI
             version = $"v.{versionInfo.FileVersion}";
             return version;
         }
+        //  Set default parameters when you a new invoice
+        private void SetDefaultLoadParametersForInvoiceBarcodeMode(InvoiceModel invoice)
+        {
+            toggleAllButtons(false);
+            barCodeSearchPanel.Visible = true;
+            calculateInvoiceTotals(invoice);
+            this.ActiveControl = barcodeTextBox;
+            invoiceNumberStripStatusLabel.Text = invoice.Id.ToString();
+            mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(invoice.Id);
+            mainDataGridView.AutoResizeColumns();
+            mainDataGridView.ClearSelection();
+            mainDataGridView.Columns["ProductId"].Visible = false;
+            mainDataGridView.Columns["InvoiceId"].Visible = false;
+            mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
+            modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
+        }
+
     }
 }

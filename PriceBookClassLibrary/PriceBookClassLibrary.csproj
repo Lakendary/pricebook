@@ -78,6 +78,7 @@
     <Compile Include="SqliteDataAccessInvoiceProduct.cs" />
     <Compile Include="SqliteDataAccessProduct.cs" />
     <Compile Include="SqliteDataAccessProductLink.cs" />
+    <Compile Include="SqliteDataAccessReport.cs" />
     <Compile Include="SqliteDataAccessStore.cs" />
     <Compile Include="StoreModel.cs" />
     <Compile Include="Validators\BarcodeValidator.cs" />

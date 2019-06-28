@@ -41,6 +41,7 @@
             this.productPictureBox = new System.Windows.Forms.PictureBox();
             this.invoicePictureBox = new System.Windows.Forms.PictureBox();
             this.buttonsPanel = new System.Windows.Forms.Panel();
+            this.updateButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
             this.importButton = new System.Windows.Forms.Button();
             this.searchButton = new System.Windows.Forms.Button();
@@ -60,7 +61,6 @@
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
-            this.updateButton = new System.Windows.Forms.Button();
             this.mainMenuPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
@@ -115,6 +115,7 @@
             this.reportPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.reportPictureBox.TabIndex = 0;
             this.reportPictureBox.TabStop = false;
+            this.reportPictureBox.DoubleClick += new System.EventHandler(this.reportPictureBox_DoubleClick);
             // 
             // recipePictureBox
             // 
@@ -215,6 +216,17 @@
             this.buttonsPanel.Name = "buttonsPanel";
             this.buttonsPanel.Size = new System.Drawing.Size(920, 40);
             this.buttonsPanel.TabIndex = 0;
+            // 
+            // updateButton
+            // 
+            this.updateButton.Enabled = false;
+            this.updateButton.Location = new System.Drawing.Point(714, 2);
+            this.updateButton.Name = "updateButton";
+            this.updateButton.Size = new System.Drawing.Size(96, 36);
+            this.updateButton.TabIndex = 0;
+            this.updateButton.Text = "Update";
+            this.updateButton.UseVisualStyleBackColor = true;
+            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // exportButton
             // 
@@ -404,17 +416,6 @@
             this.mainDataGridView.Size = new System.Drawing.Size(920, 386);
             this.mainDataGridView.TabIndex = 2;
             this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
-            // 
-            // updateButton
-            // 
-            this.updateButton.Enabled = false;
-            this.updateButton.Location = new System.Drawing.Point(714, 2);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(96, 36);
-            this.updateButton.TabIndex = 0;
-            this.updateButton.Text = "Update";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
             // 
             // MainUI
             // 
