@@ -77,7 +77,8 @@
             this.productLinkNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productLinkNameTextBox.Name = "productLinkNameTextBox";
             this.productLinkNameTextBox.Size = new System.Drawing.Size(192, 25);
-            this.productLinkNameTextBox.TabIndex = 38;
+            this.productLinkNameTextBox.TabIndex = 1;
+            this.productLinkNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.productLinkNameTextBox_KeyDown);
             // 
             // packSizeLabel
             // 
@@ -105,7 +106,8 @@
             this.brandNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.brandNameTextBox.Name = "brandNameTextBox";
             this.brandNameTextBox.Size = new System.Drawing.Size(192, 25);
-            this.brandNameTextBox.TabIndex = 38;
+            this.brandNameTextBox.TabIndex = 2;
+            this.brandNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.brandNameTextBox_KeyDown);
             // 
             // label2
             // 
@@ -123,7 +125,8 @@
             this.productDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productDescriptionTextBox.Name = "productDescriptionTextBox";
             this.productDescriptionTextBox.Size = new System.Drawing.Size(192, 25);
-            this.productDescriptionTextBox.TabIndex = 38;
+            this.productDescriptionTextBox.TabIndex = 5;
+            this.productDescriptionTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.productDescriptionTextBox_KeyDown);
             // 
             // categoryComboBox
             // 
@@ -131,7 +134,8 @@
             this.categoryComboBox.Location = new System.Drawing.Point(12, 129);
             this.categoryComboBox.Name = "categoryComboBox";
             this.categoryComboBox.Size = new System.Drawing.Size(192, 25);
-            this.categoryComboBox.TabIndex = 45;
+            this.categoryComboBox.TabIndex = 4;
+            this.categoryComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.categoryComboBox_KeyDown);
             // 
             // label3
             // 
@@ -155,6 +159,8 @@
             // 
             // weightedComboBox
             // 
+            this.weightedComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.weightedComboBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.weightedComboBox.FormattingEnabled = true;
             this.weightedComboBox.Items.AddRange(new object[] {
             "<ALL>",
@@ -163,7 +169,8 @@
             this.weightedComboBox.Location = new System.Drawing.Point(411, 80);
             this.weightedComboBox.Name = "weightedComboBox";
             this.weightedComboBox.Size = new System.Drawing.Size(201, 25);
-            this.weightedComboBox.TabIndex = 45;
+            this.weightedComboBox.TabIndex = 3;
+            this.weightedComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.weightedComboBox_KeyDown);
             // 
             // searchButton
             // 
@@ -172,7 +179,7 @@
             this.searchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(96, 30);
-            this.searchButton.TabIndex = 46;
+            this.searchButton.TabIndex = 6;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
@@ -184,7 +191,7 @@
             this.clearButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.clearButton.Name = "clearButton";
             this.clearButton.Size = new System.Drawing.Size(96, 30);
-            this.clearButton.TabIndex = 47;
+            this.clearButton.TabIndex = 7;
             this.clearButton.Text = "Clear";
             this.clearButton.UseVisualStyleBackColor = true;
             this.clearButton.Click += new System.EventHandler(this.clearButton_Click);
@@ -197,7 +204,7 @@
             this.addProductToInvoiceButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addProductToInvoiceButton.Name = "addProductToInvoiceButton";
             this.addProductToInvoiceButton.Size = new System.Drawing.Size(192, 30);
-            this.addProductToInvoiceButton.TabIndex = 46;
+            this.addProductToInvoiceButton.TabIndex = 8;
             this.addProductToInvoiceButton.Text = "Add Product To Invoice";
             this.addProductToInvoiceButton.UseVisualStyleBackColor = true;
             this.addProductToInvoiceButton.Click += new System.EventHandler(this.addProductToInvoiceButton_Click);

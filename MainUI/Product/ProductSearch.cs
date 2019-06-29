@@ -57,16 +57,7 @@ namespace MainUI.Product
         //  1. Search Button Click
         private void searchButton_Click(object sender, EventArgs e)
         {
-            SetProductInformation();
             SearchForProducts();
-            if (mode == "INVOICE PRODUCT MODE")
-            {
-                PopulateDGVWithSearchResults();
-            }
-            else if (mode == "PRODUCT MODE")
-            {
-                this.Close();
-            }
         }
         //  2. Search Button Click
         private void clearButton_Click(object sender, EventArgs e)
@@ -165,7 +156,16 @@ namespace MainUI.Product
         //  Search for all products based on the parameters set by the user
         private void SearchForProducts()
         {
+            SetProductInformation();
             this.products = SqliteDAProduct.GetAllProducts(this.product);
+            if (mode == "INVOICE PRODUCT MODE")
+            {
+                PopulateDGVWithSearchResults();
+            }
+            else if (mode == "PRODUCT MODE")
+            {
+                this.Close();
+            }
         }
         //  Wire up the data grid view with the results from the search query
         private void PopulateDGVWithSearchResults()
@@ -175,6 +175,46 @@ namespace MainUI.Product
             productSearchDataGridView.Columns["ProductLinkId"].Visible = false;
             productSearchDataGridView.Columns["Id"].Visible = false;
             productSearchDataGridView.Columns["Deleted"].Visible = false;
+        }
+
+        private void productLinkNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchForProducts();
+            }
+        }
+
+        private void brandNameTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchForProducts();
+            }
+        }
+
+        private void weightedComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchForProducts();
+            }
+        }
+
+        private void categoryComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchForProducts();
+            }
+        }
+
+        private void productDescriptionTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SearchForProducts();
+            }
         }
     }
 }
