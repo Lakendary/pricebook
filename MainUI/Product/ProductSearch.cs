@@ -67,15 +67,9 @@ namespace MainUI.Product
         //  3. Add Product To Invoice Button Click
         private void addProductToInvoiceButton_Click(object sender, EventArgs e)
         {
-            productId = Convert.ToInt32(row.Cells["Id"].Value);
-            if (barcode != "")
-            {
-                BarcodeModel barcode = new BarcodeModel();
-                barcode.Barcode = this.barcode;
-                barcode.ProductId = productId;
-                SqliteDataAccessBarcode.SaveBarcode(barcode);
-            }
-            this.Close();
+
+            AddProductToInvoice();
+            
         }
         
         //  Other Event Methods
@@ -143,6 +137,7 @@ namespace MainUI.Product
             productDescriptionTextBox.ResetText();
             categoryComboBox.SelectedIndex = 0;
             weightedComboBox.SelectedIndex = 0;
+            this.ActiveControl = productLinkNameTextBox;
         }
         //  Store user input into the product object
         private void SetProductInformation()
@@ -161,6 +156,12 @@ namespace MainUI.Product
             if (mode == "INVOICE PRODUCT MODE")
             {
                 PopulateDGVWithSearchResults();
+                this.ActiveControl = productSearchDataGridView;
+                if(this.products.Count > 0)
+                {
+                    productSearchDataGridView.Rows[0].Selected = true;
+                    addProductToInvoiceButton.Enabled = true;
+                }
             }
             else if (mode == "PRODUCT MODE")
             {
@@ -215,6 +216,33 @@ namespace MainUI.Product
             {
                 SearchForProducts();
             }
+            
+        }
+
+        private void productSearchDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                row = this.productSearchDataGridView.CurrentRow;
+                AddProductToInvoice();
+            }
+            else if (e.KeyCode == Keys.Back)
+            {
+                ClearProductSearchToBlankValues();
+            }
+        }
+
+        private void AddProductToInvoice()
+        {
+            productId = Convert.ToInt32(row.Cells["Id"].Value);
+            if (barcode != "")
+            {
+                BarcodeModel barcode = new BarcodeModel();
+                barcode.Barcode = this.barcode;
+                barcode.ProductId = productId;
+                SqliteDataAccessBarcode.SaveBarcode(barcode);
+            }
+            this.Close();
         }
     }
 }

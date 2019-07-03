@@ -70,6 +70,7 @@
             this.productSearchDataGridView.Size = new System.Drawing.Size(600, 390);
             this.productSearchDataGridView.TabIndex = 7;
             this.productSearchDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productSearchDataGridView_CellMouseClick);
+            this.productSearchDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.productSearchDataGridView_KeyDown);
             // 
             // productLinkNameTextBox
             // 
