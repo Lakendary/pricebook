@@ -140,6 +140,12 @@
     <Compile Include="Product\AddBarcode.Designer.cs">
       <DependentUpon>AddBarcode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product\ProductAndProductLinkNewOrEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Product\ProductAndProductLinkNewOrEdit.Designer.cs">
+      <DependentUpon>ProductAndProductLinkNewOrEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Product\ProductNewOrEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Product\AddBarcode.resx">
       <DependentUpon>AddBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Product\ProductAndProductLinkNewOrEdit.resx">
+      <DependentUpon>ProductAndProductLinkNewOrEdit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Product\ProductNewOrEdit.resx">
       <DependentUpon>ProductNewOrEdit.cs</DependentUpon>
