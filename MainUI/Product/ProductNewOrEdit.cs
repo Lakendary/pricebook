@@ -24,7 +24,7 @@ namespace MainUI.Product
         //******************************************************************************************************
         public ProductModel product { get; set; }  = new ProductModel();
         ProductModel existingProduct = new ProductModel();
-        bool newProduct = true;
+        bool isNewProduct = true;
 
         //  Methods
         //  Events - Initialize
@@ -34,7 +34,7 @@ namespace MainUI.Product
         {
             InitializeComponent();
         }
-        //  2. Existing Invoice Initialize
+        //  2. Existing Product Initialize
         //  Initiated when the user clicks edit on the main ui and passes a product to edit.
         public ProductNewOrEdit(int productId)
         {
@@ -42,11 +42,11 @@ namespace MainUI.Product
             formTitleLabel.Text = "Edit Product";
             saveButton.Text = "Edit";
             this.existingProduct = SqliteDAProduct.GetProductById(productId);
-            newProduct = false;
+            isNewProduct = false;
             addBarcodeButton.Enabled = true;
             deleteBarcodeButton.Enabled = true;
         }
-        //  3. Existing Invoice Initialize (From Product Search Form)
+        //  3. Existing Product Initialize (From Product Search Form)
         public ProductNewOrEdit(string barcode)
         {
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace MainUI.Product
         {
             loadProductLinkComboBox();
             loadBarcodeComboBox();
-            if (!this.newProduct)
+            if (!this.isNewProduct)
             {
                 SetProductToDefaultValues();
             }
@@ -73,11 +73,11 @@ namespace MainUI.Product
             SetProductInformation();
             if (ValidateProductInformation())
             {
-                if (this.newProduct)
+                if (this.isNewProduct)
                 {
                     saveNewProductInformationToDb();
                 }
-                else if (!this.newProduct)
+                else if (!this.isNewProduct)
                 {
                     saveExistingProductInformationToDb();
                 } 
@@ -86,11 +86,11 @@ namespace MainUI.Product
         //  2. Reset Button Click
         private void resetButton_Click(object sender, EventArgs e)
         {
-            if (this.newProduct)
+            if (this.isNewProduct)
             {
                 ClearProductToBlankValues();
             }
-            else if (!this.newProduct)
+            else if (!this.isNewProduct)
             {
                 SetProductToDefaultValues();
             }
@@ -134,7 +134,7 @@ namespace MainUI.Product
 
         //  Other Event Methods
         //******************************************************************************************************
-        //  Change Unit of measure label according to product link selected
+        //  Change Unit of measure label according to the selected product link's uom value.
         private void productLinkComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             //look for a product link object by the combobox's value
@@ -196,7 +196,7 @@ namespace MainUI.Product
                 this.product.PackSize = result;
             }
             this.product.ProductLinkId = Convert.ToInt32(productLinkComboBox.SelectedValue);
-            if (!newProduct)
+            if (!isNewProduct)
             {
                 this.product.Id = this.existingProduct.Id;
             }
