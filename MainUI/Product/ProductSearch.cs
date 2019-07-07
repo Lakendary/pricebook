@@ -190,8 +190,6 @@ namespace MainUI.Product
             }
         }
 
-        
-
         private void brandNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)

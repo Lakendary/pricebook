@@ -474,6 +474,7 @@
             this.findProductLinkDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.findProductLinkDataGridView.Size = new System.Drawing.Size(371, 197);
             this.findProductLinkDataGridView.TabIndex = 0;
+            this.findProductLinkDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.findProductLinkDataGridView_KeyDown);
             // 
             // newTabPage
             // 

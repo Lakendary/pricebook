@@ -27,8 +27,6 @@ namespace MainUI.Product
         //  Global variables
         //******************************************************************************************************
         public ProductModel product { get; set; } = new ProductModel();
-        public ProductLinkModel productLink = new ProductLinkModel();
-        public List<ProductLinkModel> searchResultProductLinks = new List<ProductLinkModel>();
         //  ProductModel existingProduct = new ProductModel();
         //  bool isNewProduct = true;
 
@@ -79,33 +77,41 @@ namespace MainUI.Product
 
         private void SearchForProductLinks()
         {
-            SetProductLinkSearchTerm();
-            GetListOfProductLinks();
-            PopulateDGVWithSearchResults();
+            ProductLinkModel productLink = new ProductLinkModel();
+            List<ProductLinkModel> searchResultProductLinks = new List<ProductLinkModel>();
+
+            productLink = SetProductLinkSearchTerm(productLink);
+            searchResultProductLinks = GetListOfProductLinks(productLink, searchResultProductLinks);
+            PopulateDGVWithSearchResults(searchResultProductLinks);
         }
 
-        private void SetProductLinkSearchTerm()
+        private ProductLinkModel SetProductLinkSearchTerm(ProductLinkModel productLink)
         {
-            this.productLink.Name = findProductLinkNameTextBox.Text;
-            this.productLink.CategoryName = findCategoryComboBox.Text;
+            productLink.Name = findProductLinkNameTextBox.Text;
+            productLink.CategoryName = findCategoryComboBox.Text;
             if(findWeightedCheckBox.CheckState == CheckState.Checked)
             {
-                this.productLink.Weighted = "Weighted";
+                productLink.Weighted = "Weighted";
             } else if(findWeightedCheckBox.CheckState == CheckState.Unchecked)
             {
-                this.productLink.Weighted = "Pre-Packaged";
+                productLink.Weighted = "Pre-Packaged";
             }
+
+            return productLink;
         }
 
-        private void GetListOfProductLinks()
+        private List<ProductLinkModel> GetListOfProductLinks(ProductLinkModel productLink, List<ProductLinkModel> searchResultProductLinks)
         {
             searchResultProductLinks = SqliteDAProductLink.GetAllProductLinks(productLink);
+
+            return searchResultProductLinks;
         }
 
-        private void PopulateDGVWithSearchResults()
+        private void PopulateDGVWithSearchResults(List<ProductLinkModel> searchResultProductLinks)
         {
-            findProductLinkDataGridView.DataSource = this.searchResultProductLinks;
+            findProductLinkDataGridView.DataSource = searchResultProductLinks;
             FormatFindDGVHeaders();
+            ActiveControl = findProductLinkDataGridView;
         }
 
         private void FormatFindDGVHeaders()
@@ -140,6 +146,20 @@ namespace MainUI.Product
             findProductLinkDataGridView.Columns["CategoryName"].HeaderText = "Category" + Environment.NewLine + "Name";
             findProductLinkDataGridView.Columns["UoM"].HeaderText = "Unit of" + Environment.NewLine + "Measure";
             findProductLinkDataGridView.Columns["MeasurementRate"].HeaderText = "Measurement " + Environment.NewLine + "Rate";
+        }
+
+        private void findProductLinkDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                //  Select ProductLink
+                SelectProductLink();
+            }
+        }
+
+        private void SelectProductLink()
+        {
+            throw new NotImplementedException();
         }
 
         //  The user clicks add new product on the product search form. This form loads
