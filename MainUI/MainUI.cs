@@ -696,11 +696,12 @@ namespace MainUI
             productSearchForm.ShowDialog();
             //Does the user want to add a new product with/without the barcode in the textbox?
             //YES?
-            if (productSearchForm.openNewProductForm)
+            if (productSearchForm.openNewProductForm == true)
             {
-                ProductNewOrEdit productForm = new ProductNewOrEdit(barcodeTextBox.Text);
-                productForm.ShowDialog();
-                product.Id = productForm.product.Id;
+                //  ProductNewOrEdit productForm = new ProductNewOrEdit(barcodeTextBox.Text);
+                ProductAndProductLinkNewOrEdit addNewProductForm = new ProductAndProductLinkNewOrEdit();
+                addNewProductForm.ShowDialog();
+                product.Id = addNewProductForm.product.Id;
             }
             //NO?
             else

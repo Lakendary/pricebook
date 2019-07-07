@@ -97,5 +97,45 @@ namespace PriceBookClassLibrary
                 return affectedRows > 0;
             }
         }
+        //6. Get All By Search Criteria
+        public static List<ProductLinkModel> GetAllProductLinks(ProductLinkModel productLink)
+        {
+            string sql = BuildProductLinkSearchSqlString(productLink);
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<ProductLinkModel>(sql, new DynamicParameters());
+                return output.ToList();
+            }
+        }
+        //7. Build a search string for Get All by Search Criteria
+        private static string BuildProductLinkSearchSqlString(ProductLinkModel productLink)
+        {
+            //Default string
+            string output = "SELECT " +
+                    "ProductLink.Name, " +
+                    "ProductLink.UoM, " +
+                    "ProductLink.Weighted, " +
+                    "ProductLink.MeasurementRate, " +
+                    "ProductLink.CategoryId ProductLinkName, " +
+                    "Category.Name CategoryName " +
+                "FROM ProductLink " +
+                "LEFT JOIN Category " +
+                "ON ProductLink.CategoryId = Category.Id " +
+                "WHERE 1=1 " +
+                "AND ProductLink.Deleted LIKE 'Active' ";
+            //Add search criteria to search string depending if product's properties are not empty
+            if (productLink.Name != "")
+                output += string.Format("AND ProductLink.Name LIKE '%{0}%' ", productLink.Name);
+            if (productLink.UoM != "")
+                output += string.Format("AND ProductLink.UoM LIKE '%{0}%' ", productLink.UoM);
+            if (productLink.Weighted != "<ALL>")
+                output += string.Format("AND ProductLink.Weighted LIKE '%{0}%' ", productLink.Weighted);
+            if (productLink.MeasurementRate > 0)
+                output += string.Format("AND ProductLink.Name = {0} ", productLink.MeasurementRate);
+            if (productLink.CategoryName != "<ALL>")
+                output += string.Format("AND Category.Name LIKE '%{0}%' ", productLink.CategoryName);
+
+            return output;
+        }
     }
 }

@@ -184,13 +184,23 @@ namespace MainUI.Product
             {
                 SearchForProducts();
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProduct();
+            }
         }
+
+        
 
         private void brandNameTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 SearchForProducts();
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProduct();
             }
         }
 
@@ -200,6 +210,10 @@ namespace MainUI.Product
             {
                 SearchForProducts();
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProduct();
+            }
         }
 
         private void categoryComboBox_KeyDown(object sender, KeyEventArgs e)
@@ -207,6 +221,10 @@ namespace MainUI.Product
             if (e.KeyCode == Keys.Enter)
             {
                 SearchForProducts();
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProduct();
             }
         }
 
@@ -216,7 +234,11 @@ namespace MainUI.Product
             {
                 SearchForProducts();
             }
-            
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProduct();
+            }
+
         }
 
         private void productSearchDataGridView_KeyDown(object sender, KeyEventArgs e)
@@ -230,6 +252,10 @@ namespace MainUI.Product
             {
                 ClearProductSearchToBlankValues();
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProduct();
+            }
         }
 
         private void AddProductToInvoice()
@@ -242,6 +268,12 @@ namespace MainUI.Product
                 barcode.ProductId = productId;
                 SqliteDataAccessBarcode.SaveBarcode(barcode);
             }
+            this.Close();
+        }
+
+        private void AddNewProduct()
+        {
+            openNewProductForm = true;
             this.Close();
         }
     }

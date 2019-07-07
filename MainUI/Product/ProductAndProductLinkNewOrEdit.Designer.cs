@@ -56,34 +56,34 @@
             this.newProductLinkNameTextBox = new System.Windows.Forms.TextBox();
             this.newMeasurementRateLabel = new System.Windows.Forms.Label();
             this.newProductLinkNameLabel = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.findProductLinkDataGridView = new System.Windows.Forms.DataGridView();
+            this.productLinkTabControl = new System.Windows.Forms.TabControl();
+            this.findTabPage = new System.Windows.Forms.TabPage();
+            this.findResetButton = new System.Windows.Forms.Button();
+            this.findSearchButton = new System.Windows.Forms.Button();
             this.findProductLinkNameTextBox = new System.Windows.Forms.TextBox();
             this.findWeightedCheckBox = new System.Windows.Forms.CheckBox();
             this.findProductLinkNameLabel = new System.Windows.Forms.Label();
             this.findCategoryComboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.findProductLinkDataGridView = new System.Windows.Forms.DataGridView();
+            this.newTabPage = new System.Windows.Forms.TabPage();
+            this.detailTabPage = new System.Windows.Forms.TabPage();
+            this.detailProductLinkNameLabel2 = new System.Windows.Forms.Label();
             this.detailProductLinkNameLabel1 = new System.Windows.Forms.Label();
+            this.detailMeasurementRateLabel2 = new System.Windows.Forms.Label();
+            this.detailWeightedLabel2 = new System.Windows.Forms.Label();
             this.detailMeasurementRateLabel1 = new System.Windows.Forms.Label();
-            this.detailCategoryLabel1 = new System.Windows.Forms.Label();
-            this.detailUnitOfMeasureLabel1 = new System.Windows.Forms.Label();
+            this.detailCategoryLabel2 = new System.Windows.Forms.Label();
             this.detailWeightedLabel1 = new System.Windows.Forms.Label();
             this.detailUnitOfMeasureLabel2 = new System.Windows.Forms.Label();
-            this.detailCategoryLabel2 = new System.Windows.Forms.Label();
-            this.detailWeightedLabel2 = new System.Windows.Forms.Label();
-            this.detailMeasurementRateLabel2 = new System.Windows.Forms.Label();
-            this.detailProductLinkNameLabel2 = new System.Windows.Forms.Label();
-            this.findSearchButton = new System.Windows.Forms.Button();
-            this.findResetButton = new System.Windows.Forms.Button();
+            this.detailCategoryLabel1 = new System.Windows.Forms.Label();
+            this.detailUnitOfMeasureLabel1 = new System.Windows.Forms.Label();
             this.productGroupBox = new System.Windows.Forms.GroupBox();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
-            this.tabPage3.SuspendLayout();
+            this.productLinkTabControl.SuspendLayout();
+            this.findTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findProductLinkDataGridView)).BeginInit();
+            this.newTabPage.SuspendLayout();
+            this.detailTabPage.SuspendLayout();
             this.productGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -357,84 +357,57 @@
             this.newProductLinkNameLabel.TabIndex = 63;
             this.newProductLinkNameLabel.Text = "Product Link Name";
             // 
-            // tabControl1
+            // productLinkTabControl
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(12, 42);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(391, 326);
-            this.tabControl1.TabIndex = 67;
+            this.productLinkTabControl.Controls.Add(this.findTabPage);
+            this.productLinkTabControl.Controls.Add(this.newTabPage);
+            this.productLinkTabControl.Controls.Add(this.detailTabPage);
+            this.productLinkTabControl.Location = new System.Drawing.Point(12, 42);
+            this.productLinkTabControl.Name = "productLinkTabControl";
+            this.productLinkTabControl.SelectedIndex = 0;
+            this.productLinkTabControl.Size = new System.Drawing.Size(391, 326);
+            this.productLinkTabControl.TabIndex = 67;
             // 
-            // tabPage1
+            // findTabPage
             // 
-            this.tabPage1.Controls.Add(this.findResetButton);
-            this.tabPage1.Controls.Add(this.findSearchButton);
-            this.tabPage1.Controls.Add(this.findProductLinkNameTextBox);
-            this.tabPage1.Controls.Add(this.findWeightedCheckBox);
-            this.tabPage1.Controls.Add(this.findProductLinkNameLabel);
-            this.tabPage1.Controls.Add(this.findCategoryComboBox);
-            this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.findProductLinkDataGridView);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(383, 300);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Find";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.findTabPage.Controls.Add(this.findResetButton);
+            this.findTabPage.Controls.Add(this.findSearchButton);
+            this.findTabPage.Controls.Add(this.findProductLinkNameTextBox);
+            this.findTabPage.Controls.Add(this.findWeightedCheckBox);
+            this.findTabPage.Controls.Add(this.findProductLinkNameLabel);
+            this.findTabPage.Controls.Add(this.findCategoryComboBox);
+            this.findTabPage.Controls.Add(this.label4);
+            this.findTabPage.Controls.Add(this.findProductLinkDataGridView);
+            this.findTabPage.Location = new System.Drawing.Point(4, 22);
+            this.findTabPage.Name = "findTabPage";
+            this.findTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.findTabPage.Size = new System.Drawing.Size(383, 300);
+            this.findTabPage.TabIndex = 0;
+            this.findTabPage.Text = "Find";
+            this.findTabPage.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // findResetButton
             // 
-            this.tabPage2.Controls.Add(this.newProductLinkNameTextBox);
-            this.tabPage2.Controls.Add(this.newWeightedCheckBox);
-            this.tabPage2.Controls.Add(this.newProductLinkNameLabel);
-            this.tabPage2.Controls.Add(this.newCategoryComboBox);
-            this.tabPage2.Controls.Add(this.newMeasurementRateLabel);
-            this.tabPage2.Controls.Add(this.newUomComboBox);
-            this.tabPage2.Controls.Add(this.newMeasurementRateTextBox);
-            this.tabPage2.Controls.Add(this.newCategoryLabel);
-            this.tabPage2.Controls.Add(this.newResetButton);
-            this.tabPage2.Controls.Add(this.newUnitOfMeasureLabel);
-            this.tabPage2.Controls.Add(this.newSaveButton);
-            this.tabPage2.Controls.Add(this.newAddCategoryButton);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(383, 300);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "New";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.findResetButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findResetButton.Location = new System.Drawing.Point(145, 58);
+            this.findResetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.findResetButton.Name = "findResetButton";
+            this.findResetButton.Size = new System.Drawing.Size(87, 30);
+            this.findResetButton.TabIndex = 5;
+            this.findResetButton.Text = "Reset";
+            this.findResetButton.UseVisualStyleBackColor = true;
             // 
-            // tabPage3
+            // findSearchButton
             // 
-            this.tabPage3.Controls.Add(this.detailProductLinkNameLabel2);
-            this.tabPage3.Controls.Add(this.detailProductLinkNameLabel1);
-            this.tabPage3.Controls.Add(this.detailMeasurementRateLabel2);
-            this.tabPage3.Controls.Add(this.detailWeightedLabel2);
-            this.tabPage3.Controls.Add(this.detailMeasurementRateLabel1);
-            this.tabPage3.Controls.Add(this.detailCategoryLabel2);
-            this.tabPage3.Controls.Add(this.detailWeightedLabel1);
-            this.tabPage3.Controls.Add(this.detailUnitOfMeasureLabel2);
-            this.tabPage3.Controls.Add(this.detailCategoryLabel1);
-            this.tabPage3.Controls.Add(this.detailUnitOfMeasureLabel1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(383, 300);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Detail";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // findProductLinkDataGridView
-            // 
-            this.findProductLinkDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.findProductLinkDataGridView.Location = new System.Drawing.Point(6, 95);
-            this.findProductLinkDataGridView.Name = "findProductLinkDataGridView";
-            this.findProductLinkDataGridView.Size = new System.Drawing.Size(371, 197);
-            this.findProductLinkDataGridView.TabIndex = 0;
+            this.findSearchButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findSearchButton.Location = new System.Drawing.Point(290, 58);
+            this.findSearchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.findSearchButton.Name = "findSearchButton";
+            this.findSearchButton.Size = new System.Drawing.Size(87, 30);
+            this.findSearchButton.TabIndex = 4;
+            this.findSearchButton.Text = "Search";
+            this.findSearchButton.UseVisualStyleBackColor = true;
+            this.findSearchButton.Click += new System.EventHandler(this.findSearchButton_Click);
             // 
             // findProductLinkNameTextBox
             // 
@@ -442,7 +415,8 @@
             this.findProductLinkNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.findProductLinkNameTextBox.Name = "findProductLinkNameTextBox";
             this.findProductLinkNameTextBox.Size = new System.Drawing.Size(232, 20);
-            this.findProductLinkNameTextBox.TabIndex = 66;
+            this.findProductLinkNameTextBox.TabIndex = 1;
+            this.findProductLinkNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.findProductLinkNameTextBox_KeyDown);
             // 
             // findWeightedCheckBox
             // 
@@ -452,9 +426,10 @@
             this.findWeightedCheckBox.Location = new System.Drawing.Point(3, 58);
             this.findWeightedCheckBox.Name = "findWeightedCheckBox";
             this.findWeightedCheckBox.Size = new System.Drawing.Size(97, 21);
-            this.findWeightedCheckBox.TabIndex = 67;
+            this.findWeightedCheckBox.TabIndex = 3;
             this.findWeightedCheckBox.Text = "Weighted ?";
             this.findWeightedCheckBox.UseVisualStyleBackColor = true;
+            this.findWeightedCheckBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.findWeightedCheckBox_KeyDown);
             // 
             // findProductLinkNameLabel
             // 
@@ -472,7 +447,8 @@
             this.findCategoryComboBox.Location = new System.Drawing.Point(145, 31);
             this.findCategoryComboBox.Name = "findCategoryComboBox";
             this.findCategoryComboBox.Size = new System.Drawing.Size(232, 21);
-            this.findCategoryComboBox.TabIndex = 68;
+            this.findCategoryComboBox.TabIndex = 2;
+            this.findCategoryComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.findCategoryComboBox_KeyDown);
             // 
             // label4
             // 
@@ -484,6 +460,66 @@
             this.label4.TabIndex = 70;
             this.label4.Text = "Category";
             // 
+            // findProductLinkDataGridView
+            // 
+            this.findProductLinkDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.findProductLinkDataGridView.Location = new System.Drawing.Point(6, 95);
+            this.findProductLinkDataGridView.Name = "findProductLinkDataGridView";
+            this.findProductLinkDataGridView.Size = new System.Drawing.Size(371, 197);
+            this.findProductLinkDataGridView.TabIndex = 0;
+            // 
+            // newTabPage
+            // 
+            this.newTabPage.Controls.Add(this.newProductLinkNameTextBox);
+            this.newTabPage.Controls.Add(this.newWeightedCheckBox);
+            this.newTabPage.Controls.Add(this.newProductLinkNameLabel);
+            this.newTabPage.Controls.Add(this.newCategoryComboBox);
+            this.newTabPage.Controls.Add(this.newMeasurementRateLabel);
+            this.newTabPage.Controls.Add(this.newUomComboBox);
+            this.newTabPage.Controls.Add(this.newMeasurementRateTextBox);
+            this.newTabPage.Controls.Add(this.newCategoryLabel);
+            this.newTabPage.Controls.Add(this.newResetButton);
+            this.newTabPage.Controls.Add(this.newUnitOfMeasureLabel);
+            this.newTabPage.Controls.Add(this.newSaveButton);
+            this.newTabPage.Controls.Add(this.newAddCategoryButton);
+            this.newTabPage.Location = new System.Drawing.Point(4, 22);
+            this.newTabPage.Name = "newTabPage";
+            this.newTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.newTabPage.Size = new System.Drawing.Size(383, 300);
+            this.newTabPage.TabIndex = 1;
+            this.newTabPage.Text = "New";
+            this.newTabPage.UseVisualStyleBackColor = true;
+            // 
+            // detailTabPage
+            // 
+            this.detailTabPage.Controls.Add(this.detailProductLinkNameLabel2);
+            this.detailTabPage.Controls.Add(this.detailProductLinkNameLabel1);
+            this.detailTabPage.Controls.Add(this.detailMeasurementRateLabel2);
+            this.detailTabPage.Controls.Add(this.detailWeightedLabel2);
+            this.detailTabPage.Controls.Add(this.detailMeasurementRateLabel1);
+            this.detailTabPage.Controls.Add(this.detailCategoryLabel2);
+            this.detailTabPage.Controls.Add(this.detailWeightedLabel1);
+            this.detailTabPage.Controls.Add(this.detailUnitOfMeasureLabel2);
+            this.detailTabPage.Controls.Add(this.detailCategoryLabel1);
+            this.detailTabPage.Controls.Add(this.detailUnitOfMeasureLabel1);
+            this.detailTabPage.Location = new System.Drawing.Point(4, 22);
+            this.detailTabPage.Name = "detailTabPage";
+            this.detailTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.detailTabPage.Size = new System.Drawing.Size(383, 300);
+            this.detailTabPage.TabIndex = 2;
+            this.detailTabPage.Text = "Detail";
+            this.detailTabPage.UseVisualStyleBackColor = true;
+            // 
+            // detailProductLinkNameLabel2
+            // 
+            this.detailProductLinkNameLabel2.AutoSize = true;
+            this.detailProductLinkNameLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailProductLinkNameLabel2.Location = new System.Drawing.Point(148, 3);
+            this.detailProductLinkNameLabel2.Name = "detailProductLinkNameLabel2";
+            this.detailProductLinkNameLabel2.Size = new System.Drawing.Size(118, 17);
+            this.detailProductLinkNameLabel2.TabIndex = 68;
+            this.detailProductLinkNameLabel2.Text = "Product Link Name";
+            // 
             // detailProductLinkNameLabel1
             // 
             this.detailProductLinkNameLabel1.AutoSize = true;
@@ -493,6 +529,26 @@
             this.detailProductLinkNameLabel1.Size = new System.Drawing.Size(126, 17);
             this.detailProductLinkNameLabel1.TabIndex = 68;
             this.detailProductLinkNameLabel1.Text = "Product Link Name";
+            // 
+            // detailMeasurementRateLabel2
+            // 
+            this.detailMeasurementRateLabel2.AutoSize = true;
+            this.detailMeasurementRateLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailMeasurementRateLabel2.Location = new System.Drawing.Point(148, 37);
+            this.detailMeasurementRateLabel2.Name = "detailMeasurementRateLabel2";
+            this.detailMeasurementRateLabel2.Size = new System.Drawing.Size(118, 17);
+            this.detailMeasurementRateLabel2.TabIndex = 67;
+            this.detailMeasurementRateLabel2.Text = "Measurement Rate";
+            // 
+            // detailWeightedLabel2
+            // 
+            this.detailWeightedLabel2.AutoSize = true;
+            this.detailWeightedLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailWeightedLabel2.Location = new System.Drawing.Point(148, 71);
+            this.detailWeightedLabel2.Name = "detailWeightedLabel2";
+            this.detailWeightedLabel2.Size = new System.Drawing.Size(63, 17);
+            this.detailWeightedLabel2.TabIndex = 69;
+            this.detailWeightedLabel2.Text = "Weighted";
             // 
             // detailMeasurementRateLabel1
             // 
@@ -504,25 +560,15 @@
             this.detailMeasurementRateLabel1.TabIndex = 67;
             this.detailMeasurementRateLabel1.Text = "Measurement Rate";
             // 
-            // detailCategoryLabel1
+            // detailCategoryLabel2
             // 
-            this.detailCategoryLabel1.AutoSize = true;
-            this.detailCategoryLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detailCategoryLabel1.Location = new System.Drawing.Point(6, 54);
-            this.detailCategoryLabel1.Name = "detailCategoryLabel1";
-            this.detailCategoryLabel1.Size = new System.Drawing.Size(64, 17);
-            this.detailCategoryLabel1.TabIndex = 69;
-            this.detailCategoryLabel1.Text = "Category";
-            // 
-            // detailUnitOfMeasureLabel1
-            // 
-            this.detailUnitOfMeasureLabel1.AutoSize = true;
-            this.detailUnitOfMeasureLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detailUnitOfMeasureLabel1.Location = new System.Drawing.Point(6, 20);
-            this.detailUnitOfMeasureLabel1.Name = "detailUnitOfMeasureLabel1";
-            this.detailUnitOfMeasureLabel1.Size = new System.Drawing.Size(107, 17);
-            this.detailUnitOfMeasureLabel1.TabIndex = 70;
-            this.detailUnitOfMeasureLabel1.Text = "Unit of Measure";
+            this.detailCategoryLabel2.AutoSize = true;
+            this.detailCategoryLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailCategoryLabel2.Location = new System.Drawing.Point(148, 54);
+            this.detailCategoryLabel2.Name = "detailCategoryLabel2";
+            this.detailCategoryLabel2.Size = new System.Drawing.Size(61, 17);
+            this.detailCategoryLabel2.TabIndex = 69;
+            this.detailCategoryLabel2.Text = "Category";
             // 
             // detailWeightedLabel1
             // 
@@ -544,67 +590,25 @@
             this.detailUnitOfMeasureLabel2.TabIndex = 70;
             this.detailUnitOfMeasureLabel2.Text = "Unit of Measure";
             // 
-            // detailCategoryLabel2
+            // detailCategoryLabel1
             // 
-            this.detailCategoryLabel2.AutoSize = true;
-            this.detailCategoryLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detailCategoryLabel2.Location = new System.Drawing.Point(148, 54);
-            this.detailCategoryLabel2.Name = "detailCategoryLabel2";
-            this.detailCategoryLabel2.Size = new System.Drawing.Size(61, 17);
-            this.detailCategoryLabel2.TabIndex = 69;
-            this.detailCategoryLabel2.Text = "Category";
+            this.detailCategoryLabel1.AutoSize = true;
+            this.detailCategoryLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailCategoryLabel1.Location = new System.Drawing.Point(6, 54);
+            this.detailCategoryLabel1.Name = "detailCategoryLabel1";
+            this.detailCategoryLabel1.Size = new System.Drawing.Size(64, 17);
+            this.detailCategoryLabel1.TabIndex = 69;
+            this.detailCategoryLabel1.Text = "Category";
             // 
-            // detailWeightedLabel2
+            // detailUnitOfMeasureLabel1
             // 
-            this.detailWeightedLabel2.AutoSize = true;
-            this.detailWeightedLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detailWeightedLabel2.Location = new System.Drawing.Point(148, 71);
-            this.detailWeightedLabel2.Name = "detailWeightedLabel2";
-            this.detailWeightedLabel2.Size = new System.Drawing.Size(63, 17);
-            this.detailWeightedLabel2.TabIndex = 69;
-            this.detailWeightedLabel2.Text = "Weighted";
-            // 
-            // detailMeasurementRateLabel2
-            // 
-            this.detailMeasurementRateLabel2.AutoSize = true;
-            this.detailMeasurementRateLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detailMeasurementRateLabel2.Location = new System.Drawing.Point(148, 37);
-            this.detailMeasurementRateLabel2.Name = "detailMeasurementRateLabel2";
-            this.detailMeasurementRateLabel2.Size = new System.Drawing.Size(118, 17);
-            this.detailMeasurementRateLabel2.TabIndex = 67;
-            this.detailMeasurementRateLabel2.Text = "Measurement Rate";
-            // 
-            // detailProductLinkNameLabel2
-            // 
-            this.detailProductLinkNameLabel2.AutoSize = true;
-            this.detailProductLinkNameLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.detailProductLinkNameLabel2.Location = new System.Drawing.Point(148, 3);
-            this.detailProductLinkNameLabel2.Name = "detailProductLinkNameLabel2";
-            this.detailProductLinkNameLabel2.Size = new System.Drawing.Size(118, 17);
-            this.detailProductLinkNameLabel2.TabIndex = 68;
-            this.detailProductLinkNameLabel2.Text = "Product Link Name";
-            // 
-            // findSearchButton
-            // 
-            this.findSearchButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findSearchButton.Location = new System.Drawing.Point(290, 58);
-            this.findSearchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.findSearchButton.Name = "findSearchButton";
-            this.findSearchButton.Size = new System.Drawing.Size(87, 30);
-            this.findSearchButton.TabIndex = 71;
-            this.findSearchButton.Text = "Search";
-            this.findSearchButton.UseVisualStyleBackColor = true;
-            // 
-            // findResetButton
-            // 
-            this.findResetButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findResetButton.Location = new System.Drawing.Point(145, 58);
-            this.findResetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.findResetButton.Name = "findResetButton";
-            this.findResetButton.Size = new System.Drawing.Size(87, 30);
-            this.findResetButton.TabIndex = 72;
-            this.findResetButton.Text = "Reset";
-            this.findResetButton.UseVisualStyleBackColor = true;
+            this.detailUnitOfMeasureLabel1.AutoSize = true;
+            this.detailUnitOfMeasureLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailUnitOfMeasureLabel1.Location = new System.Drawing.Point(6, 20);
+            this.detailUnitOfMeasureLabel1.Name = "detailUnitOfMeasureLabel1";
+            this.detailUnitOfMeasureLabel1.Size = new System.Drawing.Size(107, 17);
+            this.detailUnitOfMeasureLabel1.TabIndex = 70;
+            this.detailUnitOfMeasureLabel1.Text = "Unit of Measure";
             // 
             // productGroupBox
             // 
@@ -635,7 +639,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 380);
             this.Controls.Add(this.productGroupBox);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.productLinkTabControl);
             this.Controls.Add(this.productLinkLabel);
             this.Controls.Add(this.productLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -644,14 +648,14 @@
             this.Name = "ProductAndProductLinkNewOrEdit";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProductAndProductLinkNewOrEdit";
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage3.PerformLayout();
+            this.productLinkTabControl.ResumeLayout(false);
+            this.findTabPage.ResumeLayout(false);
+            this.findTabPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.findProductLinkDataGridView)).EndInit();
+            this.newTabPage.ResumeLayout(false);
+            this.newTabPage.PerformLayout();
+            this.detailTabPage.ResumeLayout(false);
+            this.detailTabPage.PerformLayout();
             this.productGroupBox.ResumeLayout(false);
             this.productGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -688,8 +692,8 @@
         private System.Windows.Forms.TextBox newProductLinkNameTextBox;
         private System.Windows.Forms.Label newMeasurementRateLabel;
         private System.Windows.Forms.Label newProductLinkNameLabel;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabControl productLinkTabControl;
+        private System.Windows.Forms.TabPage findTabPage;
         private System.Windows.Forms.Button findResetButton;
         private System.Windows.Forms.Button findSearchButton;
         private System.Windows.Forms.TextBox findProductLinkNameTextBox;
@@ -698,8 +702,8 @@
         private System.Windows.Forms.ComboBox findCategoryComboBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView findProductLinkDataGridView;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage newTabPage;
+        private System.Windows.Forms.TabPage detailTabPage;
         private System.Windows.Forms.Label detailProductLinkNameLabel2;
         private System.Windows.Forms.Label detailProductLinkNameLabel1;
         private System.Windows.Forms.Label detailMeasurementRateLabel2;
