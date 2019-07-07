@@ -105,13 +105,42 @@ namespace MainUI.Product
         private void PopulateDGVWithSearchResults()
         {
             findProductLinkDataGridView.DataSource = this.searchResultProductLinks;
+            FormatFindDGVHeaders();
+        }
+
+        private void FormatFindDGVHeaders()
+        {
+            HideColumnsFromDGV();
+            ChangeColumnOrderOfDGV();
+            ChangeColumnNames();
             findProductLinkDataGridView.AutoResizeColumns();
+        }
+
+        private void HideColumnsFromDGV()
+        {
+            //  Hide columns that shouldn't be displayed in the UI 
             findProductLinkDataGridView.Columns["Id"].Visible = false;
             findProductLinkDataGridView.Columns["CategoryId"].Visible = false;
             findProductLinkDataGridView.Columns["Deleted"].Visible = false;
         }
 
-        
+        private void ChangeColumnOrderOfDGV()
+        {
+            findProductLinkDataGridView.Columns["Name"].DisplayIndex = 0;
+            findProductLinkDataGridView.Columns["Weighted"].DisplayIndex = 1;
+            findProductLinkDataGridView.Columns["CategoryName"].DisplayIndex = 2;
+            findProductLinkDataGridView.Columns["UoM"].DisplayIndex = 3;
+            findProductLinkDataGridView.Columns["MeasurementRate"].DisplayIndex = 4;
+        }
+
+        private void ChangeColumnNames()
+        {
+            findProductLinkDataGridView.Columns["Name"].HeaderText = "Name";
+            findProductLinkDataGridView.Columns["Weighted"].HeaderText = "Weighted";
+            findProductLinkDataGridView.Columns["CategoryName"].HeaderText = "Category" + Environment.NewLine + "Name";
+            findProductLinkDataGridView.Columns["UoM"].HeaderText = "Unit of" + Environment.NewLine + "Measure";
+            findProductLinkDataGridView.Columns["MeasurementRate"].HeaderText = "Measurement " + Environment.NewLine + "Rate";
+        }
 
         //  The user clicks add new product on the product search form. This form loads
         //  TODO: Update click event in the product search form to show the new product and product link page

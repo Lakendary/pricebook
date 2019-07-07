@@ -462,9 +462,16 @@
             // 
             // findProductLinkDataGridView
             // 
+            this.findProductLinkDataGridView.AllowUserToAddRows = false;
+            this.findProductLinkDataGridView.AllowUserToDeleteRows = false;
             this.findProductLinkDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.findProductLinkDataGridView.GridColor = System.Drawing.SystemColors.Control;
             this.findProductLinkDataGridView.Location = new System.Drawing.Point(6, 95);
+            this.findProductLinkDataGridView.MultiSelect = false;
             this.findProductLinkDataGridView.Name = "findProductLinkDataGridView";
+            this.findProductLinkDataGridView.ReadOnly = true;
+            this.findProductLinkDataGridView.RowHeadersVisible = false;
+            this.findProductLinkDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.findProductLinkDataGridView.Size = new System.Drawing.Size(371, 197);
             this.findProductLinkDataGridView.TabIndex = 0;
             // 

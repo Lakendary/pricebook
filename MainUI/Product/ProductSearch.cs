@@ -238,7 +238,6 @@ namespace MainUI.Product
             {
                 AddNewProduct();
             }
-
         }
 
         private void productSearchDataGridView_KeyDown(object sender, KeyEventArgs e)
