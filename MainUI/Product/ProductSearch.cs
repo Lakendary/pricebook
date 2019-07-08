@@ -67,9 +67,7 @@ namespace MainUI.Product
         //  3. Add Product To Invoice Button Click
         private void addProductToInvoiceButton_Click(object sender, EventArgs e)
         {
-
             AddProductToInvoice();
-            
         }
         
         //  Other Event Methods

@@ -1,4 +1,6 @@
-﻿using PriceBookClassLibrary;
+﻿using FluentValidation.Results;
+using PriceBookClassLibrary;
+using PriceBookClassLibrary.Validators;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +13,7 @@ using System.Windows.Forms;
 
 namespace MainUI.Product
 {
-    public partial class ProductAndProductLinkNewOrEdit : Form
+    public partial class NewProduct : Form
     {
         //******************************************************************************************************
         //  Index
@@ -30,7 +32,7 @@ namespace MainUI.Product
         //  ProductModel existingProduct = new ProductModel();
         //  bool isNewProduct = true;
 
-        public ProductAndProductLinkNewOrEdit()
+        public NewProduct()
         {
             InitializeComponent();
             SetDefaultFormLayout();
@@ -41,6 +43,37 @@ namespace MainUI.Product
             productGroupBox.Enabled = false;
             productLinkTabControl.SelectedTab = findTabPage;
             ActiveControl = findProductLinkNameTextBox;
+            LoadNewCategoryComboBox();
+            LoadFindCategoryComboBox();
+        }
+
+        private void LoadNewCategoryComboBox()
+        {
+            newCategoryComboBox.DataSource = SqliteDACategory.GetSubcategoryOnly();
+            newCategoryComboBox.DisplayMember = "Name";
+            newCategoryComboBox.ValueMember = "Id";
+        }
+
+        private void LoadFindCategoryComboBox()
+        {
+            List<CategoryModel> categories = new List<CategoryModel>();
+
+            //Combo box selection option. If the user wants to search for a product in all categories,
+            //<ALL> can be chosen.
+            CategoryModel category = new CategoryModel();
+            category.Id = 0;
+            category.Name = "<ALL>";
+
+            //Load Combo Boxes. Add <ALL> option at the beginning of list.
+            categories = SqliteDACategory.GetSubcategoryOnly();
+            categories.Insert(0, category);
+            findCategoryComboBox.DataSource = categories;
+            findCategoryComboBox.ValueMember = "Id";
+            findCategoryComboBox.DisplayMember = "Name";
+
+            //Default Selected Index
+            findCategoryComboBox.SelectedIndex = 0;
+            findCategoryComboBox.SelectedIndex = 0;
         }
 
         private void findProductLinkNameTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -49,6 +82,10 @@ namespace MainUI.Product
             {
                 //  Search for product links
                 SearchForProductLinks();
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProductLink();
             }
         }
 
@@ -59,6 +96,10 @@ namespace MainUI.Product
                 //  Search for product links
                 SearchForProductLinks();
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProductLink();
+            }
         }
 
         private void findWeightedCheckBox_KeyDown(object sender, KeyEventArgs e)
@@ -68,11 +109,21 @@ namespace MainUI.Product
                 //  Search for product links
                 SearchForProductLinks();
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProductLink();
+            }
         }
 
         private void findSearchButton_Click(object sender, EventArgs e)
         {
             SearchForProductLinks();
+        }
+
+        private void AddNewProductLink()
+        {
+            productLinkTabControl.SelectedTab = newTabPage;
+            ActiveControl = newProductLinkNameTextBox;
         }
 
         private void SearchForProductLinks()
@@ -152,21 +203,133 @@ namespace MainUI.Product
         {
             if (e.KeyCode == Keys.Enter)
             {
-                //  Select ProductLink
-                SelectProductLink();
+                SetProductLink();
             }
         }
 
-        private void SelectProductLink()
+        private void SetProductLink()
         {
-            throw new NotImplementedException();
+            ProductLinkModel productLink = new ProductLinkModel();
+            productLink = GetProductLink(productLink);
+            DisplaySelectedProductLink(productLink);
+            productGroupBox.Enabled = true;
+        }
+
+        private ProductLinkModel GetProductLink(ProductLinkModel productLink)
+        {
+            //  Get Product Link Id from selected row in data grid view
+            int productLinkId = 0;
+            productLinkId = Convert.ToInt32(findProductLinkDataGridView.CurrentRow.Cells["Id"].Value);
+            productLink = SqliteDAProductLink.GetProductLinkById(productLinkId);
+            return productLink;
+        }
+
+        private void DisplaySelectedProductLink(ProductLinkModel productLink)
+        {
+            detailCategoryLabel2.Text = productLink.CategoryName;
+            detailMeasurementRateLabel2.Text = productLink.MeasurementRate.ToString();
+            detailProductLinkNameLabel2.Text = productLink.Name;
+            detailUnitOfMeasureLabel2.Text = productLink.UoM;
+            detailWeightedLabel2.Text = productLink.Weighted;
+            productLinkTabControl.SelectedTab = detailTabPage;
+        }
+
+        private void findResetButton_Click(object sender, EventArgs e)
+        {
+            ClearProductSearchToBlankValues();
+        }
+
+        private void ClearProductSearchToBlankValues()
+        {
+            findCategoryComboBox.SelectedIndex = 0;
+            findProductLinkNameTextBox.ResetText();
+            findWeightedCheckBox.Checked = false;
+            ActiveControl = findProductLinkNameTextBox;
+        }
+
+        private void selectButton_Click(object sender, EventArgs e)
+        {
+            SetProductLink();
+        }
+
+        private void newSaveButton_Click(object sender, EventArgs e)
+        {
+            SaveNewProductLinkToDb();
+        }
+
+        private void SaveNewProductLinkToDb()
+        {
+            ProductLinkModel productLink = new ProductLinkModel();
+            productLink = SetNewProductLinkInformation(productLink);
+            if(ValidateProductLinkInformation(productLink) == true)
+            {
+                SaveProductLinkToDb(productLink);
+            }
+            DisplaySelectedProductLink(productLink);
+            productGroupBox.Enabled = true;
+        }
+
+        private ProductLinkModel SetNewProductLinkInformation(ProductLinkModel productLink)
+        {
+            productLink.CategoryId = Convert.ToInt32(newCategoryComboBox.SelectedValue);
+            if (int.TryParse(newMeasurementRateTextBox.Text, out int result))
+            {
+                productLink.MeasurementRate = result;
+            }
+            productLink.Name = newProductLinkNameTextBox.Text;
+            productLink.UoM = newUomComboBox.Text;
+            if (newWeightedCheckBox.CheckState == CheckState.Checked)
+            {
+                productLink.Weighted = "Weighted";
+            }
+            else if (newWeightedCheckBox.CheckState == CheckState.Unchecked)
+            {
+                productLink.Weighted = "Pre-Packaged";
+            }
+
+            return productLink;
+        }
+        //  This checks whether the user's input is valid before committing anything to the database.
+        private bool ValidateProductLinkInformation(ProductLinkModel productLink)
+        {
+            // Validate my data and save in the results variable
+            ProductLinkValidator productLinkValidator = new ProductLinkValidator();
+            var results = productLinkValidator.Validate(productLink);
+
+            // Check if the validator found any validation errors. 
+            if (results.IsValid == false)
+            {
+                foreach (ValidationFailure failure in results.Errors)
+                {
+                    MessageBox.Show($"{ failure.ErrorMessage }", "Product Link Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void SaveProductLinkToDb(ProductLinkModel productLink)
+        {
+            if (SqliteDAProductLink.SaveProductLink(productLink) == true)
+            {
+                DialogResult dialogResult = MessageBox.Show("New product link created successfully", "New Product Link",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Something went wrong. New product link could not be saved.\nCheck the error log for more information.", "New Product Link Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         //  The user clicks add new product on the product search form. This form loads
-        //  TODO: Update click event in the product search form to show the new product and product link page
-
-        //  TODO: The product group box should be disabled until a product link is selected
-        //  TODO: Show the user the product link search controls in the product link find tab page
 
         //  1. User searches for a product link
         //  a. User types in the search term in the product link description text box

@@ -165,7 +165,7 @@ namespace MainUI.ProductLink
             {
                 foreach (ValidationFailure failure in results.Errors)
                 {
-                    MessageBox.Show($"{ failure.ErrorMessage }", "Product Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{ failure.ErrorMessage }", "Product Link Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return false;
             }

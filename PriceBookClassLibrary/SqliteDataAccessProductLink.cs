@@ -112,6 +112,7 @@ namespace PriceBookClassLibrary
         {
             //Default string
             string output = "SELECT " +
+                    "ProductLink.Id, " +
                     "ProductLink.Name, " +
                     "ProductLink.UoM, " +
                     "ProductLink.Weighted, " +

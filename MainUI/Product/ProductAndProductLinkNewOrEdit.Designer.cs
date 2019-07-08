@@ -1,6 +1,6 @@
 ﻿namespace MainUI.Product
 {
-    partial class ProductAndProductLinkNewOrEdit
+    partial class NewProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductAndProductLinkNewOrEdit));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewProduct));
             this.barcodeComboBox = new System.Windows.Forms.ComboBox();
             this.brandNameLabel = new System.Windows.Forms.Label();
             this.addBarcodeButton = new System.Windows.Forms.Button();
@@ -58,6 +58,7 @@
             this.newProductLinkNameLabel = new System.Windows.Forms.Label();
             this.productLinkTabControl = new System.Windows.Forms.TabControl();
             this.findTabPage = new System.Windows.Forms.TabPage();
+            this.selectButton = new System.Windows.Forms.Button();
             this.findResetButton = new System.Windows.Forms.Button();
             this.findSearchButton = new System.Windows.Forms.Button();
             this.findProductLinkNameTextBox = new System.Windows.Forms.TextBox();
@@ -90,16 +91,16 @@
             // barcodeComboBox
             // 
             this.barcodeComboBox.FormattingEnabled = true;
-            this.barcodeComboBox.Location = new System.Drawing.Point(143, 104);
+            this.barcodeComboBox.Location = new System.Drawing.Point(174, 116);
             this.barcodeComboBox.Name = "barcodeComboBox";
-            this.barcodeComboBox.Size = new System.Drawing.Size(161, 21);
+            this.barcodeComboBox.Size = new System.Drawing.Size(183, 25);
             this.barcodeComboBox.TabIndex = 53;
             // 
             // brandNameLabel
             // 
             this.brandNameLabel.AutoSize = true;
             this.brandNameLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.brandNameLabel.Location = new System.Drawing.Point(6, 49);
+            this.brandNameLabel.Location = new System.Drawing.Point(8, 54);
             this.brandNameLabel.Name = "brandNameLabel";
             this.brandNameLabel.Size = new System.Drawing.Size(84, 17);
             this.brandNameLabel.TabIndex = 52;
@@ -109,7 +110,7 @@
             // 
             this.addBarcodeButton.Enabled = false;
             this.addBarcodeButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addBarcodeButton.Location = new System.Drawing.Point(341, 103);
+            this.addBarcodeButton.Location = new System.Drawing.Point(394, 115);
             this.addBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addBarcodeButton.Name = "addBarcodeButton";
             this.addBarcodeButton.Size = new System.Drawing.Size(25, 25);
@@ -121,7 +122,7 @@
             // 
             this.deleteBarcodeButton.Enabled = false;
             this.deleteBarcodeButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteBarcodeButton.Location = new System.Drawing.Point(310, 103);
+            this.deleteBarcodeButton.Location = new System.Drawing.Point(363, 115);
             this.deleteBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.deleteBarcodeButton.Name = "deleteBarcodeButton";
             this.deleteBarcodeButton.Size = new System.Drawing.Size(25, 25);
@@ -132,7 +133,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(279, 136);
+            this.saveButton.Location = new System.Drawing.Point(332, 148);
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
@@ -143,7 +144,7 @@
             // resetButton
             // 
             this.resetButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetButton.Location = new System.Drawing.Point(9, 136);
+            this.resetButton.Location = new System.Drawing.Point(11, 148);
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
@@ -155,7 +156,7 @@
             // 
             this.productLabel.AutoSize = true;
             this.productLabel.Font = new System.Drawing.Font("Segoe UI", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productLabel.Location = new System.Drawing.Point(421, 9);
+            this.productLabel.Location = new System.Drawing.Point(442, 9);
             this.productLabel.Name = "productLabel";
             this.productLabel.Size = new System.Drawing.Size(91, 30);
             this.productLabel.TabIndex = 47;
@@ -163,33 +164,33 @@
             // 
             // brandNameTextBox
             // 
-            this.brandNameTextBox.Location = new System.Drawing.Point(143, 49);
+            this.brandNameTextBox.Location = new System.Drawing.Point(174, 51);
             this.brandNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.brandNameTextBox.Name = "brandNameTextBox";
-            this.brandNameTextBox.Size = new System.Drawing.Size(223, 20);
+            this.brandNameTextBox.Size = new System.Drawing.Size(245, 25);
             this.brandNameTextBox.TabIndex = 38;
             // 
             // packSizeTextBox
             // 
-            this.packSizeTextBox.Location = new System.Drawing.Point(143, 77);
+            this.packSizeTextBox.Location = new System.Drawing.Point(174, 84);
             this.packSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.packSizeTextBox.Name = "packSizeTextBox";
-            this.packSizeTextBox.Size = new System.Drawing.Size(161, 20);
+            this.packSizeTextBox.Size = new System.Drawing.Size(203, 25);
             this.packSizeTextBox.TabIndex = 39;
             // 
             // productDescriptionTextBox
             // 
-            this.productDescriptionTextBox.Location = new System.Drawing.Point(143, 16);
+            this.productDescriptionTextBox.Location = new System.Drawing.Point(174, 18);
             this.productDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productDescriptionTextBox.Name = "productDescriptionTextBox";
-            this.productDescriptionTextBox.Size = new System.Drawing.Size(223, 20);
+            this.productDescriptionTextBox.Size = new System.Drawing.Size(245, 25);
             this.productDescriptionTextBox.TabIndex = 37;
             // 
             // barcodeLabel
             // 
             this.barcodeLabel.AutoSize = true;
             this.barcodeLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.barcodeLabel.Location = new System.Drawing.Point(8, 104);
+            this.barcodeLabel.Location = new System.Drawing.Point(8, 119);
             this.barcodeLabel.Name = "barcodeLabel";
             this.barcodeLabel.Size = new System.Drawing.Size(57, 17);
             this.barcodeLabel.TabIndex = 44;
@@ -199,7 +200,7 @@
             // 
             this.uomLabel.AutoSize = true;
             this.uomLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uomLabel.Location = new System.Drawing.Point(310, 77);
+            this.uomLabel.Location = new System.Drawing.Point(383, 87);
             this.uomLabel.Name = "uomLabel";
             this.uomLabel.Size = new System.Drawing.Size(36, 17);
             this.uomLabel.TabIndex = 43;
@@ -209,7 +210,7 @@
             // 
             this.packSizeLabel.AutoSize = true;
             this.packSizeLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.packSizeLabel.Location = new System.Drawing.Point(8, 77);
+            this.packSizeLabel.Location = new System.Drawing.Point(8, 87);
             this.packSizeLabel.Name = "packSizeLabel";
             this.packSizeLabel.Size = new System.Drawing.Size(64, 17);
             this.packSizeLabel.TabIndex = 45;
@@ -219,7 +220,7 @@
             // 
             this.productDescriptionLabel.AutoSize = true;
             this.productDescriptionLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.productDescriptionLabel.Location = new System.Drawing.Point(6, 16);
+            this.productDescriptionLabel.Location = new System.Drawing.Point(8, 21);
             this.productDescriptionLabel.Name = "productDescriptionLabel";
             this.productDescriptionLabel.Size = new System.Drawing.Size(131, 17);
             this.productDescriptionLabel.TabIndex = 46;
@@ -229,20 +230,20 @@
             // 
             this.newWeightedCheckBox.AutoSize = true;
             this.newWeightedCheckBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newWeightedCheckBox.Location = new System.Drawing.Point(283, 31);
+            this.newWeightedCheckBox.Location = new System.Drawing.Point(314, 43);
             this.newWeightedCheckBox.Name = "newWeightedCheckBox";
             this.newWeightedCheckBox.Size = new System.Drawing.Size(97, 21);
-            this.newWeightedCheckBox.TabIndex = 56;
+            this.newWeightedCheckBox.TabIndex = 10;
             this.newWeightedCheckBox.Text = "Weighted ?";
             this.newWeightedCheckBox.UseVisualStyleBackColor = true;
             // 
             // newCategoryComboBox
             // 
             this.newCategoryComboBox.FormattingEnabled = true;
-            this.newCategoryComboBox.Location = new System.Drawing.Point(148, 87);
+            this.newCategoryComboBox.Location = new System.Drawing.Point(179, 103);
             this.newCategoryComboBox.Name = "newCategoryComboBox";
-            this.newCategoryComboBox.Size = new System.Drawing.Size(201, 21);
-            this.newCategoryComboBox.TabIndex = 58;
+            this.newCategoryComboBox.Size = new System.Drawing.Size(201, 25);
+            this.newCategoryComboBox.TabIndex = 12;
             // 
             // newUomComboBox
             // 
@@ -252,16 +253,16 @@
             "ml",
             "ea",
             "cm"});
-            this.newUomComboBox.Location = new System.Drawing.Point(148, 31);
+            this.newUomComboBox.Location = new System.Drawing.Point(179, 39);
             this.newUomComboBox.Name = "newUomComboBox";
-            this.newUomComboBox.Size = new System.Drawing.Size(129, 21);
-            this.newUomComboBox.TabIndex = 55;
+            this.newUomComboBox.Size = new System.Drawing.Size(129, 25);
+            this.newUomComboBox.TabIndex = 9;
             // 
             // newCategoryLabel
             // 
             this.newCategoryLabel.AutoSize = true;
             this.newCategoryLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newCategoryLabel.Location = new System.Drawing.Point(6, 87);
+            this.newCategoryLabel.Location = new System.Drawing.Point(6, 108);
             this.newCategoryLabel.Name = "newCategoryLabel";
             this.newCategoryLabel.Size = new System.Drawing.Size(64, 17);
             this.newCategoryLabel.TabIndex = 65;
@@ -271,7 +272,7 @@
             // 
             this.newUnitOfMeasureLabel.AutoSize = true;
             this.newUnitOfMeasureLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newUnitOfMeasureLabel.Location = new System.Drawing.Point(6, 32);
+            this.newUnitOfMeasureLabel.Location = new System.Drawing.Point(6, 44);
             this.newUnitOfMeasureLabel.Name = "newUnitOfMeasureLabel";
             this.newUnitOfMeasureLabel.Size = new System.Drawing.Size(107, 17);
             this.newUnitOfMeasureLabel.TabIndex = 66;
@@ -280,34 +281,35 @@
             // newAddCategoryButton
             // 
             this.newAddCategoryButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newAddCategoryButton.Location = new System.Drawing.Point(355, 87);
+            this.newAddCategoryButton.Location = new System.Drawing.Point(386, 104);
             this.newAddCategoryButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.newAddCategoryButton.Name = "newAddCategoryButton";
             this.newAddCategoryButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.newAddCategoryButton.Size = new System.Drawing.Size(25, 25);
-            this.newAddCategoryButton.TabIndex = 59;
+            this.newAddCategoryButton.TabIndex = 13;
             this.newAddCategoryButton.Text = "+";
             this.newAddCategoryButton.UseVisualStyleBackColor = true;
             // 
             // newSaveButton
             // 
             this.newSaveButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newSaveButton.Location = new System.Drawing.Point(290, 120);
+            this.newSaveButton.Location = new System.Drawing.Point(324, 137);
             this.newSaveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.newSaveButton.Name = "newSaveButton";
             this.newSaveButton.Size = new System.Drawing.Size(87, 30);
-            this.newSaveButton.TabIndex = 60;
+            this.newSaveButton.TabIndex = 14;
             this.newSaveButton.Text = "Save";
             this.newSaveButton.UseVisualStyleBackColor = true;
+            this.newSaveButton.Click += new System.EventHandler(this.newSaveButton_Click);
             // 
             // newResetButton
             // 
             this.newResetButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newResetButton.Location = new System.Drawing.Point(197, 120);
+            this.newResetButton.Location = new System.Drawing.Point(179, 137);
             this.newResetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.newResetButton.Name = "newResetButton";
             this.newResetButton.Size = new System.Drawing.Size(87, 30);
-            this.newResetButton.TabIndex = 61;
+            this.newResetButton.TabIndex = 15;
             this.newResetButton.Text = "Reset";
             this.newResetButton.UseVisualStyleBackColor = true;
             // 
@@ -323,25 +325,25 @@
             // 
             // newMeasurementRateTextBox
             // 
-            this.newMeasurementRateTextBox.Location = new System.Drawing.Point(148, 59);
+            this.newMeasurementRateTextBox.Location = new System.Drawing.Point(179, 71);
             this.newMeasurementRateTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.newMeasurementRateTextBox.Name = "newMeasurementRateTextBox";
-            this.newMeasurementRateTextBox.Size = new System.Drawing.Size(232, 20);
-            this.newMeasurementRateTextBox.TabIndex = 57;
+            this.newMeasurementRateTextBox.Size = new System.Drawing.Size(232, 25);
+            this.newMeasurementRateTextBox.TabIndex = 11;
             // 
             // newProductLinkNameTextBox
             // 
-            this.newProductLinkNameTextBox.Location = new System.Drawing.Point(148, 4);
+            this.newProductLinkNameTextBox.Location = new System.Drawing.Point(179, 7);
             this.newProductLinkNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.newProductLinkNameTextBox.Name = "newProductLinkNameTextBox";
-            this.newProductLinkNameTextBox.Size = new System.Drawing.Size(232, 20);
-            this.newProductLinkNameTextBox.TabIndex = 54;
+            this.newProductLinkNameTextBox.Size = new System.Drawing.Size(232, 25);
+            this.newProductLinkNameTextBox.TabIndex = 8;
             // 
             // newMeasurementRateLabel
             // 
             this.newMeasurementRateLabel.AutoSize = true;
             this.newMeasurementRateLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newMeasurementRateLabel.Location = new System.Drawing.Point(6, 59);
+            this.newMeasurementRateLabel.Location = new System.Drawing.Point(6, 74);
             this.newMeasurementRateLabel.Name = "newMeasurementRateLabel";
             this.newMeasurementRateLabel.Size = new System.Drawing.Size(123, 17);
             this.newMeasurementRateLabel.TabIndex = 62;
@@ -351,7 +353,7 @@
             // 
             this.newProductLinkNameLabel.AutoSize = true;
             this.newProductLinkNameLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.newProductLinkNameLabel.Location = new System.Drawing.Point(6, 4);
+            this.newProductLinkNameLabel.Location = new System.Drawing.Point(6, 10);
             this.newProductLinkNameLabel.Name = "newProductLinkNameLabel";
             this.newProductLinkNameLabel.Size = new System.Drawing.Size(126, 17);
             this.newProductLinkNameLabel.TabIndex = 63;
@@ -362,14 +364,16 @@
             this.productLinkTabControl.Controls.Add(this.findTabPage);
             this.productLinkTabControl.Controls.Add(this.newTabPage);
             this.productLinkTabControl.Controls.Add(this.detailTabPage);
+            this.productLinkTabControl.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.productLinkTabControl.Location = new System.Drawing.Point(12, 42);
             this.productLinkTabControl.Name = "productLinkTabControl";
             this.productLinkTabControl.SelectedIndex = 0;
-            this.productLinkTabControl.Size = new System.Drawing.Size(391, 326);
+            this.productLinkTabControl.Size = new System.Drawing.Size(425, 340);
             this.productLinkTabControl.TabIndex = 67;
             // 
             // findTabPage
             // 
+            this.findTabPage.Controls.Add(this.selectButton);
             this.findTabPage.Controls.Add(this.findResetButton);
             this.findTabPage.Controls.Add(this.findSearchButton);
             this.findTabPage.Controls.Add(this.findProductLinkNameTextBox);
@@ -378,29 +382,43 @@
             this.findTabPage.Controls.Add(this.findCategoryComboBox);
             this.findTabPage.Controls.Add(this.label4);
             this.findTabPage.Controls.Add(this.findProductLinkDataGridView);
-            this.findTabPage.Location = new System.Drawing.Point(4, 22);
+            this.findTabPage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.findTabPage.Location = new System.Drawing.Point(4, 26);
             this.findTabPage.Name = "findTabPage";
             this.findTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.findTabPage.Size = new System.Drawing.Size(383, 300);
+            this.findTabPage.Size = new System.Drawing.Size(417, 310);
             this.findTabPage.TabIndex = 0;
             this.findTabPage.Text = "Find";
             this.findTabPage.UseVisualStyleBackColor = true;
             // 
+            // selectButton
+            // 
+            this.selectButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectButton.Location = new System.Drawing.Point(324, 58);
+            this.selectButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.selectButton.Name = "selectButton";
+            this.selectButton.Size = new System.Drawing.Size(87, 30);
+            this.selectButton.TabIndex = 7;
+            this.selectButton.Text = "Select";
+            this.selectButton.UseVisualStyleBackColor = true;
+            this.selectButton.Click += new System.EventHandler(this.selectButton_Click);
+            // 
             // findResetButton
             // 
             this.findResetButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findResetButton.Location = new System.Drawing.Point(145, 58);
+            this.findResetButton.Location = new System.Drawing.Point(231, 58);
             this.findResetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.findResetButton.Name = "findResetButton";
             this.findResetButton.Size = new System.Drawing.Size(87, 30);
             this.findResetButton.TabIndex = 5;
             this.findResetButton.Text = "Reset";
             this.findResetButton.UseVisualStyleBackColor = true;
+            this.findResetButton.Click += new System.EventHandler(this.findResetButton_Click);
             // 
             // findSearchButton
             // 
             this.findSearchButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.findSearchButton.Location = new System.Drawing.Point(290, 58);
+            this.findSearchButton.Location = new System.Drawing.Point(138, 58);
             this.findSearchButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.findSearchButton.Name = "findSearchButton";
             this.findSearchButton.Size = new System.Drawing.Size(87, 30);
@@ -411,10 +429,10 @@
             // 
             // findProductLinkNameTextBox
             // 
-            this.findProductLinkNameTextBox.Location = new System.Drawing.Point(145, 4);
+            this.findProductLinkNameTextBox.Location = new System.Drawing.Point(138, 4);
             this.findProductLinkNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.findProductLinkNameTextBox.Name = "findProductLinkNameTextBox";
-            this.findProductLinkNameTextBox.Size = new System.Drawing.Size(232, 20);
+            this.findProductLinkNameTextBox.Size = new System.Drawing.Size(273, 25);
             this.findProductLinkNameTextBox.TabIndex = 1;
             this.findProductLinkNameTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.findProductLinkNameTextBox_KeyDown);
             // 
@@ -444,9 +462,9 @@
             // findCategoryComboBox
             // 
             this.findCategoryComboBox.FormattingEnabled = true;
-            this.findCategoryComboBox.Location = new System.Drawing.Point(145, 31);
+            this.findCategoryComboBox.Location = new System.Drawing.Point(138, 31);
             this.findCategoryComboBox.Name = "findCategoryComboBox";
-            this.findCategoryComboBox.Size = new System.Drawing.Size(232, 21);
+            this.findCategoryComboBox.Size = new System.Drawing.Size(273, 25);
             this.findCategoryComboBox.TabIndex = 2;
             this.findCategoryComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.findCategoryComboBox_KeyDown);
             // 
@@ -472,8 +490,8 @@
             this.findProductLinkDataGridView.ReadOnly = true;
             this.findProductLinkDataGridView.RowHeadersVisible = false;
             this.findProductLinkDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.findProductLinkDataGridView.Size = new System.Drawing.Size(371, 197);
-            this.findProductLinkDataGridView.TabIndex = 0;
+            this.findProductLinkDataGridView.Size = new System.Drawing.Size(405, 209);
+            this.findProductLinkDataGridView.TabIndex = 6;
             this.findProductLinkDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.findProductLinkDataGridView_KeyDown);
             // 
             // newTabPage
@@ -490,10 +508,10 @@
             this.newTabPage.Controls.Add(this.newUnitOfMeasureLabel);
             this.newTabPage.Controls.Add(this.newSaveButton);
             this.newTabPage.Controls.Add(this.newAddCategoryButton);
-            this.newTabPage.Location = new System.Drawing.Point(4, 22);
+            this.newTabPage.Location = new System.Drawing.Point(4, 26);
             this.newTabPage.Name = "newTabPage";
             this.newTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.newTabPage.Size = new System.Drawing.Size(383, 300);
+            this.newTabPage.Size = new System.Drawing.Size(417, 310);
             this.newTabPage.TabIndex = 1;
             this.newTabPage.Text = "New";
             this.newTabPage.UseVisualStyleBackColor = true;
@@ -510,10 +528,10 @@
             this.detailTabPage.Controls.Add(this.detailUnitOfMeasureLabel2);
             this.detailTabPage.Controls.Add(this.detailCategoryLabel1);
             this.detailTabPage.Controls.Add(this.detailUnitOfMeasureLabel1);
-            this.detailTabPage.Location = new System.Drawing.Point(4, 22);
+            this.detailTabPage.Location = new System.Drawing.Point(4, 26);
             this.detailTabPage.Name = "detailTabPage";
             this.detailTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.detailTabPage.Size = new System.Drawing.Size(383, 300);
+            this.detailTabPage.Size = new System.Drawing.Size(417, 310);
             this.detailTabPage.TabIndex = 2;
             this.detailTabPage.Text = "Detail";
             this.detailTabPage.UseVisualStyleBackColor = true;
@@ -633,19 +651,20 @@
             this.productGroupBox.Controls.Add(this.brandNameTextBox);
             this.productGroupBox.Controls.Add(this.saveButton);
             this.productGroupBox.Controls.Add(this.resetButton);
-            this.productGroupBox.Location = new System.Drawing.Point(415, 64);
+            this.productGroupBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.productGroupBox.Location = new System.Drawing.Point(447, 57);
             this.productGroupBox.Name = "productGroupBox";
-            this.productGroupBox.Size = new System.Drawing.Size(373, 176);
+            this.productGroupBox.Size = new System.Drawing.Size(425, 191);
             this.productGroupBox.TabIndex = 68;
             this.productGroupBox.TabStop = false;
             this.productGroupBox.Text = "New Product";
             // 
-            // ProductAndProductLinkNewOrEdit
+            // NewProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 380);
+            this.ClientSize = new System.Drawing.Size(884, 386);
             this.Controls.Add(this.productGroupBox);
             this.Controls.Add(this.productLinkTabControl);
             this.Controls.Add(this.productLinkLabel);
@@ -653,9 +672,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "ProductAndProductLinkNewOrEdit";
+            this.Name = "NewProduct";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ProductAndProductLinkNewOrEdit";
+            this.Text = "New Product";
             this.productLinkTabControl.ResumeLayout(false);
             this.findTabPage.ResumeLayout(false);
             this.findTabPage.PerformLayout();
@@ -723,5 +742,6 @@
         private System.Windows.Forms.Label detailCategoryLabel1;
         private System.Windows.Forms.Label detailUnitOfMeasureLabel1;
         private System.Windows.Forms.GroupBox productGroupBox;
+        private System.Windows.Forms.Button selectButton;
     }
 }

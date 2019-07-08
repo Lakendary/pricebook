@@ -699,7 +699,7 @@ namespace MainUI
             if (productSearchForm.openNewProductForm == true)
             {
                 //  ProductNewOrEdit productForm = new ProductNewOrEdit(barcodeTextBox.Text);
-                ProductAndProductLinkNewOrEdit addNewProductForm = new ProductAndProductLinkNewOrEdit();
+                NewProduct addNewProductForm = new NewProduct();
                 addNewProductForm.ShowDialog();
                 product.Id = addNewProductForm.product.Id;
             }
