@@ -58,21 +58,23 @@ namespace PriceBookClassLibrary
             }
         }
         //3. Save To DB
-        public static bool SaveProductLink(ProductLinkModel productLink)
+        public static int SaveProductLink(ProductLinkModel productLink)
         {
+            var id = 0;
             try{
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    cnn.Execute("INSERT INTO ProductLink "+
+                    id = cnn.Query<int>("INSERT INTO ProductLink "+
                         "(Name, UoM, Weighted, MeasurementRate, CategoryId) "+
-                        "VALUES (@Name, @UoM, @Weighted, @MeasurementRate, @CategoryId);", productLink);
+                        "VALUES (@Name, @UoM, @Weighted, @MeasurementRate, @CategoryId);" +
+                        "SELECT last_insert_rowid();", productLink).Single();
                 }
             } 
             catch(Exception ex){
                 General.LogError(ex);
-                return false;
+                return id;
             }
-            return true;
+            return id;
         }
         //4. Update By Id
         public static bool UpdateProductLinkById(ProductLinkModel productLink)

@@ -177,7 +177,7 @@ namespace MainUI.ProductLink
         //  This method saves the new product link information, which was added by the user, to the database.
         private void saveNewProductLinkInformationToDb()
         {
-            if (SqliteDAProductLink.SaveProductLink(this.productLink))
+            if (SqliteDAProductLink.SaveProductLink(this.productLink) > 0)
             {
                 DialogResult dialogResult = MessageBox.Show("New product link created successfully", "New Product Link",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -205,6 +205,10 @@ namespace MainUI.Product
             {
                 SetProductLink();
             }
+            else if (e.KeyCode == Keys.F2)
+            {
+                AddNewProductLink();
+            }
         }
 
         private void SetProductLink()
@@ -263,15 +267,20 @@ namespace MainUI.Product
             productLink = SetNewProductLinkInformation(productLink);
             if(ValidateProductLinkInformation(productLink) == true)
             {
-                SaveProductLinkToDb(productLink);
+               productLink = SaveProductLinkToDb(productLink);
             }
-            DisplaySelectedProductLink(productLink);
-            productGroupBox.Enabled = true;
+            if(productLink.Id > 0)
+            {
+                DisplaySelectedProductLink(productLink);
+                productGroupBox.Enabled = true;
+                ActiveControl = productDescriptionTextBox;
+            }
         }
 
         private ProductLinkModel SetNewProductLinkInformation(ProductLinkModel productLink)
         {
             productLink.CategoryId = Convert.ToInt32(newCategoryComboBox.SelectedValue);
+            productLink.CategoryName = newCategoryComboBox.Text;
             if (int.TryParse(newMeasurementRateTextBox.Text, out int result))
             {
                 productLink.MeasurementRate = result;
@@ -311,22 +320,21 @@ namespace MainUI.Product
             }
         }
 
-        private void SaveProductLinkToDb(ProductLinkModel productLink)
+        private ProductLinkModel SaveProductLinkToDb(ProductLinkModel productLink)
         {
-            if (SqliteDAProductLink.SaveProductLink(productLink) == true)
+            int productLinkId = SqliteDAProductLink.SaveProductLink(productLink);
+            if (productLinkId > 0)
             {
-                DialogResult dialogResult = MessageBox.Show("New product link created successfully", "New Product Link",
+                MessageBox.Show("New product link created successfully", "New Product Link",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-                if (dialogResult == DialogResult.OK)
-                {
-                    this.Close();
-                }
+                productLink.Id = productLinkId;
             }
             else
             {
                 MessageBox.Show("Something went wrong. New product link could not be saved.\nCheck the error log for more information.", "New Product Link Error",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            return productLink;
         }
 
         //  The user clicks add new product on the product search form. This form loads
