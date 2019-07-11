@@ -72,9 +72,11 @@
             this.detailProductLinkNameLabel2 = new System.Windows.Forms.Label();
             this.detailProductLinkNameLabel1 = new System.Windows.Forms.Label();
             this.detailMeasurementRateLabel2 = new System.Windows.Forms.Label();
+            this.detailProductLinkIdLabel2 = new System.Windows.Forms.Label();
             this.detailWeightedLabel2 = new System.Windows.Forms.Label();
             this.detailMeasurementRateLabel1 = new System.Windows.Forms.Label();
             this.detailCategoryLabel2 = new System.Windows.Forms.Label();
+            this.detailProductLinkIdLabel1 = new System.Windows.Forms.Label();
             this.detailWeightedLabel1 = new System.Windows.Forms.Label();
             this.detailUnitOfMeasureLabel2 = new System.Windows.Forms.Label();
             this.detailCategoryLabel1 = new System.Windows.Forms.Label();
@@ -94,7 +96,7 @@
             this.barcodeComboBox.Location = new System.Drawing.Point(174, 116);
             this.barcodeComboBox.Name = "barcodeComboBox";
             this.barcodeComboBox.Size = new System.Drawing.Size(183, 25);
-            this.barcodeComboBox.TabIndex = 53;
+            this.barcodeComboBox.TabIndex = 19;
             // 
             // brandNameLabel
             // 
@@ -114,7 +116,7 @@
             this.addBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addBarcodeButton.Name = "addBarcodeButton";
             this.addBarcodeButton.Size = new System.Drawing.Size(25, 25);
-            this.addBarcodeButton.TabIndex = 50;
+            this.addBarcodeButton.TabIndex = 20;
             this.addBarcodeButton.Text = "+";
             this.addBarcodeButton.UseVisualStyleBackColor = true;
             // 
@@ -126,7 +128,7 @@
             this.deleteBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.deleteBarcodeButton.Name = "deleteBarcodeButton";
             this.deleteBarcodeButton.Size = new System.Drawing.Size(25, 25);
-            this.deleteBarcodeButton.TabIndex = 49;
+            this.deleteBarcodeButton.TabIndex = 23;
             this.deleteBarcodeButton.Text = "-";
             this.deleteBarcodeButton.UseVisualStyleBackColor = true;
             // 
@@ -137,9 +139,10 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 41;
+            this.saveButton.TabIndex = 21;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // resetButton
             // 
@@ -148,9 +151,10 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 42;
+            this.resetButton.TabIndex = 22;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
+            this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
             // 
             // productLabel
             // 
@@ -168,7 +172,7 @@
             this.brandNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.brandNameTextBox.Name = "brandNameTextBox";
             this.brandNameTextBox.Size = new System.Drawing.Size(245, 25);
-            this.brandNameTextBox.TabIndex = 38;
+            this.brandNameTextBox.TabIndex = 17;
             // 
             // packSizeTextBox
             // 
@@ -176,7 +180,7 @@
             this.packSizeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.packSizeTextBox.Name = "packSizeTextBox";
             this.packSizeTextBox.Size = new System.Drawing.Size(203, 25);
-            this.packSizeTextBox.TabIndex = 39;
+            this.packSizeTextBox.TabIndex = 18;
             // 
             // productDescriptionTextBox
             // 
@@ -184,7 +188,7 @@
             this.productDescriptionTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.productDescriptionTextBox.Name = "productDescriptionTextBox";
             this.productDescriptionTextBox.Size = new System.Drawing.Size(245, 25);
-            this.productDescriptionTextBox.TabIndex = 37;
+            this.productDescriptionTextBox.TabIndex = 16;
             // 
             // barcodeLabel
             // 
@@ -312,6 +316,7 @@
             this.newResetButton.TabIndex = 15;
             this.newResetButton.Text = "Reset";
             this.newResetButton.UseVisualStyleBackColor = true;
+            this.newResetButton.Click += new System.EventHandler(this.newResetButton_Click);
             // 
             // productLinkLabel
             // 
@@ -521,9 +526,11 @@
             this.detailTabPage.Controls.Add(this.detailProductLinkNameLabel2);
             this.detailTabPage.Controls.Add(this.detailProductLinkNameLabel1);
             this.detailTabPage.Controls.Add(this.detailMeasurementRateLabel2);
+            this.detailTabPage.Controls.Add(this.detailProductLinkIdLabel2);
             this.detailTabPage.Controls.Add(this.detailWeightedLabel2);
             this.detailTabPage.Controls.Add(this.detailMeasurementRateLabel1);
             this.detailTabPage.Controls.Add(this.detailCategoryLabel2);
+            this.detailTabPage.Controls.Add(this.detailProductLinkIdLabel1);
             this.detailTabPage.Controls.Add(this.detailWeightedLabel1);
             this.detailTabPage.Controls.Add(this.detailUnitOfMeasureLabel2);
             this.detailTabPage.Controls.Add(this.detailCategoryLabel1);
@@ -566,6 +573,17 @@
             this.detailMeasurementRateLabel2.TabIndex = 67;
             this.detailMeasurementRateLabel2.Text = "Measurement Rate";
             // 
+            // detailProductLinkIdLabel2
+            // 
+            this.detailProductLinkIdLabel2.AutoSize = true;
+            this.detailProductLinkIdLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailProductLinkIdLabel2.Location = new System.Drawing.Point(148, 88);
+            this.detailProductLinkIdLabel2.Name = "detailProductLinkIdLabel2";
+            this.detailProductLinkIdLabel2.Size = new System.Drawing.Size(19, 17);
+            this.detailProductLinkIdLabel2.TabIndex = 69;
+            this.detailProductLinkIdLabel2.Text = "Id";
+            this.detailProductLinkIdLabel2.Visible = false;
+            // 
             // detailWeightedLabel2
             // 
             this.detailWeightedLabel2.AutoSize = true;
@@ -595,6 +613,17 @@
             this.detailCategoryLabel2.Size = new System.Drawing.Size(61, 17);
             this.detailCategoryLabel2.TabIndex = 69;
             this.detailCategoryLabel2.Text = "Category";
+            // 
+            // detailProductLinkIdLabel1
+            // 
+            this.detailProductLinkIdLabel1.AutoSize = true;
+            this.detailProductLinkIdLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.detailProductLinkIdLabel1.Location = new System.Drawing.Point(6, 88);
+            this.detailProductLinkIdLabel1.Name = "detailProductLinkIdLabel1";
+            this.detailProductLinkIdLabel1.Size = new System.Drawing.Size(102, 17);
+            this.detailProductLinkIdLabel1.TabIndex = 69;
+            this.detailProductLinkIdLabel1.Text = "Product Link Id";
+            this.detailProductLinkIdLabel1.Visible = false;
             // 
             // detailWeightedLabel1
             // 
@@ -743,5 +772,7 @@
         private System.Windows.Forms.Label detailUnitOfMeasureLabel1;
         private System.Windows.Forms.GroupBox productGroupBox;
         private System.Windows.Forms.Button selectButton;
+        private System.Windows.Forms.Label detailProductLinkIdLabel2;
+        private System.Windows.Forms.Label detailProductLinkIdLabel1;
     }
 }

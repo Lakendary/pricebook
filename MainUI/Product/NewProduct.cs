@@ -209,6 +209,10 @@ namespace MainUI.Product
             {
                 AddNewProductLink();
             }
+            else if (e.KeyCode == Keys.Back)
+            {
+                ClearProductSearchToBlankValues();
+            }
         }
 
         private void SetProductLink()
@@ -217,6 +221,7 @@ namespace MainUI.Product
             productLink = GetProductLink(productLink);
             DisplaySelectedProductLink(productLink);
             productGroupBox.Enabled = true;
+            ActiveControl = productDescriptionTextBox;
         }
 
         private ProductLinkModel GetProductLink(ProductLinkModel productLink)
@@ -235,6 +240,8 @@ namespace MainUI.Product
             detailProductLinkNameLabel2.Text = productLink.Name;
             detailUnitOfMeasureLabel2.Text = productLink.UoM;
             detailWeightedLabel2.Text = productLink.Weighted;
+            detailProductLinkIdLabel2.Text = productLink.Id.ToString();
+            uomLabel.Text = productLink.UoM;
             productLinkTabControl.SelectedTab = detailTabPage;
         }
 
@@ -335,6 +342,113 @@ namespace MainUI.Product
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return productLink;
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            SaveNewProductToDb();
+        }
+
+        private void SaveNewProductToDb()
+        {
+            //ProductModel product = new ProductModel();
+            this.product = SetNewProductInformation(this.product);
+            if(ValidateProductInformation(this.product) == true)
+            {
+                saveNewProductInformationToDb(this.product);
+            }
+        }
+
+        private ProductModel SetNewProductInformation(ProductModel product)
+        {
+            product.BrandName = brandNameTextBox.Text;
+            product.Description = productDescriptionTextBox.Text;
+            if (int.TryParse(packSizeTextBox.Text, out int result))
+            {
+                product.PackSize = result;
+            }
+            product.ProductLinkId = Convert.ToInt32(detailProductLinkIdLabel2.Text);
+
+            return product;
+        }
+
+        private bool ValidateProductInformation(ProductModel product)
+        {
+            // Validate my data and save in the results variable
+            ProductValidator productValidator = new ProductValidator();
+            var results = productValidator.Validate(product);
+
+            // Check if the validator found any validation errors. 
+            if (results.IsValid == false)
+            {
+                foreach (ValidationFailure failure in results.Errors)
+                {
+                    MessageBox.Show($"{ failure.ErrorMessage }", "Product Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private void saveNewProductInformationToDb(ProductModel product)
+        {
+            //Save the product that was just created. Check whether the product saved correctly.
+            int id = SqliteDAProduct.SaveProductAndGetId(product);
+            if (id != 0)
+            {
+                DialogResult dialogResult = MessageBox.Show("New product created successfully", "New Product",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (dialogResult == DialogResult.OK)
+                {
+                    //Set the product id variable equal to the product id saved to the database. The forms product id can be accessed by other forms that need it.
+                    product.Id = id;
+                    if (barcodeComboBox.Text != "")
+                    {
+                        BarcodeModel barcode = new BarcodeModel();
+                        barcode.Barcode = barcodeComboBox.Text;
+                        barcode.ProductId = id;
+                        SqliteDataAccessBarcode.SaveBarcode(barcode);
+                    }
+                    this.Close();
+                }
+            }
+            else if (id == 0)
+            {
+                MessageBox.Show("Something went wrong. New product could not be saved.\nCheck the error log for more information.", "New Product Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void newResetButton_Click(object sender, EventArgs e)
+        {
+            ClearNewProductLinkToBlankValues();
+        }
+
+        private void ClearNewProductLinkToBlankValues()
+        {
+            newProductLinkNameTextBox.ResetText();
+            newUomComboBox.SelectedIndex = 0;
+            newWeightedCheckBox.Checked = false;
+            newMeasurementRateTextBox.ResetText();
+            newCategoryComboBox.SelectedIndex = 0;
+            ActiveControl = newProductLinkNameTextBox;
+        }
+
+        private void resetButton_Click(object sender, EventArgs e)
+        {
+            ClearNewProductToBlankValues();
+        }
+
+        private void ClearNewProductToBlankValues()
+        {
+            productDescriptionTextBox.ResetText();
+            brandNameTextBox.ResetText();
+            packSizeTextBox.ResetText();
+            barcodeComboBox.ResetText();
+            ActiveControl = productDescriptionTextBox;
         }
 
         //  The user clicks add new product on the product search form. This form loads
