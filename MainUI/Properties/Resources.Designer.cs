@@ -103,9 +103,9 @@ namespace PriceBook.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap product_add {
+        internal static System.Drawing.Bitmap productAdd {
             get {
-                object obj = ResourceManager.GetObject("product-add", resourceCulture);
+                object obj = ResourceManager.GetObject("productAdd", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace PriceBook.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap product_link {
+        internal static System.Drawing.Bitmap productLink {
             get {
-                object obj = ResourceManager.GetObject("product link", resourceCulture);
+                object obj = ResourceManager.GetObject("productLink", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace PriceBook.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap shopping_list {
+        internal static System.Drawing.Bitmap shoppingList {
             get {
-                object obj = ResourceManager.GetObject("shopping list", resourceCulture);
+                object obj = ResourceManager.GetObject("shoppingList", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -189,7 +189,9 @@
     </Compile>
     <Content Include="PriceBookIcon.ico" />
     <Content Include="PriceBookIcon.ico.ico" />
-    <None Include="Resources\product-add.png" />
+    <None Include="Resources\productLink.png" />
+    <None Include="Resources\shoppingList.png" />
+    <None Include="Resources\productAdd.png" />
     <EmbeddedResource Include="Category\CategoryNewOrEdit.resx">
       <DependentUpon>CategoryNewOrEdit.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,9 +261,6 @@
     <None Include="Resources\product.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\product link.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\category.png" />
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +268,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\promotion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\shopping list.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\recipe.png" />

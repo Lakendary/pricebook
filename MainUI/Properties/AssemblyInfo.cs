@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PriceBook 2019")]
-[assembly: AssemblyDescription("Grocery price tracking application for Windows desktop.")]
+[assembly: AssemblyDescription("Grocery price tracking desktop application")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Jade Rickerts Software")]
 [assembly: AssemblyProduct("PriceBook")]
-[assembly: AssemblyCopyright("Copyright © Jade Rickerts 2019")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -35,5 +35,5 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.1.0")]
 [assembly: AssemblyFileVersion("1.1.0")]
-[assembly: NeutralResourcesLanguage("en-BM")]
+[assembly: NeutralResourcesLanguage("en-GB")]
 

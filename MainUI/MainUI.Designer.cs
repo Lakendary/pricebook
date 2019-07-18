@@ -30,16 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainUI));
             this.mainMenuPanel = new System.Windows.Forms.Panel();
-            this.infoPictureBox = new System.Windows.Forms.PictureBox();
-            this.reportPictureBox = new System.Windows.Forms.PictureBox();
-            this.recipePictureBox = new System.Windows.Forms.PictureBox();
-            this.shoppingListPictureBox = new System.Windows.Forms.PictureBox();
-            this.promtionPictureBox = new System.Windows.Forms.PictureBox();
-            this.storePictureBox = new System.Windows.Forms.PictureBox();
-            this.categoryPictureBox = new System.Windows.Forms.PictureBox();
-            this.productLinkPictureBox = new System.Windows.Forms.PictureBox();
-            this.productPictureBox = new System.Windows.Forms.PictureBox();
-            this.invoicePictureBox = new System.Windows.Forms.PictureBox();
             this.buttonsPanel = new System.Windows.Forms.Panel();
             this.updateButton = new System.Windows.Forms.Button();
             this.exportButton = new System.Windows.Forms.Button();
@@ -61,7 +51,21 @@
             this.barcodeTextBox = new System.Windows.Forms.TextBox();
             this.barcodeLabel = new System.Windows.Forms.Label();
             this.mainDataGridView = new System.Windows.Forms.DataGridView();
+            this.infoPictureBox = new System.Windows.Forms.PictureBox();
+            this.reportPictureBox = new System.Windows.Forms.PictureBox();
+            this.recipePictureBox = new System.Windows.Forms.PictureBox();
+            this.shoppingListPictureBox = new System.Windows.Forms.PictureBox();
+            this.promtionPictureBox = new System.Windows.Forms.PictureBox();
+            this.storePictureBox = new System.Windows.Forms.PictureBox();
+            this.categoryPictureBox = new System.Windows.Forms.PictureBox();
+            this.productLinkPictureBox = new System.Windows.Forms.PictureBox();
+            this.productPictureBox = new System.Windows.Forms.PictureBox();
+            this.invoicePictureBox = new System.Windows.Forms.PictureBox();
             this.mainMenuPanel.SuspendLayout();
+            this.buttonsPanel.SuspendLayout();
+            this.mainUIStatusStrip.SuspendLayout();
+            this.barCodeSearchPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipePictureBox)).BeginInit();
@@ -72,10 +76,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.productLinkPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicePictureBox)).BeginInit();
-            this.buttonsPanel.SuspendLayout();
-            this.mainUIStatusStrip.SuspendLayout();
-            this.barCodeSearchPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // mainMenuPanel
@@ -94,113 +94,6 @@
             this.mainMenuPanel.Name = "mainMenuPanel";
             this.mainMenuPanel.Size = new System.Drawing.Size(920, 80);
             this.mainMenuPanel.TabIndex = 0;
-            // 
-            // infoPictureBox
-            // 
-            this.infoPictureBox.Image = global::MainUI.Properties.Resources.info;
-            this.infoPictureBox.Location = new System.Drawing.Point(774, 0);
-            this.infoPictureBox.Name = "infoPictureBox";
-            this.infoPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.infoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.infoPictureBox.TabIndex = 0;
-            this.infoPictureBox.TabStop = false;
-            this.infoPictureBox.DoubleClick += new System.EventHandler(this.infoPictureBox_DoubleClick);
-            // 
-            // reportPictureBox
-            // 
-            this.reportPictureBox.Image = global::MainUI.Properties.Resources.report;
-            this.reportPictureBox.Location = new System.Drawing.Point(688, 0);
-            this.reportPictureBox.Name = "reportPictureBox";
-            this.reportPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.reportPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.reportPictureBox.TabIndex = 0;
-            this.reportPictureBox.TabStop = false;
-            this.reportPictureBox.DoubleClick += new System.EventHandler(this.reportPictureBox_DoubleClick);
-            // 
-            // recipePictureBox
-            // 
-            this.recipePictureBox.Image = global::MainUI.Properties.Resources.recipe;
-            this.recipePictureBox.Location = new System.Drawing.Point(602, 0);
-            this.recipePictureBox.Name = "recipePictureBox";
-            this.recipePictureBox.Size = new System.Drawing.Size(80, 80);
-            this.recipePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.recipePictureBox.TabIndex = 0;
-            this.recipePictureBox.TabStop = false;
-            // 
-            // shoppingListPictureBox
-            // 
-            this.shoppingListPictureBox.Image = global::MainUI.Properties.Resources.shopping_list;
-            this.shoppingListPictureBox.Location = new System.Drawing.Point(516, 0);
-            this.shoppingListPictureBox.Name = "shoppingListPictureBox";
-            this.shoppingListPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.shoppingListPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.shoppingListPictureBox.TabIndex = 0;
-            this.shoppingListPictureBox.TabStop = false;
-            // 
-            // promtionPictureBox
-            // 
-            this.promtionPictureBox.Image = global::MainUI.Properties.Resources.promotion;
-            this.promtionPictureBox.Location = new System.Drawing.Point(430, 0);
-            this.promtionPictureBox.Name = "promtionPictureBox";
-            this.promtionPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.promtionPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.promtionPictureBox.TabIndex = 0;
-            this.promtionPictureBox.TabStop = false;
-            // 
-            // storePictureBox
-            // 
-            this.storePictureBox.Image = global::MainUI.Properties.Resources.store;
-            this.storePictureBox.Location = new System.Drawing.Point(344, 0);
-            this.storePictureBox.Name = "storePictureBox";
-            this.storePictureBox.Size = new System.Drawing.Size(80, 80);
-            this.storePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.storePictureBox.TabIndex = 0;
-            this.storePictureBox.TabStop = false;
-            this.storePictureBox.DoubleClick += new System.EventHandler(this.storePictureBox_DoubleClick);
-            // 
-            // categoryPictureBox
-            // 
-            this.categoryPictureBox.Image = global::MainUI.Properties.Resources.category;
-            this.categoryPictureBox.Location = new System.Drawing.Point(258, 0);
-            this.categoryPictureBox.Name = "categoryPictureBox";
-            this.categoryPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.categoryPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.categoryPictureBox.TabIndex = 0;
-            this.categoryPictureBox.TabStop = false;
-            this.categoryPictureBox.DoubleClick += new System.EventHandler(this.categoryPictureBox_DoubleClick);
-            // 
-            // productLinkPictureBox
-            // 
-            this.productLinkPictureBox.Image = global::MainUI.Properties.Resources.product_link;
-            this.productLinkPictureBox.Location = new System.Drawing.Point(172, 0);
-            this.productLinkPictureBox.Name = "productLinkPictureBox";
-            this.productLinkPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.productLinkPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.productLinkPictureBox.TabIndex = 0;
-            this.productLinkPictureBox.TabStop = false;
-            this.productLinkPictureBox.DoubleClick += new System.EventHandler(this.productLinkPictureBox_DoubleClick);
-            // 
-            // productPictureBox
-            // 
-            this.productPictureBox.Image = global::MainUI.Properties.Resources.product;
-            this.productPictureBox.Location = new System.Drawing.Point(86, 0);
-            this.productPictureBox.Name = "productPictureBox";
-            this.productPictureBox.Size = new System.Drawing.Size(80, 80);
-            this.productPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.productPictureBox.TabIndex = 0;
-            this.productPictureBox.TabStop = false;
-            this.productPictureBox.DoubleClick += new System.EventHandler(this.productPictureBox_DoubleClick);
-            // 
-            // invoicePictureBox
-            // 
-            this.invoicePictureBox.Image = global::MainUI.Properties.Resources.invoice;
-            this.invoicePictureBox.Location = new System.Drawing.Point(0, 0);
-            this.invoicePictureBox.Name = "invoicePictureBox";
-            this.invoicePictureBox.Size = new System.Drawing.Size(80, 80);
-            this.invoicePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.invoicePictureBox.TabIndex = 0;
-            this.invoicePictureBox.TabStop = false;
-            this.invoicePictureBox.DoubleClick += new System.EventHandler(this.invoicePictureBox_DoubleClick);
             // 
             // buttonsPanel
             // 
@@ -417,6 +310,113 @@
             this.mainDataGridView.TabIndex = 2;
             this.mainDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGridView_CellMouseClick);
             // 
+            // infoPictureBox
+            // 
+            this.infoPictureBox.Image = global::MainUI.Properties.Resources.info;
+            this.infoPictureBox.Location = new System.Drawing.Point(774, 0);
+            this.infoPictureBox.Name = "infoPictureBox";
+            this.infoPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.infoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.infoPictureBox.TabIndex = 0;
+            this.infoPictureBox.TabStop = false;
+            this.infoPictureBox.DoubleClick += new System.EventHandler(this.infoPictureBox_DoubleClick);
+            // 
+            // reportPictureBox
+            // 
+            this.reportPictureBox.Image = global::MainUI.Properties.Resources.report;
+            this.reportPictureBox.Location = new System.Drawing.Point(688, 0);
+            this.reportPictureBox.Name = "reportPictureBox";
+            this.reportPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.reportPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.reportPictureBox.TabIndex = 0;
+            this.reportPictureBox.TabStop = false;
+            this.reportPictureBox.DoubleClick += new System.EventHandler(this.reportPictureBox_DoubleClick);
+            // 
+            // recipePictureBox
+            // 
+            this.recipePictureBox.Image = global::MainUI.Properties.Resources.recipe;
+            this.recipePictureBox.Location = new System.Drawing.Point(602, 0);
+            this.recipePictureBox.Name = "recipePictureBox";
+            this.recipePictureBox.Size = new System.Drawing.Size(80, 80);
+            this.recipePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.recipePictureBox.TabIndex = 0;
+            this.recipePictureBox.TabStop = false;
+            // 
+            // shoppingListPictureBox
+            // 
+            this.shoppingListPictureBox.Image = global::MainUI.Properties.Resources.shoppingList;
+            this.shoppingListPictureBox.Location = new System.Drawing.Point(516, 0);
+            this.shoppingListPictureBox.Name = "shoppingListPictureBox";
+            this.shoppingListPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.shoppingListPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.shoppingListPictureBox.TabIndex = 0;
+            this.shoppingListPictureBox.TabStop = false;
+            // 
+            // promtionPictureBox
+            // 
+            this.promtionPictureBox.Image = global::MainUI.Properties.Resources.promotion;
+            this.promtionPictureBox.Location = new System.Drawing.Point(430, 0);
+            this.promtionPictureBox.Name = "promtionPictureBox";
+            this.promtionPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.promtionPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.promtionPictureBox.TabIndex = 0;
+            this.promtionPictureBox.TabStop = false;
+            // 
+            // storePictureBox
+            // 
+            this.storePictureBox.Image = global::MainUI.Properties.Resources.store;
+            this.storePictureBox.Location = new System.Drawing.Point(344, 0);
+            this.storePictureBox.Name = "storePictureBox";
+            this.storePictureBox.Size = new System.Drawing.Size(80, 80);
+            this.storePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.storePictureBox.TabIndex = 0;
+            this.storePictureBox.TabStop = false;
+            this.storePictureBox.DoubleClick += new System.EventHandler(this.storePictureBox_DoubleClick);
+            // 
+            // categoryPictureBox
+            // 
+            this.categoryPictureBox.Image = global::MainUI.Properties.Resources.category;
+            this.categoryPictureBox.Location = new System.Drawing.Point(258, 0);
+            this.categoryPictureBox.Name = "categoryPictureBox";
+            this.categoryPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.categoryPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.categoryPictureBox.TabIndex = 0;
+            this.categoryPictureBox.TabStop = false;
+            this.categoryPictureBox.DoubleClick += new System.EventHandler(this.categoryPictureBox_DoubleClick);
+            // 
+            // productLinkPictureBox
+            // 
+            this.productLinkPictureBox.Image = global::MainUI.Properties.Resources.productLink;
+            this.productLinkPictureBox.Location = new System.Drawing.Point(172, 0);
+            this.productLinkPictureBox.Name = "productLinkPictureBox";
+            this.productLinkPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.productLinkPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.productLinkPictureBox.TabIndex = 0;
+            this.productLinkPictureBox.TabStop = false;
+            this.productLinkPictureBox.DoubleClick += new System.EventHandler(this.productLinkPictureBox_DoubleClick);
+            // 
+            // productPictureBox
+            // 
+            this.productPictureBox.Image = global::MainUI.Properties.Resources.product;
+            this.productPictureBox.Location = new System.Drawing.Point(86, 0);
+            this.productPictureBox.Name = "productPictureBox";
+            this.productPictureBox.Size = new System.Drawing.Size(80, 80);
+            this.productPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.productPictureBox.TabIndex = 0;
+            this.productPictureBox.TabStop = false;
+            this.productPictureBox.DoubleClick += new System.EventHandler(this.productPictureBox_DoubleClick);
+            // 
+            // invoicePictureBox
+            // 
+            this.invoicePictureBox.Image = global::MainUI.Properties.Resources.invoice;
+            this.invoicePictureBox.Location = new System.Drawing.Point(0, 0);
+            this.invoicePictureBox.Name = "invoicePictureBox";
+            this.invoicePictureBox.Size = new System.Drawing.Size(80, 80);
+            this.invoicePictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.invoicePictureBox.TabIndex = 0;
+            this.invoicePictureBox.TabStop = false;
+            this.invoicePictureBox.DoubleClick += new System.EventHandler(this.invoicePictureBox_DoubleClick);
+            // 
             // MainUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -435,6 +435,12 @@
             this.Text = "PriceBook Application";
             this.Load += new System.EventHandler(this.MainUI_Load);
             this.mainMenuPanel.ResumeLayout(false);
+            this.buttonsPanel.ResumeLayout(false);
+            this.mainUIStatusStrip.ResumeLayout(false);
+            this.mainUIStatusStrip.PerformLayout();
+            this.barCodeSearchPanel.ResumeLayout(false);
+            this.barCodeSearchPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.infoPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.reportPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipePictureBox)).EndInit();
@@ -445,12 +451,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.productLinkPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productPictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.invoicePictureBox)).EndInit();
-            this.buttonsPanel.ResumeLayout(false);
-            this.mainUIStatusStrip.ResumeLayout(false);
-            this.mainUIStatusStrip.PerformLayout();
-            this.barCodeSearchPanel.ResumeLayout(false);
-            this.barCodeSearchPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -461,7 +461,6 @@
         private System.Windows.Forms.Panel mainMenuPanel;
         private System.Windows.Forms.Panel buttonsPanel;
         private System.Windows.Forms.StatusStrip mainUIStatusStrip;
-        private System.Windows.Forms.PictureBox infoPictureBox;
         private System.Windows.Forms.PictureBox reportPictureBox;
         private System.Windows.Forms.PictureBox recipePictureBox;
         private System.Windows.Forms.PictureBox shoppingListPictureBox;
@@ -490,6 +489,7 @@
         private System.Windows.Forms.Label capturedInvoiceTotalLabel;
         private System.Windows.Forms.Button saveInvoiceButton;
         private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.PictureBox infoPictureBox;
     }
 }
 
