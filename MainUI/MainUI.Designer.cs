@@ -312,7 +312,7 @@
             // 
             // infoPictureBox
             // 
-            this.infoPictureBox.Image = global::MainUI.Properties.Resources.info;
+            this.infoPictureBox.Image = global::PriceBook.Properties.Resources.info;
             this.infoPictureBox.Location = new System.Drawing.Point(774, 0);
             this.infoPictureBox.Name = "infoPictureBox";
             this.infoPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -323,7 +323,7 @@
             // 
             // reportPictureBox
             // 
-            this.reportPictureBox.Image = global::MainUI.Properties.Resources.report;
+            this.reportPictureBox.Image = global::PriceBook.Properties.Resources.report;
             this.reportPictureBox.Location = new System.Drawing.Point(688, 0);
             this.reportPictureBox.Name = "reportPictureBox";
             this.reportPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -334,7 +334,7 @@
             // 
             // recipePictureBox
             // 
-            this.recipePictureBox.Image = global::MainUI.Properties.Resources.recipe;
+            this.recipePictureBox.Image = global::PriceBook.Properties.Resources.recipe;
             this.recipePictureBox.Location = new System.Drawing.Point(602, 0);
             this.recipePictureBox.Name = "recipePictureBox";
             this.recipePictureBox.Size = new System.Drawing.Size(80, 80);
@@ -344,7 +344,7 @@
             // 
             // shoppingListPictureBox
             // 
-            this.shoppingListPictureBox.Image = global::MainUI.Properties.Resources.shoppingList;
+            this.shoppingListPictureBox.Image = global::PriceBook.Properties.Resources.shoppingList;
             this.shoppingListPictureBox.Location = new System.Drawing.Point(516, 0);
             this.shoppingListPictureBox.Name = "shoppingListPictureBox";
             this.shoppingListPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -354,7 +354,7 @@
             // 
             // promtionPictureBox
             // 
-            this.promtionPictureBox.Image = global::MainUI.Properties.Resources.promotion;
+            this.promtionPictureBox.Image = global::PriceBook.Properties.Resources.promotion;
             this.promtionPictureBox.Location = new System.Drawing.Point(430, 0);
             this.promtionPictureBox.Name = "promtionPictureBox";
             this.promtionPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -364,7 +364,7 @@
             // 
             // storePictureBox
             // 
-            this.storePictureBox.Image = global::MainUI.Properties.Resources.store;
+            this.storePictureBox.Image = global::PriceBook.Properties.Resources.store;
             this.storePictureBox.Location = new System.Drawing.Point(344, 0);
             this.storePictureBox.Name = "storePictureBox";
             this.storePictureBox.Size = new System.Drawing.Size(80, 80);
@@ -375,7 +375,7 @@
             // 
             // categoryPictureBox
             // 
-            this.categoryPictureBox.Image = global::MainUI.Properties.Resources.category;
+            this.categoryPictureBox.Image = global::PriceBook.Properties.Resources.category;
             this.categoryPictureBox.Location = new System.Drawing.Point(258, 0);
             this.categoryPictureBox.Name = "categoryPictureBox";
             this.categoryPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -386,7 +386,7 @@
             // 
             // productLinkPictureBox
             // 
-            this.productLinkPictureBox.Image = global::MainUI.Properties.Resources.productLink;
+            this.productLinkPictureBox.Image = global::PriceBook.Properties.Resources.productLink;
             this.productLinkPictureBox.Location = new System.Drawing.Point(172, 0);
             this.productLinkPictureBox.Name = "productLinkPictureBox";
             this.productLinkPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -397,7 +397,7 @@
             // 
             // productPictureBox
             // 
-            this.productPictureBox.Image = global::MainUI.Properties.Resources.product;
+            this.productPictureBox.Image = global::PriceBook.Properties.Resources.product;
             this.productPictureBox.Location = new System.Drawing.Point(86, 0);
             this.productPictureBox.Name = "productPictureBox";
             this.productPictureBox.Size = new System.Drawing.Size(80, 80);
@@ -408,7 +408,7 @@
             // 
             // invoicePictureBox
             // 
-            this.invoicePictureBox.Image = global::MainUI.Properties.Resources.invoice;
+            this.invoicePictureBox.Image = global::PriceBook.Properties.Resources.invoice;
             this.invoicePictureBox.Location = new System.Drawing.Point(0, 0);
             this.invoicePictureBox.Name = "invoicePictureBox";
             this.invoicePictureBox.Size = new System.Drawing.Size(80, 80);

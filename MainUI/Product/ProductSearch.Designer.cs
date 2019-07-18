@@ -212,7 +212,7 @@
             // 
             // addProductPictureBox
             // 
-            this.addProductPictureBox.Image = global::MainUI.Properties.Resources.productAdd;
+            this.addProductPictureBox.Image = global::PriceBook.Properties.Resources.productAdd;
             this.addProductPictureBox.Location = new System.Drawing.Point(562, 9);
             this.addProductPictureBox.Name = "addProductPictureBox";
             this.addProductPictureBox.Size = new System.Drawing.Size(50, 50);
