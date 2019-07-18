@@ -103,26 +103,6 @@ namespace MainUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap product_add {
-            get {
-                object obj = ResourceManager.GetObject("product-add", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap product_link {
-            get {
-                object obj = ResourceManager.GetObject("product link", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap productAdd {
             get {
                 object obj = ResourceManager.GetObject("productAdd", resourceCulture);
@@ -166,16 +146,6 @@ namespace MainUI.Properties {
         internal static System.Drawing.Bitmap report {
             get {
                 object obj = ResourceManager.GetObject("report", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap shopping_list {
-            get {
-                object obj = ResourceManager.GetObject("shopping list", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
