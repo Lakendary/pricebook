@@ -173,6 +173,9 @@
       <DependentUpon>StoreNewOrEdit.cs</DependentUpon>
     </Compile>
     <Content Include="PriceBookIcon.ico.ico" />
+    <None Include="Resources\productLink.png" />
+    <None Include="Resources\shoppingList.png" />
+    <None Include="Resources\productAdd.png" />
     <None Include="Resources\product-add.png" />
     <EmbeddedResource Include="Category\CategoryNewOrEdit.resx">
       <DependentUpon>CategoryNewOrEdit.cs</DependentUpon>
