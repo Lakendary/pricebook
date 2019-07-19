@@ -34,7 +34,8 @@ namespace PriceBookClassLibrary
                 "FROM ProductLink "+
                 "LEFT JOIN Category "+
                 "ON ProductLink.CategoryId = Category.Id " +
-                "WHERE ProductLink.Deleted = 'Active';", new DynamicParameters());
+                "WHERE ProductLink.Deleted = 'Active' " +
+                "ORDER BY ProductLink.Name ASC;", new DynamicParameters());
                 return output.ToList();
             }
         }
