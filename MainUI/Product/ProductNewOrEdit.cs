@@ -164,7 +164,6 @@ namespace MainUI.Product
         //  Wire up the product link combo box with a list of all active product links from the database.
         private void loadProductLinkComboBox()
         {
-            //  TODO: Make sure only a list of ACTIVE product links are returned. 
             productLinkComboBox.DataSource = SqliteDAProductLink.GetAllProductLinks();
             productLinkComboBox.ValueMember = "Id";
             productLinkComboBox.DisplayMember = "Name";
