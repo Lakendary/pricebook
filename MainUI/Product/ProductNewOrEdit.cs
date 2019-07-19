@@ -138,17 +138,19 @@ namespace MainUI.Product
         private void productLinkComboBox_SelectedValueChanged(object sender, EventArgs e)
         {
             //look for a product link object by the combobox's value
-            ProductLinkModel productLink = new ProductLinkModel();
-
-            if (Int32.TryParse(productLinkComboBox.SelectedValue.ToString(), out int number))
+            if(productLinkComboBox.Items.Count > 0)
             {
-                productLink = SqliteDAProductLink.GetProductLinkById(number);
-                //change the uom label text value to product link object's uom
-                uomLabel.Text = productLink.UoM.ToString();
-            }
-            else
-            {
-                uomLabel.Text = "";
+                if (Int32.TryParse(productLinkComboBox.SelectedValue.ToString(), out int number))
+                {
+                    ProductLinkModel productLink = new ProductLinkModel();
+                    productLink = SqliteDAProductLink.GetProductLinkById(number);
+                    //change the uom label text value to product link object's uom
+                    uomLabel.Text = productLink.UoM.ToString();
+                }
+                else
+                {
+                    uomLabel.Text = "";
+                }
             }
         }
 
