@@ -84,7 +84,7 @@
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
-            this.saveButton.TabIndex = 6;
+            this.saveButton.TabIndex = 9;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
@@ -96,7 +96,7 @@
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
-            this.resetButton.TabIndex = 7;
+            this.resetButton.TabIndex = 10;
             this.resetButton.Text = "Reset";
             this.resetButton.UseVisualStyleBackColor = true;
             this.resetButton.Click += new System.EventHandler(this.resetButton_Click);
@@ -172,7 +172,7 @@
             this.addProductLinkButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addProductLinkButton.Name = "addProductLinkButton";
             this.addProductLinkButton.Size = new System.Drawing.Size(25, 25);
-            this.addProductLinkButton.TabIndex = 31;
+            this.addProductLinkButton.TabIndex = 5;
             this.addProductLinkButton.Text = "+";
             this.addProductLinkButton.UseVisualStyleBackColor = true;
             this.addProductLinkButton.Click += new System.EventHandler(this.addProductLinkButton_Click);
@@ -183,7 +183,7 @@
             this.barcodeComboBox.Location = new System.Drawing.Point(149, 178);
             this.barcodeComboBox.Name = "barcodeComboBox";
             this.barcodeComboBox.Size = new System.Drawing.Size(161, 25);
-            this.barcodeComboBox.TabIndex = 36;
+            this.barcodeComboBox.TabIndex = 6;
             // 
             // deleteBarcodeButton
             // 
@@ -193,7 +193,7 @@
             this.deleteBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.deleteBarcodeButton.Name = "deleteBarcodeButton";
             this.deleteBarcodeButton.Size = new System.Drawing.Size(25, 25);
-            this.deleteBarcodeButton.TabIndex = 31;
+            this.deleteBarcodeButton.TabIndex = 7;
             this.deleteBarcodeButton.Text = "-";
             this.deleteBarcodeButton.UseVisualStyleBackColor = true;
             this.deleteBarcodeButton.Click += new System.EventHandler(this.deleteBarcodeButton_Click);
@@ -206,7 +206,7 @@
             this.addBarcodeButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.addBarcodeButton.Name = "addBarcodeButton";
             this.addBarcodeButton.Size = new System.Drawing.Size(25, 25);
-            this.addBarcodeButton.TabIndex = 31;
+            this.addBarcodeButton.TabIndex = 8;
             this.addBarcodeButton.Text = "+";
             this.addBarcodeButton.UseVisualStyleBackColor = true;
             this.addBarcodeButton.Click += new System.EventHandler(this.addBarcodeButton_Click);
