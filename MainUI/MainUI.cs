@@ -302,6 +302,7 @@ namespace MainUI
                     invoiceProductForm.ShowDialog();
                     mainDataGridView.DataSource = SqliteDAInvoiceProduct.GetAllInvoiceProductsByInvoiceId(Convert.ToInt32(invoiceNumberStripStatusLabel.Text));
                     mainDataGridView.AutoResizeColumns();
+                    mainDataGridView.ClearSelection();
                     barCodeSearchPanel.Visible = true;
                     mainDataGridView.Columns["ProductId"].Visible = false;
                     mainDataGridView.Columns["InvoiceId"].Visible = false;
