@@ -33,6 +33,7 @@ namespace PriceBookClassLibrary.Validators
             name = name.Replace("'", "");
             name = name.Replace("&", "");
             name = name.Replace("+", "");
+            name = removeNumbers(name);
             return name.All(Char.IsLetter);
         }
 
@@ -52,6 +53,15 @@ namespace PriceBookClassLibrary.Validators
                 return true;
             }
             return false;
+        }
+
+        private string removeNumbers(string text)
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                text = text.Replace($"{i}", "");
+            }
+            return text;
         }
     }
 }
