@@ -178,6 +178,7 @@ namespace MainUI
                     mainDataGridView.AutoResizeColumns();
                     mainDataGridView.Columns["InvoiceId"].Visible = false;
                     mainDataGridView.Columns["ProductId"].Visible = false;
+                    mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
                     toggleClickFirstButtons(false);
                 }
                 catch (ArgumentException aex)
