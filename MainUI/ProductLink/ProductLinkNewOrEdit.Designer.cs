@@ -116,6 +116,7 @@
             // 
             // uomComboBox
             // 
+            this.uomComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uomComboBox.FormattingEnabled = true;
             this.uomComboBox.Items.AddRange(new object[] {
             "g",
@@ -160,6 +161,7 @@
             // 
             // categoryComboBox
             // 
+            this.categoryComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categoryComboBox.FormattingEnabled = true;
             this.categoryComboBox.Location = new System.Drawing.Point(140, 147);
             this.categoryComboBox.Name = "categoryComboBox";

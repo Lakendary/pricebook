@@ -52,6 +52,7 @@ namespace MainUI.ProductLink
             {
                 SetProductLinkToDefaultValues();
             }
+            uomComboBox.SelectedIndex = 0;
         }
 
         //  Events - Button Clicks
