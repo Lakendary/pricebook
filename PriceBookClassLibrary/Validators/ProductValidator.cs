@@ -22,7 +22,7 @@ namespace PriceBookClassLibrary.Validators
 
             RuleFor(p => p.PackSize)
                 .Cascade(CascadeMode.StopOnFirstFailure)
-                .Must(beAPositiveNumber).WithMessage("{PropertyName} must be a positive whole number.")
+                .Must(beAPositiveNumber).WithMessage("{PropertyName} must be a positive number.")
                 .Must(notBeABigNumber).WithMessage("{PropertyName} must be less than a million.");
         }
 
@@ -37,7 +37,7 @@ namespace PriceBookClassLibrary.Validators
             return name.All(Char.IsLetter);
         }
 
-        private bool beAPositiveNumber(int num)
+        private bool beAPositiveNumber(decimal num)
         {
             if(num > 0)
             {
@@ -46,7 +46,7 @@ namespace PriceBookClassLibrary.Validators
             return false;
         }
 
-        private bool notBeABigNumber(int num)
+        private bool notBeABigNumber(decimal num)
         {
             if(num > 0 && num < 1000000)
             {

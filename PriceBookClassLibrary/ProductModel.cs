@@ -9,7 +9,7 @@ namespace PriceBookClassLibrary
         public string ProductLinkName { get; set; }
         public string BrandName { get; set; }
         public string Description { get; set; }
-        public int PackSize { get; set; }
+        public decimal PackSize { get; set; }
         public string UoM { get; set; }
         public string CategoryName { get; set; }
         public string Weighted { get; set; }

@@ -192,7 +192,7 @@ namespace MainUI.Product
         {
             this.product.BrandName = brandNameTextBox.Text;
             this.product.Description = productDescriptionTextBox.Text;
-            if (int.TryParse(packSizeTextBox.Text, out int result))
+            if (decimal.TryParse(packSizeTextBox.Text, out decimal result))
             {
                 this.product.PackSize = result;
             }
