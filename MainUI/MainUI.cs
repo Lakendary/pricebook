@@ -57,14 +57,14 @@ namespace MainUI
         private void infoPictureBox_DoubleClick(object sender, EventArgs e)
         {
             //Seed the database with sample data. 
-            if (SqliteDataAccessGeneral.SeedDatabase())
-            {
-                MessageBox.Show("The database was successfully seeded with sample data.", "PriceBook Database Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Something went wrong. The database seeding failed.", "PriceBook Database Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if (SqliteDataAccessGeneral.SeedDatabase())
+            //{
+            //    MessageBox.Show("The database was successfully seeded with sample data.", "PriceBook Database Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Something went wrong. The database seeding failed.", "PriceBook Database Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         //********************************************************************************************//
