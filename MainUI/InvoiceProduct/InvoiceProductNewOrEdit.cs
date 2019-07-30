@@ -141,9 +141,12 @@ namespace MainUI.InvoiceProduct
             if (product.Weighted == "Weighted")
             {
                 weightTextBox.Enabled = true;
+                quantityTextBox.Enabled = false;
+                quantityTextBox.Text = "1";
             }
             else if (product.Weighted == "Pre-Packaged")
             {
+                quantityTextBox.Enabled = true;
                 weightTextBox.Enabled = false;
                 weightTextBox.Text = "0";
             }
