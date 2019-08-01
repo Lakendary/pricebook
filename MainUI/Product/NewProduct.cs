@@ -215,15 +215,6 @@ namespace MainUI.Product
             }
         }
 
-        private void SetProductLink()
-        {
-            ProductLinkModel productLink = new ProductLinkModel();
-            productLink = GetProductLink(productLink);
-            DisplaySelectedProductLink(productLink);
-            productGroupBox.Enabled = true;
-            ActiveControl = productDescriptionTextBox;
-        }
-
         private ProductLinkModel GetProductLink(ProductLinkModel productLink)
         {
             //  Get Product Link Id from selected row in data grid view
@@ -261,6 +252,24 @@ namespace MainUI.Product
         private void selectButton_Click(object sender, EventArgs e)
         {
             SetProductLink();
+        }
+
+        private void SetProductLink()
+        {
+            
+            if (findProductLinkDataGridView.SelectedRows.Count > 0)
+            {
+                ProductLinkModel productLink = new ProductLinkModel();
+                productLink = GetProductLink(productLink);
+                DisplaySelectedProductLink(productLink);
+                productGroupBox.Enabled = true;
+                ActiveControl = productDescriptionTextBox;
+            }
+            else
+            {
+                MessageBox.Show("First select a product link in the table below before clicking select",
+                    "Price Link Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void newSaveButton_Click(object sender, EventArgs e)
