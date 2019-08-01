@@ -51,7 +51,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>PriceBookIcon.ico</ApplicationIcon>
+    <ApplicationIcon>PriceBook Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MainUI.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
@@ -187,8 +190,10 @@
     <Compile Include="Store\StoreNewOrEdit.Designer.cs">
       <DependentUpon>StoreNewOrEdit.cs</DependentUpon>
     </Compile>
+    <Content Include="PriceBook Logo.ico" />
     <Content Include="PriceBookIcon.ico" />
     <Content Include="PriceBookIcon.ico.ico" />
+    <None Include="Resources\PriceBook Logo.ico" />
     <None Include="Resources\productLink.png" />
     <None Include="Resources\shoppingList.png" />
     <None Include="Resources\productAdd.png" />
