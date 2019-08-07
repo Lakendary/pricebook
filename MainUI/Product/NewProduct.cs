@@ -152,7 +152,8 @@ namespace MainUI.Product
             return productLink;
         }
 
-        private List<ProductLinkModel> GetListOfProductLinks(ProductLinkModel productLink, List<ProductLinkModel> searchResultProductLinks)
+        private List<ProductLinkModel> GetListOfProductLinks(ProductLinkModel productLink, 
+            List<ProductLinkModel> searchResultProductLinks)
         {
             searchResultProductLinks = SqliteDAProductLink.GetAllProductLinks(productLink);
 
@@ -291,6 +292,11 @@ namespace MainUI.Product
                 DisplaySelectedProductLink(productLink);
                 productGroupBox.Enabled = true;
                 ActiveControl = productDescriptionTextBox;
+                if(productLink.Weighted == "Weighted")
+                {
+                    packSizeTextBox.Enabled = false;
+                    packSizeTextBox.Text = "1";
+                }
             }
         }
 
