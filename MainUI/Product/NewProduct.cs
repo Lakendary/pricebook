@@ -1,4 +1,5 @@
 ﻿using FluentValidation.Results;
+using MainUI.Category;
 using PriceBookClassLibrary;
 using PriceBookClassLibrary.Validators;
 using System;
@@ -458,6 +459,13 @@ namespace MainUI.Product
             packSizeTextBox.ResetText();
             barcodeComboBox.ResetText();
             ActiveControl = productDescriptionTextBox;
+        }
+
+        private void newAddCategoryButton_Click(object sender, EventArgs e)
+        {
+            CategoryNewOrEdit categoryForm = new CategoryNewOrEdit();
+            categoryForm.ShowDialog();
+            LoadNewCategoryComboBox();
         }
 
         //  The user clicks add new product on the product search form. This form loads

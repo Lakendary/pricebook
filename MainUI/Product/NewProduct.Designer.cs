@@ -293,6 +293,7 @@
             this.newAddCategoryButton.TabIndex = 13;
             this.newAddCategoryButton.Text = "+";
             this.newAddCategoryButton.UseVisualStyleBackColor = true;
+            this.newAddCategoryButton.Click += new System.EventHandler(this.newAddCategoryButton_Click);
             // 
             // newSaveButton
             // 
