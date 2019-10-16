@@ -42,6 +42,9 @@
             this.resetButton = new System.Windows.Forms.Button();
             this.generateInvoiceNumberButton = new System.Windows.Forms.Button();
             this.addStoreButton = new System.Windows.Forms.Button();
+            this.paymentMethodLabel = new System.Windows.Forms.Label();
+            this.paymentMethodTextBox = new System.Windows.Forms.TextBox();
+            this.paymentMethodSplitButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // storeNameLabel
@@ -112,7 +115,7 @@
             // 
             this.invoiceNumberLabel.AutoSize = true;
             this.invoiceNumberLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.invoiceNumberLabel.Location = new System.Drawing.Point(12, 152);
+            this.invoiceNumberLabel.Location = new System.Drawing.Point(14, 152);
             this.invoiceNumberLabel.Name = "invoiceNumberLabel";
             this.invoiceNumberLabel.Size = new System.Drawing.Size(106, 17);
             this.invoiceNumberLabel.TabIndex = 0;
@@ -131,7 +134,7 @@
             // saveButton
             // 
             this.saveButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveButton.Location = new System.Drawing.Point(285, 202);
+            this.saveButton.Location = new System.Drawing.Point(285, 238);
             this.saveButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(87, 30);
@@ -143,7 +146,7 @@
             // resetButton
             // 
             this.resetButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resetButton.Location = new System.Drawing.Point(15, 202);
+            this.resetButton.Location = new System.Drawing.Point(15, 238);
             this.resetButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(87, 30);
@@ -175,20 +178,52 @@
             this.addStoreButton.UseVisualStyleBackColor = true;
             this.addStoreButton.Click += new System.EventHandler(this.addStoreButton_Click);
             // 
+            // paymentMethodLabel
+            // 
+            this.paymentMethodLabel.AutoSize = true;
+            this.paymentMethodLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentMethodLabel.Location = new System.Drawing.Point(14, 183);
+            this.paymentMethodLabel.Name = "paymentMethodLabel";
+            this.paymentMethodLabel.Size = new System.Drawing.Size(114, 17);
+            this.paymentMethodLabel.TabIndex = 0;
+            this.paymentMethodLabel.Text = "Payment Method";
+            // 
+            // paymentMethodTextBox
+            // 
+            this.paymentMethodTextBox.Location = new System.Drawing.Point(135, 175);
+            this.paymentMethodTextBox.Name = "paymentMethodTextBox";
+            this.paymentMethodTextBox.Size = new System.Drawing.Size(206, 25);
+            this.paymentMethodTextBox.TabIndex = 5;
+            // 
+            // paymentMethodSplitButton
+            // 
+            this.paymentMethodSplitButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.paymentMethodSplitButton.Location = new System.Drawing.Point(347, 175);
+            this.paymentMethodSplitButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.paymentMethodSplitButton.Name = "paymentMethodSplitButton";
+            this.paymentMethodSplitButton.Size = new System.Drawing.Size(25, 25);
+            this.paymentMethodSplitButton.TabIndex = 6;
+            this.paymentMethodSplitButton.Text = "/";
+            this.paymentMethodSplitButton.UseVisualStyleBackColor = true;
+            this.paymentMethodSplitButton.Click += new System.EventHandler(this.generateInvoiceNumberButton_Click);
+            // 
             // InvoiceNewOrEdit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(384, 241);
+            this.ClientSize = new System.Drawing.Size(384, 281);
             this.Controls.Add(this.addStoreButton);
+            this.Controls.Add(this.paymentMethodSplitButton);
             this.Controls.Add(this.generateInvoiceNumberButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.storeComboBox);
             this.Controls.Add(this.invoiceDateTimePicker);
+            this.Controls.Add(this.paymentMethodTextBox);
             this.Controls.Add(this.invoiceNumberTextBox);
             this.Controls.Add(this.invoiceAmountTextBox);
+            this.Controls.Add(this.paymentMethodLabel);
             this.Controls.Add(this.invoiceNumberLabel);
             this.Controls.Add(this.invoiceAmountLabel);
             this.Controls.Add(this.dateLabel);
@@ -223,5 +258,8 @@
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.Button generateInvoiceNumberButton;
         private System.Windows.Forms.Button addStoreButton;
+        private System.Windows.Forms.Label paymentMethodLabel;
+        private System.Windows.Forms.TextBox paymentMethodTextBox;
+        private System.Windows.Forms.Button paymentMethodSplitButton;
     }
 }
