@@ -191,8 +191,6 @@
       <DependentUpon>StoreNewOrEdit.cs</DependentUpon>
     </Compile>
     <Content Include="PriceBook Logo.ico" />
-    <Content Include="PriceBookIcon.ico" />
-    <Content Include="PriceBookIcon.ico.ico" />
     <None Include="Resources\PriceBook Logo.ico" />
     <None Include="Resources\productLink.png" />
     <None Include="Resources\shoppingList.png" />

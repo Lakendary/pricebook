@@ -123,9 +123,11 @@ namespace MainUI
         //  6. Reports
         private void reportPictureBox_DoubleClick(object sender, EventArgs e)
         {
-            modeStripStatusLabel.Text = "REPORT MODE";
-            Reports reportForm = new Reports();
-            reportForm.ShowDialog();
+            //This feature is still in development
+
+            //modeStripStatusLabel.Text = "REPORT MODE";
+            //Reports reportForm = new Reports();
+            //reportForm.ShowDialog();
         }
 
         //********************************************************************************************//
@@ -254,7 +256,6 @@ namespace MainUI
                 }
             }
         }
-
 
         //********************************************************************************************//
         //  SAVE MODELS - BARCODE PANEL CONTROLS
@@ -649,7 +650,6 @@ namespace MainUI
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         //  Changing global mode variable to mode in status strip label
         private void modeStripStatusLabel_TextChanged(object sender, EventArgs e)
         {
@@ -766,6 +766,5 @@ namespace MainUI
             mainDataGridView.Columns["TotalPrice"].DefaultCellStyle.Format = "0.00##";
             modeStripStatusLabel.Text = "INVOICE PRODUCT MODE";
         }
-
     }
 }
